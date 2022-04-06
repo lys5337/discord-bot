@@ -53,3 +53,5 @@ async def URL재생(ctx, *, url):
         await ctx.send("노래가 이미 재생되고 있습니다!")
 
 bot.run(TOKEN)
+
+#test
