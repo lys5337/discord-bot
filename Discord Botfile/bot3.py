@@ -9,7 +9,7 @@ from discord import FFmpegPCMAudio
 import asyncio
 import time
 
-TOKEN = 'OTU3NTIyNDM5MzcyNDMxMzcw.YkAAQw.RKawUcp1qEC1NcuPYgB5DDRaO8Q'
+TOKEN = ''
 bot = commands.Bot(command_prefix='!')
 
 @bot.event
@@ -29,7 +29,7 @@ async def 들어와(ctx):
         try:
             await vc.move_to(ctx.message.author.voice.channel)
         except:
-            await ctx.send('채널어 유저가 접속해있지 않네요..')
+            await ctx.send('채널에 유저가 접속해있지 않네요..')
 
 @bot.command()
 async def 나가(ctx):
