@@ -9,7 +9,7 @@ from discord import FFmpegPCMAudio
 import asyncio
 import time
 
-TOKEN = ''
+TOKEN = 'OTU3NTIyNDM5MzcyNDMxMzcw.YkAAQw.32t7nMn8plViZvueDB4HFeSjBB4'
 bot = commands.Bot(command_prefix='!')
 
 @bot.event
@@ -130,7 +130,7 @@ async def 멜론차트(ctx):
 
 @bot.command()
 async def 명령어(ctx):
-    await ctx.send('모든 명령어 앞에는 !를 붙입니다\n들어와 : 봇을 음성채팅 서버에 참여시킵니다\n' + 
+    await ctx.send('모든 명령어 앞에는 !를 붙입니다\n' + '들어와 : 봇을 음성채팅 서버에 참여시킵니다\n' + 
     '나가 : 봇을 음성채팅 서버에서 추방시킵니다\n' + '재생[제목] : 제목을 입력하면 해당하는 노래를 재생합니다\n'+
     '링크재생 : 링크를 입력하면 해당하는 동영상을 재생합니다\n' + '멜론차트 : 멜론차트를 재생합니다\n' +
     '지금노래 : 현재 재생되고있는 노래제목을 알려줍니다')
