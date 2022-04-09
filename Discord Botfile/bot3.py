@@ -8,8 +8,12 @@ from discord.utils import get
 from discord import FFmpegPCMAudio
 import asyncio
 import time
+import pandas as pd
 
-TOKEN = 'OTU3NTIyNDM5MzcyNDMxMzcw.YkAAQw.32t7nMn8plViZvueDB4HFeSjBB4'
+TOKENVALUE = open(r'C:\Users\c\Desktop\discordTOKEN.txt','r')
+TOKEN = TOKENVALUE.read()
+TOKENVALUE.close()
+
 bot = commands.Bot(command_prefix='!')
 
 @bot.event
@@ -68,7 +72,7 @@ async def 재생(ctx, *, msg):
         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
-        chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
+        chromedriver_dir = (r'C:\Users\c\Desktop\chromedriver.exe')
         driver = webdriver.Chrome(chromedriver_dir, options = options)
         driver.get("https://www.youtube.com/results?search_query="+msg+"+lyrics")
         source = driver.page_source
