@@ -10,7 +10,7 @@ import asyncio
 import time
 import pandas as pd
 
-TOKENVALUE = open(r'C:\Users\c\Desktop\discordTOKEN.txt','r')
+TOKENVALUE = open(r'C:\Users\c\Desktop\ndiscordTOKEN.txt','r')
 TOKEN = TOKENVALUE.read()
 TOKENVALUE.close()
 
