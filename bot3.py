@@ -1,6 +1,8 @@
 from logging import StrFormatStyle
+from unittest import result
 import nextcord
 from nextcord.ext import commands
+from numpy import number
 from youtube_dl import YoutubeDL
 import bs4
 from selenium import webdriver
@@ -150,7 +152,10 @@ async def 재생(ctx, *, msg):
         await ctx.send(embed = nextcord.Embed(title= "노래 재생", description = "현재 " + musicnow[0] + "을(를) 재생하고 있습니다.", color = 0x00ff00))
         vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
     else:
-        await ctx.send("이미 노래가 재생 중이라 노래를 재생할 수 없어요!")
+        user.append(msg)
+        result, URLTEST = title(msg)
+        song_queue.append(URLTEST)
+        await ctx.send('이미 노래가 재생중이라' + result + '을(를) 대기열로 추가시켰습니다')
 
 @bot.command()
 async def 지금노래(ctx):
@@ -240,6 +245,16 @@ async def 삭제(ctx, *, number):
                 await ctx.send("숫자의 범위가 목록개수를 벗어났습니다!")
             else:
                 await ctx.send("숫자를 입력해주세요!")
+
+@bot.command()
+async def 스킵(ctx):
+    if len(user) > 1:
+        if vc.is_playing():
+            vc.stop()
+            global number
+            number = 0
+            await ctx.send(embed = nextcord.Embed(title = '스킵', description = musicnow[1] 
+            + '을(를) 다음에 재생합니다', color = 0x00ff00))
 
 @bot.command()
 async def 목록(ctx):
