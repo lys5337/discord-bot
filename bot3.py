@@ -3,6 +3,8 @@ from logging import StrFormatStyle
 from tkinter import Button
 from unittest import result
 import nextcord
+from nextcord.ui import Button, View
+from nextcord import Intents
 from nextcord.ext import commands
 from nextcord.utils import get
 from selenium.webdriver.chrome.options import Options
@@ -15,12 +17,12 @@ import asyncio
 import time
 import pandas as pd
 
-
 TOKENVALUE = open(r'C:\Users\c\Desktop\discordTOKEN.txt','r')
 TOKEN = TOKENVALUE.read()
 TOKENVALUE.close()
 
-bot = commands.Bot(command_prefix='!')
+intents = nextcord.Intents.all()
+bot = commands.Bot(command_prefix='!', intents = intents)
 client = nextcord.Client()
 
 class musicbot:
@@ -301,23 +303,36 @@ class musicbot:
 
     @bot.command()
     async def 명령어(ctx):
-        await ctx.send('간단히 보기 : !간단히\n' + '자세히 보기 : !자세히\n')
+        detail_command = Button(label="자세히", style = nextcord.ButtonStyle.green)
+        simple_command = Button(label="간단히", style = nextcord.ButtonStyle.green)
 
-    @bot.command()
-    async def 간단히(ctx):
-        await ctx.send('모든 명령어 앞에는 !를 붙입니다\n'+
-        '들어와               '+'나가                 '+'재생[제목]          '+'링크재생[링크]\n'+
-        '멜론차트           '+'지금노래         '+'추가/삭제           '+'목록\n'+
-        '목록재생           '+'일시정지         '+'다시재생             '+'노래끄기\n')
+        async def detail_command_callback(interaction):
+            await ctx.send('모든 명령어 앞에는 !를 붙입니다\n\n' + 
+            '들어와 : 봇을 음성채팅 서버에 참여시킵니다\n' + 
+            '나가 : 봇을 음성채팅 서버에서 추방시킵니다\n' + 
+            '재생[제목] : 제목을 입력하면 해당하는 노래를 재생합니다\n'+
+            '링크재생 : 링크를 입력하면 해당하는 동영상을 재생합니다\n' + 
+            '멜론차트 : 멜론차트를 재생합니다\n' +
+            '지금노래 : 현재 재생되고있는 노래제목을 알려줍니다\n' + 
+            '추가/삭제 : 대기열에 노래를 추가/삭제 합니다\n' +
+            '목록/목록재생 : 재생목록을 보여줍니다/재생합니다\n' + 
+            '일시정지/다시재생 : 노래를 정지/다시재생 시킵니다\n' + 
+            '노래끄기 : 노래를 종료하고 바로 다음곡을 재생합니다\n')
 
-    @bot.command()
-    async def 자세히(ctx):
-        await ctx.send('모든 명령어 앞에는 !를 붙입니다\n\n' + '들어와 : 봇을 음성채팅 서버에 참여시킵니다\n' + 
-        '나가 : 봇을 음성채팅 서버에서 추방시킵니다\n' + '재생[제목] : 제목을 입력하면 해당하는 노래를 재생합니다\n'+
-        '링크재생 : 링크를 입력하면 해당하는 동영상을 재생합니다\n' + '멜론차트 : 멜론차트를 재생합니다\n' +
-        '지금노래 : 현재 재생되고있는 노래제목을 알려줍니다\n' + '추가/삭제 : 대기열에 노래를 추가/삭제 합니다\n' +
-        '목록/목록재생 : 재생목록을 보여줍니다/재생합니다\n' + '일시정지/다시재생 : 노래를 정지/다시재생 시킵니다\n' + 
-        '노래끄기 : 노래를 종료하고 바로 다음곡을 재생합니다')
+        async def simple_command_callback(interaction):
+            await ctx.send('모든 명령어 앞에는 !를 붙입니다\n'+
+            '들어와               '+'나가                 '+'재생[제목]          '+'링크재생[링크]\n'+
+            '멜론차트           '+'지금노래         '+'추가/삭제           '+'목록\n'+
+            '목록재생           '+'일시정지         '+'다시재생             '+'노래끄기\n')
+
+        detail_command.callback = detail_command_callback
+        simple_command.callback = simple_command_callback
+
+        view = View()
+        view.add_item(detail_command)
+        view.add_item(simple_command)
+    
+        await ctx.send(embed = nextcord.Embed(title='명령어 설명',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.blue()), view=view)
 
 @bot.event
 async def on_ready():
