@@ -225,39 +225,41 @@ class musicbot:
 
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
-      
-        try:
-            global vc
-            vc = await ctx.message.author.voice.channel.connect()   
-        except:
+        global vc
+        if not vc.is_playing():
             try:
-                await vc.move_to(ctx.message.author.voice.channel)
+                vc = await ctx.message.author.voice.channel.connect()   
             except:
-                pass
-        
-        global entireText
-        global number
-        number = 1
-        YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
-        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-        
-        if len(musicbot.musicnow) - len(musicbot.user) >= 1:
-            for i in range(len(musicbot.musicnow) - len(musicbot.user)):
-                del musicbot.musicnow[0]
-                
-        chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
-        driver = webdriver.Chrome(chromedriver_dir, options = options)
-        driver.get("https://www.youtube.com/results?search_query="+msg+"+lyrics")
-        source = driver.page_source
-        bs = bs4.BeautifulSoup(source, 'lxml')
-        entire = bs.find_all('a', {'id': 'video-title'})
-        entireNum = entire[0]
-        entireText = entireNum.text.strip()
-        musicbot.musicnow.insert(0, entireText)
-        test1 = entireNum.get('href')
-        url = 'https://www.youtube.com'+test1
-        await ctx.send(embed = nextcord.Embed(title= "반복재생", description = "현재 " + musicbot.musicnow[0] + "을(를) 반복재생하고 있습니다.", color = 0x00ff00))
-        musicbot.again(ctx, url)
+                try:
+                    await vc.move_to(ctx.message.author.voice.channel)
+                except:
+                    pass
+            
+            global entireText
+            global number
+            number = 1
+            YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
+            FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+            
+            if len(musicbot.musicnow) - len(musicbot.user) >= 1:
+                for i in range(len(musicbot.musicnow) - len(musicbot.user)):
+                    del musicbot.musicnow[0]
+                    
+            chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
+            driver = webdriver.Chrome(chromedriver_dir, options = options)
+            driver.get("https://www.youtube.com/results?search_query="+msg+"+lyrics")
+            source = driver.page_source
+            bs = bs4.BeautifulSoup(source, 'lxml')
+            entire = bs.find_all('a', {'id': 'video-title'})
+            entireNum = entire[0]
+            entireText = entireNum.text.strip()
+            musicbot.musicnow.insert(0, entireText)
+            test1 = entireNum.get('href')
+            url = 'https://www.youtube.com'+test1
+            await ctx.send(embed = nextcord.Embed(title= "반복재생", description = "현재 " + musicbot.musicnow[0] + "을(를) 반복재생하고 있습니다.", color = 0x00ff00))
+            musicbot.again(ctx, url)
+        else : 
+            await ctx.send('현재 노래가 재생중이라 반복재생 할 수 없네요.. 노래를 끄거나 일시정지 한 후 사용해주세요')
 
     @bot.command()
     async def 추가(ctx, *, msg):
