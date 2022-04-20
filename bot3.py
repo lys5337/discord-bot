@@ -1,10 +1,11 @@
 from gc import callbacks
+from http.client import NON_AUTHORITATIVE_INFORMATION
 from logging import StrFormatStyle
 from tkinter import Button
 from unittest import result
 import nextcord
 from nextcord.ui import Button, View
-from nextcord import Intents
+from nextcord import Intents, User, user_command
 from nextcord.ext import commands
 from nextcord.utils import get
 from selenium.webdriver.chrome.options import Options
@@ -16,6 +17,7 @@ from nextcord import Embed, FFmpegPCMAudio, Interaction
 import asyncio
 import time
 import pandas as pd
+import random
 
 TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN.txt','r')
 TOKEN = TOKENVALUE.read()
@@ -324,6 +326,30 @@ class musicbot:
             await ctx.send(embed = nextcord.Embed(title= "목록초기화", description = """목록이 정상적으로 초기화되었습니다. 이제 노래를 등록해볼까요?""", color = 0x00ff00))
         except:
             await ctx.send("아직 아무노래도 등록하지 않았어요.")
+    
+    @bot.command()
+    async def 목록섞기(ctx):
+        try:
+            global musicnow, user, musictitle, song_queue
+            numbershuffle = len(musicbot.musicnow) - len(musicbot.user)
+            for i in range(numbershuffle):
+                random.shuffle.append(musicbot.musicnow[0])
+                del musicbot.musicnow[0]
+            combine = list(zip(musicbot.user, musicbot.musicnow, musicbot.musictitle, musicbot.song_queue))
+            random.shuffle(combine)
+            a,b,c,d = list(zip(*combine))
+
+            musicbot.user = list(a)
+            musicbot.musicnow = list(b)
+            musicbot.musictitle = list(c)
+            musicbot.song_queue = list(d)
+
+            for i in range(numbershuffle):
+                musicbot.musicnow.insert(0, random.shuffle[i])
+
+            await ctx.send('목록을 정상적으로 섞었습니다')
+        except:
+            await ctx.send('섞을 목록이 없습니다')
 
     @bot.command()
     async def 목록재생(ctx):
