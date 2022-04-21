@@ -28,10 +28,14 @@ bot = commands.Bot(command_prefix='!', intents = intents)
 client = nextcord.Client()
 
 class musicbot:
-    user = []
-    musictitle = []
-    song_queue = []
-    musicnow = []
+    user = []           #유저가 입력한 노래 정보
+    musictitle = []     #가공된 정보의 노래 제목
+    song_queue = []     #가공된 정보의 노래 링크
+    musicnow = []       #현재 출력되는 노래 정보
+
+    userF = []          #유저 정보 저장 배열
+    userFlist = []      #유저 개인 노래 저장 배열
+    allplaylist = []    #플레이리스트 배열
 
     def title(msg):
         global music
@@ -99,9 +103,7 @@ class musicbot:
                     info = ydl.extract_info(url, download=False)
             URL = info['formats'][0]['url']
             if not vc.is_playing():
-                vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS), after = lambda e: musicbot.again(ctx, url))
-                    
-
+                vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS), after = lambda e: musicbot.again(ctx, url))               
 
     @bot.command()
     async def 들어와(ctx):
@@ -156,6 +158,122 @@ class musicbot:
             result, URLTEST = musicbot.title(msg)
             musicbot.song_queue.append(URLTEST)
             await ctx.send('이미 노래가 재생중이라' + result + '을(를) 대기열로 추가시켰습니다')
+    
+    @bot.command()
+    async def 즐겨찾기(ctx):
+        global Ftext
+        Ftext = ""
+        correct = 0
+        global Flist
+        for i in range(len(musicbot.userF)):
+            if musicbot.userF[i] == str(ctx.message.author.name): #userF에 유저정보가 있는지 확인
+                correct = 1 #있으면 넘김
+        if correct == 0:
+            musicbot.userF.append(str(ctx.message.author.name)) #userF에다가 유저정보를 저장
+            musicbot.userFlist.append([]) #유저 노래 정보 첫번째에 유저이름을 저장하는 리스트를 만듬.
+            musicbot.userFlist[len(musicbot.userFlist)-1].append(str(ctx.message.author.name))
+            
+        for i in range(len(musicbot.userFlist)):
+            if musicbot.userFlist[i][0] == str(ctx.message.author.name):
+                if len(musicbot.userFlist[i]) >= 2: # 노래가 있다면
+                    for j in range(1, len(musicbot.userFlist[i])):
+                        Ftext = Ftext + "\n" + str(j) + ". " + str(musicbot.userFlist[i][j])
+                    titlename = str(ctx.message.author.name) + "님의 즐겨찾기"
+                    embed = nextcord.Embed(title = titlename, description = Ftext.strip(), color = 0x00ff00)
+                    embed.add_field(name = "목록에 추가\U0001F4E5", value = "즐겨찾기에 모든 곡들을 목록에 추가합니다.", inline = False)
+                    embed.add_field(name = "플레이리스트로 추가\U0001F4DD", value = "즐겨찾기에 모든 곡들을 새로운 플레이리스트로 저장합니다.", inline = False)
+                    Flist = await ctx.send(embed = embed)
+                    await Flist.add_reaction("\U0001F4E5")
+                    await Flist.add_reaction("\U0001F4DD")
+                else:
+                    await ctx.send("아직 등록하신 즐겨찾기가 없어요.")
+
+    @bot.command()
+    async def 즐겨찾기추가(ctx, *, msg):
+        correct = 0
+        for i in range(len(musicbot.userF)):
+            if musicbot.userF[i] == str(ctx.message.author.name): #userF에 유저정보가 있는지 확인
+                correct = 1 #있으면 넘김
+        if correct == 0:
+            musicbot.userF.append(str(ctx.message.author.name)) #userF에다가 유저정보를 저장
+            musicbot.userFlist.append([]) #유저 노래 정보 첫번째에 유저이름을 저장하는 리스트를 만듦.
+            musicbot.userFlist[len(musicbot.userFlist)-1].append(str(ctx.message.author.name))
+
+        for i in range(len(musicbot.userFlist)):
+            if musicbot.userFlist[i][0] == str(ctx.message.author.name):
+                
+                options = webdriver.ChromeOptions()
+                options.add_argument("headless")
+
+                chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
+                driver = webdriver.Chrome(chromedriver_dir, options = options)
+                driver.get("https://www.youtube.com/results?search_query="+msg+"+lyrics")
+                source = driver.page_source
+                bs = bs4.BeautifulSoup(source, 'lxml')
+                entire = bs.find_all('a', {'id': 'video-title'})
+                entireNum = entire[0]
+                music = entireNum.text.strip()
+
+                driver.quit()
+
+                musicbot.userFlist[i].append(music)
+                await ctx.send(music + "(이)가 정상적으로 등록되었어요!")
+
+    @bot.command()
+    async def 즐겨찾기삭제(ctx, *, number):
+        correct = 0
+        for i in range(len(musicbot.userF)):
+            if musicbot.userF[i] == str(ctx.message.author.name): #userF에 유저정보가 있는지 확인
+                correct = 1 #있으면 넘김
+        if correct == 0:
+            musicbot.userF.append(str(ctx.message.author.name)) #userF에다가 유저정보를 저장
+            musicbot.userFlist.append([]) #유저 노래 정보 첫번째에 유저이름을 저장하는 리스트를 만듦.
+            musicbot.userFlist[len(musicbot.userFlist)-1].append(str(ctx.message.author.name))
+
+        for i in range(len(musicbot.userFlist)):
+            if musicbot.userFlist[i][0] == str(ctx.message.author.name):
+                if len(musicbot.userFlist[i]) >= 2: # 노래가 있다면
+                    try:
+                        del musicbot.userFlist[i][int(number)]
+                        await ctx.send("정상적으로 삭제되었습니다.")
+                    except:
+                        await ctx.send("입력한 숫자가 잘못되었거나 즐겨찾기의 범위를 초과하였습니다.")
+                else:
+                    await ctx.send("즐겨찾기에 노래가 없어서 지울 수 없어요!")
+
+    @bot.event
+    async def on_reaction_add(reaction, users):
+
+        options = webdriver.ChromeOptions()
+        options.add_argument("headless")
+
+        chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
+        driver = webdriver.Chrome(chromedriver_dir, options = options)
+        
+        if users.bot == 1:
+            pass
+        else:
+            try:
+                await Flist.delete()
+            except:
+                pass
+            else:
+                if str(reaction.emoji) == '\U0001F4E5':
+                    await reaction.message.channel.send("잠시만 기다려주세요. (즐겨찾기 갯수가 많으면 지연될 수 있습니다.)")
+                    print(users.name)
+                    for i in range(len(musicbot.userFlist)):
+                        if musicbot.userFlist[i][0] == str(users.name):
+                            for j in range(1, len(musicbot.userFlist[i])):
+                                try:
+                                    driver.close()
+                                except:
+                                    print("NOT CLOSED")
+
+                                musicbot.user.append(musicbot.userFlist[i][j])
+                                result, URLTEST = musicbot.title(musicbot.userFlist[i][j])
+                                musicbot.song_queue.append(URLTEST)
+                                await reaction.message.channel.send(musicbot.userFlist[i][j] + "를 재생목록에 추가했어요!")
+               
 
     @bot.command()
     async def 지금노래(ctx):
@@ -191,7 +309,7 @@ class musicbot:
             with YoutubeDL(YDL_OPTIONS) as ydl:
                 info = ydl.extract_info(url, download=False)
             URL = info['formats'][0]['url']
-            await ctx.send(embed = nextcord.Embed(title= "노래 재생", description = "현재 " + musicbot.musicnow[0] + "을(를) 재생하고 있습니다.", color = 0x00ff00))
+            await ctx.send(embed = nextcord.Embed(title = "노래 재생", description = "현재 " + musicbot.musicnow[0] + "을(를) 재생하고 있습니다.", color = 0x00ff00))
             vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
         else:
             await ctx.send("이미 노래가 재생 중이라 노래를 재생할 수 없어요!")
