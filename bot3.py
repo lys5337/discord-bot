@@ -104,6 +104,16 @@ class musicbot:
             URL = info['formats'][0]['url']
             if not vc.is_playing():
                 vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS), after = lambda e: musicbot.again(ctx, url))               
+    def URLPLAY(ctx, url):
+        YDL_OPTIONS = {'format': 'bestaudio','noplaylist':'True'}
+        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+
+        if not vc.is_playing():
+            with YoutubeDL(YDL_OPTIONS) as ydl:
+                info = ydl.extract_info(url, download=False)
+                URL = info['formats'][0]['url']
+                vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
+                client.loop.create_task(musicbot.subtitle_song(ctx, URL))
 
     @bot.command()
     async def 들어와(ctx):
@@ -242,7 +252,7 @@ class musicbot:
                     await ctx.send("즐겨찾기에 노래가 없어서 지울 수 없어요!")
 
     @bot.event
-    async def on_reaction_add(reaction, users):
+    async def on_reaction_add(ctx, reaction, users):
 
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
@@ -273,7 +283,23 @@ class musicbot:
                                 result, URLTEST = musicbot.title(musicbot.userFlist[i][j])
                                 musicbot.song_queue.append(URLTEST)
                                 await reaction.message.channel.send(musicbot.userFlist[i][j] + "를 재생목록에 추가했어요!")
-               
+
+                elif str(reaction.emoji) == '\u0031\uFE0F\u20E3':                  
+                    musicbot.URLPLAY(musicbot.rinklist[0])
+                    await ctx.send("정상적으로 진행되었습니다.")
+                elif str(reaction.emoji) == '\u0032\uFE0F\u20E3':
+                    musicbot.URLPLAY(musicbot.rinklist[1])
+                    await ctx.send("정상적으로 진행되었습니다.")
+                elif str(reaction.emoji) == '\u0033\uFE0F\u20E3':
+                    musicbot.URLPLAY(musicbot.rinklist[2])
+                    await ctx.send("정상적으로 진행되었습니다.")
+                elif str(reaction.emoji) == '\u0034\uFE0F\u20E3':
+                    musicbot.URLPLAY(musicbot.rinklist[3])
+                    await ctx.send("정상적으로 진행되었습니다.")
+                elif str(reaction.emoji) == '\u0035\uFE0F\u20E3':
+                    musicbot.URLPLAY(musicbot.rinklist[4])
+                    await ctx.send("정상적으로 진행되었습니다.")
+                
 
     @bot.command()
     async def 지금노래(ctx):
@@ -485,6 +511,55 @@ class musicbot:
                 musicbot.play(ctx)
             else:
                 await ctx.send("노래가 이미 재생되고 있어요!")
+    
+
+    @bot.command()
+    async def 정밀검색(ctx, *, msg):
+        Text = ""
+        global rinklist
+        global Alist
+        rinklist = [0,0,0,0,0]
+
+        try:
+            global vc
+            vc = await ctx.message.author.voice.channel.connect()
+        except:
+            try:
+                await vc.move_to(ctx.message.author.voice.channel)
+            except:
+                await ctx.send("채널에 유저가 접속해있지 않네요..")
+
+        YDL_OPTIONS = {'format': 'bestaudio','noplaylist':'True'}
+        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+
+        chromedriver_dir = r"C:\Users\c\Desktop\chromedriver.exe"
+        driver = webdriver.Chrome(chromedriver_dir, options = options)
+
+        driver.get("https://www.youtube.com/results?search_query="+msg)
+        source = driver.page_source
+        bs = bs4.BeautifulSoup(source, 'lxml')
+        entire = bs.find_all('a', {'id': 'video-title'})
+        for i in range(0, 4):
+            entireNum = entire[i]
+            entireText = entireNum.text.strip()  # 영상제목
+            test1 = entireNum.get('href')  # 하이퍼링크
+            rinklist[i] = 'https://www.youtube.com'+test1
+            Text = Text + str(i+1)+'번째 영상 : ' + entireText +'\n링크 : '+ rinklist[i] + '\n'
+        
+        await ctx.send(embed = nextcord.Embed(title= "검색한 영상들입니다.", description = Text.strip(), color = 0x00ff00))
+        Alist = await ctx.send(embed = Embed)
+
+        await Alist.add_reaction("\u0031\uFE0F\u20E3")
+        await Alist.add_reaction("\u0032\uFE0F\u20E3")
+        await Alist.add_reaction("\u0033\uFE0F\u20E3")
+        await Alist.add_reaction("\u0034\uFE0F\u20E3")
+        await Alist.add_reaction("\u0035\uFE0F\u20E3")
+
+
+              
 
     @bot.command()
     async def 명령어(ctx):
