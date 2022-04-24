@@ -542,7 +542,7 @@ class musicbot:
         source = driver.page_source
         bs = bs4.BeautifulSoup(source, 'lxml')
         entire = bs.find_all('a', {'id': 'video-title'})
-        for i in range(0, 4):
+        for i in range(0, 5):
             entireNum = entire[i]
             entireText = entireNum.text.strip()  # 영상제목
             test1 = entireNum.get('href')  # 하이퍼링크
