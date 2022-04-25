@@ -577,13 +577,15 @@ class musicbot:
             '추가/삭제 : 대기열에 노래를 추가/삭제 합니다\n' +
             '목록/목록재생 : 재생목록을 보여줍니다/재생합니다\n' + 
             '일시정지/다시재생 : 노래를 정지/다시재생 시킵니다\n' + 
-            '노래끄기 : 노래를 종료하고 바로 다음곡을 재생합니다\n')
+            '노래끄기 : 노래를 종료하고 바로 다음곡을 재생합니다\n' +
+            '즐겨찾기 추가/삭제 : 유저별 즐겨찾기 & 즐겨찾기추가 혹은 삭제시킵니다.')
 
         async def simple_command_callback(interaction):
             await ctx.send('모든 명령어 앞에는 !를 붙입니다\n'+
             '들어와               '+'나가                 '+'재생[제목]          '+'노래반복[제목]\n'+
             '멜론차트           '+'지금노래         '+'추가/삭제           '+'목록\n'+
-            '목록재생           '+'일시정지         '+'다시재생             '+'노래끄기\n')
+            '목록재생           '+'일시정지         '+'다시재생             '+'노래끄기\n' +
+            '즐겨찾기 추가/삭제')
 
         detail_command.callback = detail_command_callback
         simple_command.callback = simple_command_callback
