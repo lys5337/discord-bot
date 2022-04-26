@@ -565,27 +565,44 @@ class musicbot:
     async def 명령어(ctx):
         detail_command = Button(label="자세히", style = nextcord.ButtonStyle.green)
         simple_command = Button(label="간단히", style = nextcord.ButtonStyle.green)
-
+        channel = ctx.channel
+        
         async def detail_command_callback(interaction):
-            await ctx.send('모든 명령어 앞에는 !를 붙입니다\n\n' + 
-            '들어와 : 봇을 음성채팅 서버에 참여시킵니다\n' + 
-            '나가 : 봇을 음성채팅 서버에서 추방시킵니다\n' + 
-            '재생[제목] : 제목을 입력하면 해당하는 노래를 재생합니다\n'+ 
-            '멜론차트 : 멜론차트를 재생합니다\n' +
-            '노래반복[제목] : [제목]의 노래를 반복합니다\n' +
-            '지금노래 : 현재 재생되고있는 노래제목을 알려줍니다\n' + 
-            '추가/삭제 : 대기열에 노래를 추가/삭제 합니다\n' +
-            '목록/목록재생 : 재생목록을 보여줍니다/재생합니다\n' + 
-            '일시정지/다시재생 : 노래를 정지/다시재생 시킵니다\n' + 
-            '노래끄기 : 노래를 종료하고 바로 다음곡을 재생합니다\n' +
-            '즐겨찾기 추가/삭제 : 유저별 즐겨찾기 & 즐겨찾기추가 혹은 삭제시킵니다.')
+            embed = nextcord.Embed(
+            title = '명령어목록',
+            description = '모든 명령어 앞에는 !를 붙입니다',
+            colour = nextcord.Colour.blue())
+            embed.add_field(name = '!들어와', value = '봇이 음성채널에 참가합니다(사용자가 있을경우에만)',inline = False)
+            embed.add_field(name = '!나가', value = '봇이 음성채널에서 나갑니다', inline = False)
+            embed.add_field(name = '!재생[제목/링크]', value = '제목/링크를 입력하면 재생합니다, 이미 재생중이라면 목록에 추가합니다', inline = False)
+            embed.add_field(name = '!노래반복[제목/링크]', value = '제목/링크를 입력하면 그 노래를 반복재생합니다.', inline = False)
+            embed.add_field(name = '!멜론차트', value = '최신 주의 멜론차트를 재생합니다', inline = False)
+            embed.add_field(name = '!지금노래', value = '현재 재생중인 곡의 제목을 알려줍니다', inline = False)
+            embed.add_field(name = '!목록', value = '앞으로 재생할 곡의 리스트를 보여줍니다.', inline = False)
+            embed.add_field(name = '!추가/삭제[제목,링크]', value = '목록에있는 리스트에 추가/삭제 합니다', inline = False)
+            embed.add_field(name = '!목록재생', value = '목록에 등록되어있는 리스트를 재생합니다', inline = False)
+            embed.add_field(name = '!목록초기화', value = '현재 목록에 등록된 모든 노래를 초기화시킵니다', inline = False)
+            embed.add_field(name = '!목록섞기', value = '현재 목록에 등록된 모든 노래의 순서를 랜덤하게 섞습니다', inline = False)
+            embed.add_field(name = '!일시정지', value = '현재 재생중인 곡을 일시정지 시킵니다.', inline = False)
+            embed.add_field(name = '!다시재생', value = '일시정지중인 곡을 다시 재생시킵니다', inline = False)
+            embed.add_field(name = '!노래끄기', value = '현재 재생중인 곡을 즉시종료시킵니다', inline = False)
+            embed.add_field(name = '!스킵', value = '현재 재생중인 곡을 스킵하고 다음곡을 재생합니다', inline = False)
+            embed.add_field(name = '!즐겨찾기', value = '유저별로 플레이리스트를 저장하여 보여줍니다', inline = False)
+            embed.add_field(name = '!즐겨찾기추가 / 즐겨찾기삭제', value = '유저별 즐겨찾기 목록에 곡을 추가/삭제 합니다', inline = False)
+
+            await ctx.send(channel, embed = embed)
 
         async def simple_command_callback(interaction):
-            await ctx.send('모든 명령어 앞에는 !를 붙입니다\n'+
-            '들어와               '+'나가                 '+'재생[제목]          '+'노래반복[제목]\n'+
-            '멜론차트           '+'지금노래         '+'추가/삭제           '+'목록\n'+
-            '목록재생           '+'일시정지         '+'다시재생             '+'노래끄기\n' +
-            '즐겨찾기 추가/삭제')
+            embed = nextcord.Embed(
+            title = '명령어목록',
+            description = '모든 명령어 앞에는 !를 붙입니다',
+            colour = nextcord.Colour.blue())
+            embed.add_field(name = '.', value = 
+            '목록섞기, 목록, 추가/삭제[제목,링크], 목록재생, 목록초기화, 일시정지\n'+
+            '들어와, 나가, 재생[제목/링크], 노래반복[제목/링크], 멜론차트, 지금노래\n' +
+            '다시재생, 노래끄기, 스킵, 즐겨찾기, 즐겨찾기추가 / 즐겨찾기삭제\n', inline = False)
+            
+            await ctx.send(channel, embed = embed)
 
         detail_command.callback = detail_command_callback
         simple_command.callback = simple_command_callback
