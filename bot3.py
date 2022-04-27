@@ -631,15 +631,12 @@ class weather:
         todayTemp1 = todayBase.find('div', {'class': 'temperature_text'})
         todayTemp2 = todayTemp1.find('strong')
         todayTemp = todayTemp2.text.strip()  # 온도
-        print(todayTemp)
 
         thanYesturday1 = todayBase.find('div', {'class':'temperature_info'})
-        thanYesturday = thanYesturday1.text.strip()
-        print(thanYesturday) #현재상태
+        thanYesturday = thanYesturday1.text.strip() #현재상태
 
         todayDust1 = todayBase.find('ul', {'class': 'today_chart_list'})
-        todayDust = todayDust1.text.strip() #대기상태
-        print(todayDust)
+        todayDust = todayDust1.text.strip() #대기상
 
         embed = nextcord.Embed(
             title = str(weather.location) + ' 날씨 정보',
@@ -651,6 +648,9 @@ class weather:
         embed.add_field(name='대기상태', value=str(todayDust), inline=False)  # 대기상태
 
         await ctx.send(ctx.channel,embed=embed)
+
+        del weather.location[0]
+
 
  
 
