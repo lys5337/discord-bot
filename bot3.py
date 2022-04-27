@@ -18,6 +18,9 @@ import asyncio
 import time
 import pandas as pd
 import random
+from urllib.request import urlopen, Request
+import urllib
+import urllib.request
 
 TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN.txt','r')
 TOKEN = TOKENVALUE.read()
@@ -609,6 +612,47 @@ class musicbot:
         await Alist.add_reaction("\u0033\uFE0F\u20E3")
         await Alist.add_reaction("\u0034\uFE0F\u20E3")
         await Alist.add_reaction("\u0035\uFE0F\u20E3")
+
+class weather:
+
+    location = []
+
+    @bot.command()
+    async def 날씨(ctx, *,msg):
+        weather.location.append(msg)
+        enc_location = urllib.parse.quote(str(weather.location[0]) + '날씨')
+        hdr = {'User-Agent': 'Mozilla/5.0'}
+        url = ('https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=' + enc_location)
+        req = Request(url, headers=hdr)
+        html = urllib.request.urlopen(req)
+        bsObj = bs4.BeautifulSoup(html, "html.parser")
+        todayBase = bsObj.find('div', {'class': 'weather_info'})
+
+        todayTemp1 = todayBase.find('div', {'class': 'temperature_text'})
+        todayTemp2 = todayTemp1.find('strong')
+        todayTemp = todayTemp2.text.strip()  # 온도
+        print(todayTemp)
+
+        thanYesturday1 = todayBase.find('div', {'class':'temperature_info'})
+        thanYesturday = thanYesturday1.text.strip()
+        print(thanYesturday) #현재상태
+
+        todayDust1 = todayBase.find('ul', {'class': 'today_chart_list'})
+        todayDust = todayDust1.text.strip() #대기상태
+        print(todayDust)
+
+        embed = nextcord.Embed(
+            title = str(weather.location) + ' 날씨 정보',
+            description = str(weather.location) + '날씨 정보입니다.',
+            colour = nextcord.Colour.gold()
+        )
+        embed.add_field(name='현재온도', value=str(todayTemp), inline=False)  # 현재온도
+        embed.add_field(name='현재상태', value=str(thanYesturday), inline=False)  # 현재상태
+        embed.add_field(name='대기상태', value=str(todayDust), inline=False)  # 대기상태
+
+        await ctx.send(ctx.channel,embed=embed)
+
+ 
 
 @bot.event
 async def on_ready():
