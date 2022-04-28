@@ -637,12 +637,12 @@ class weather:
         thanYesturday = thanYesturday1.text.strip() #현재상태
 
         todayDust1 = todayBase.find('ul', {'class': 'today_chart_list'})
-        todayDust = todayDust1.text.strip() #대기상
+        todayDust = todayDust1.text.strip() #대기상태
 
-        tommorrowMornig = [] #내일 오전 정보
-        tommorrowAfternoon = [] #내일 오후 정보
-        tommorrowMornig = tommorrowBase.text.strip()
-        tommorrowAfternoon = tommorrowBase.text.strip()
+        tommorrowTemp = []
+        tommorrowTemp = tommorrowBase.find_all('div', {'class': 'inner'})
+        tommorrowMornig = tommorrowTemp[0].text.strip() #내일오전
+        tommorrowAfternoon = tommorrowTemp[1].text.strip() #내일오후
 
         embed = nextcord.Embed(
             title = str(weather.location) + ' 날씨 정보',
@@ -652,16 +652,16 @@ class weather:
         embed.add_field(name='현재온도', value=str(todayTemp), inline=False)  # 현재온도
         embed.add_field(name='현재상태', value=str(thanYesturday), inline=False)  # 현재상태
         embed.add_field(name='대기상태', value=str(todayDust), inline=False)  # 대기상태
-        embed.add_field(name='**----------------------------------**',value='**----------------------------------**', inline=False)  # 구분선
-        embed.add_field(name='내일오전', value=str(tommorrowMornig[0:70]), inline=False) #내일오전
-        embed.add_field(name='내일오후', value=str(tommorrowAfternoon[76:140]), inline=False) #내일오후
+        embed.add_field(
+            name='**----------------------------------↑오늘----------------------------------**',
+            value='**----------------------------------↓내일----------------------------------**', 
+            inline=False)  # 구분선
+        embed.add_field(name='내일오전', value=str(tommorrowMornig), inline=False) #내일오전
+        embed.add_field(name='내일오후', value=str(tommorrowAfternoon), inline=False) #내일오후
 
         await ctx.send(ctx.channel,embed=embed)
 
         del weather.location[0]
-
-
- 
 
 @bot.event
 async def on_ready():
