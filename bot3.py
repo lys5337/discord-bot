@@ -627,6 +627,7 @@ class weather:
         html = urllib.request.urlopen(req)
         bsObj = bs4.BeautifulSoup(html, "html.parser")
         todayBase = bsObj.find('div', {'class': 'weather_info'})
+        tommorrowBase = bsObj.find('ul', {'class': 'weather_info_list'})
 
         todayTemp1 = todayBase.find('div', {'class': 'temperature_text'})
         todayTemp2 = todayTemp1.find('strong')
@@ -638,6 +639,11 @@ class weather:
         todayDust1 = todayBase.find('ul', {'class': 'today_chart_list'})
         todayDust = todayDust1.text.strip() #대기상
 
+        tommorrowMornig = [] #내일 오전 정보
+        tommorrowAfternoon = [] #내일 오후 정보
+        tommorrowMornig = tommorrowBase.text.strip()
+        tommorrowAfternoon = tommorrowBase.text.strip()
+
         embed = nextcord.Embed(
             title = str(weather.location) + ' 날씨 정보',
             description = str(weather.location) + '날씨 정보입니다.',
@@ -646,10 +652,9 @@ class weather:
         embed.add_field(name='현재온도', value=str(todayTemp), inline=False)  # 현재온도
         embed.add_field(name='현재상태', value=str(thanYesturday), inline=False)  # 현재상태
         embed.add_field(name='대기상태', value=str(todayDust), inline=False)  # 대기상태
-
-        await ctx.send(ctx.channel,embed=embed)
-
-        del weather.location[0]
+        embed.add_field(name='**----------------------------------**',value='**----------------------------------**', inline=False)  # 구분선
+        embed.add_field(name='내일오전', value=str(tommorrowMornig[0:70]), inline=False) #내일오전
+        embed.add_field(name='내일오후', value=str(tommorrowAfternoon[76:140]), inline=False) #내일오후
 
 
  
