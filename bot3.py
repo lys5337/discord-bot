@@ -656,6 +656,10 @@ class weather:
         embed.add_field(name='내일오전', value=str(tommorrowMornig[0:70]), inline=False) #내일오전
         embed.add_field(name='내일오후', value=str(tommorrowAfternoon[76:140]), inline=False) #내일오후
 
+        await ctx.send(ctx.channel,embed=embed)
+
+        del weather.location[0]
+
 
  
 
