@@ -147,6 +147,8 @@ class musicbot:
             embed.add_field(name = '!즐겨찾기', value = '유저별로 플레이리스트를 저장하여 보여줍니다', inline = False) #16
             embed.add_field(name = '!즐겨찾기추가 / 즐겨찾기삭제', value = '유저별 즐겨찾기 목록에 곡을 추가/삭제 합니다', inline = False) #17
             embed.add_field(name = '!정밀검색', value = '검색한 내용의 유튜브영상을 최대 5개까지 보여줍니다') #18
+            embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오능의 날씨정보와 내일의 날씨정보를 알려줍니다') #19
+            embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다') #20
 
             await ctx.send(channel, embed = embed)
 
@@ -612,7 +614,7 @@ class musicbot:
         await Alist.add_reaction("\u0033\uFE0F\u20E3")
         await Alist.add_reaction("\u0034\uFE0F\u20E3")
         await Alist.add_reaction("\u0035\uFE0F\u20E3")
-
+#19
 class weather:
 
     location = []
@@ -662,13 +664,44 @@ class weather:
         await ctx.send(ctx.channel,embed=embed)
 
         del weather.location[0]
+#20
+class lotto:
+
+    @bot.command()
+    async def 복권(ctx):
+            Text = ""
+            number = [1, 2, 3, 4, 5, 6, 7]
+            count = 0
+            for i in range(0, 6):
+                num = random.randrange(1, 46)
+                number[i] = num
+                if count >= 1:
+                    for j in range(0, i):
+                        if number[i] == number[j]:  # 만약 현재랜덤값이 이전숫자들과 값이 같다면
+                            number[i] = random.randrange(1, 46)
+                            if number[i] == number[j]:  # 만약 다시 생성한 랜덤값이 이전숫자들과 또 같다면
+                                number[i] = random.randrange(1, 46)
+                                if number[i] == number[j]:  # 만약 다시 생성한 랜덤값이 이전숫자들과 또 같다면
+                                    number[i] = random.randrange(1, 46)                     
+
+
+                count = count + 1
+                Text = Text + "  " + str(number[i])
+
+            embed = nextcord.Embed(
+                title="복권 숫자!",
+                description=Text.strip(),
+                colour=nextcord.Color.red()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
 
 @bot.event
 async def on_ready():
     print('다음으로 로그인합니다: ')
     print(bot.user.name)
     print('connection was succeseful')
-    game = nextcord.Game('음악 연구')
+    game = nextcord.Game('엄데이트')
     await bot.change_presence(status=nextcord.Status.online, activity = game)
     
 bot.run(TOKEN)
