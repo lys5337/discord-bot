@@ -118,7 +118,7 @@ class musicbot:
                 URL = info['formats'][0]['url']
                 vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
                 client.loop.create_task(musicbot.subtitle_song(ctx, URL))
-#00
+    #00
     @bot.command()
     async def 명령어(ctx):
         detail_command = Button(label="자세히", style = nextcord.ButtonStyle.green)
@@ -172,8 +172,7 @@ class musicbot:
         view.add_item(simple_command)
     
         await ctx.send(embed = nextcord.Embed(title='명령어 설명',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.blue()), view=view)
-
-#01
+    #01
     @bot.command() 
     async def 들어와(ctx): 
         try:
@@ -185,14 +184,14 @@ class musicbot:
                 await vc.move_to(ctx.message.author.voice.channel)
             except:
                 await ctx.send('채널어 유저가 접속해있지 않네요..')
-#02        
+    #02        
     @bot.command()
     async def 나가(ctx):
         try:
             await vc.disconnect()
         except:
             await ctx.send('이미 그 채널에 속해있지 않아요.')
-#03
+    #03
     @bot.command()
     async def 재생(ctx, *, msg):
         if not vc.is_playing():
@@ -227,7 +226,7 @@ class musicbot:
             result, URLTEST = musicbot.title(msg)
             musicbot.song_queue.append(URLTEST)
             await ctx.send('이미 노래가 재생중이라' + result + '을(를) 대기열로 추가시켰습니다')
-#04
+    #04
     @bot.command()
     async def 반복재생(ctx, *, msg):
 
@@ -268,7 +267,7 @@ class musicbot:
             musicbot.again(ctx, url)
         else : 
             await ctx.send('현재 노래가 재생중이라 반복재생 할 수 없네요.. 노래를 끄거나 일시정지 한 후 사용해주세요')
-#05    
+    #05    
     @bot.command()
     async def 멜론차트(ctx):
         if not vc.is_playing():
@@ -300,14 +299,14 @@ class musicbot:
             vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
         else:
             await ctx.send("이미 노래가 재생 중이라 노래를 재생할 수 없어요!")
-#06
+    #06
     @bot.command()
     async def 지금노래(ctx):
         if not vc.is_playing():
             await ctx.send("지금은 노래가 재생되지 않네요..")
         else:
             await ctx.send(embed = nextcord.Embed(title = "지금노래", description = "현재 " + musicbot.musicnow[0] + "을(를) 재생하고 있습니다.", color = 0x00ff00))
-#07            
+    #07            
     @bot.command()
     async def 목록(ctx):
         if len(musicbot.musictitle) == 0:
@@ -319,7 +318,7 @@ class musicbot:
                 Text = Text + "\n" + str(i + 1) + ". " + str(musicbot.musictitle[i])
                 
             await ctx.send(embed = nextcord.Embed(title= "노래목록", description = Text.strip(), color = 0x00ff00))
-#08
+    #08
     @bot.command()
     async def 추가(ctx, *, msg):
         musicbot.user.append(msg)
@@ -345,7 +344,7 @@ class musicbot:
                     await ctx.send("숫자의 범위가 목록개수를 벗어났습니다!")
                 else:
                     await ctx.send("숫자를 입력해주세요!")
-#09
+    #09
     @bot.command()
     async def 목록재생(ctx):
 
@@ -362,7 +361,7 @@ class musicbot:
                 musicbot.play(ctx)
             else:
                 await ctx.send("노래가 이미 재생되고 있어요!")
-#10
+    #10
     @bot.command()
     async def 목록초기화(ctx):
         try:
@@ -378,7 +377,7 @@ class musicbot:
             await ctx.send(embed = nextcord.Embed(title= "목록초기화", description = """목록이 정상적으로 초기화되었습니다. 이제 노래를 등록해볼까요?""", color = 0x00ff00))
         except:
             await ctx.send("아직 아무노래도 등록하지 않았어요.")
-#11                
+    #11                
     @bot.command()
     async def 목록섞기(ctx):
         try:
@@ -402,7 +401,7 @@ class musicbot:
             await ctx.send('목록을 정상적으로 섞었습니다')
         except:
             await ctx.send('섞을 목록이 없습니다')
-#12
+    #12
     @bot.command()
     async def 일시정지(ctx):
         if vc.is_playing():
@@ -410,7 +409,7 @@ class musicbot:
             await ctx.send(embed = nextcord.Embed(title = '일시정지', discription = musicbot.musicnow[0] + '을(를) 일시정지 했습니다', color = 0x00ff00))
         else:
             await ctx.send('지금 노래가 재생되지 않네요')
-#13
+    #13
     @bot.command()
     async def 다시재생(ctx):
         try:
@@ -418,7 +417,7 @@ class musicbot:
             await ctx.send(embed = nextcord.Embed(title = '일시정지', discription = musicbot.musicnow[0] + '을(를) 다시 재생했습니다', color = 0x00ff00))
         except:
             await ctx.send('지금 노래가 재생되지 않네요')
-#14
+    #14
     @bot.command()
     async def 노래끄기(ctx):
         if vc.is_playing():
@@ -428,7 +427,7 @@ class musicbot:
             await ctx.send(embed = nextcord.Embed(title = '노래끄기', discription = musicbot.musicnow[0] + '을(를) 종료했습니다', color = 0x00ff00))
         else:
             await ctx.send('지금 노래가 재생되지 않네요')
-#15
+    #15
     @bot.command()
     async def 스킵(ctx):
         if len(musicbot.user) >= 1:
@@ -438,7 +437,7 @@ class musicbot:
                 number = 0
                 await ctx.send(embed = nextcord.Embed(title = '스킵', description = musicbot.musicnow[1] 
                 + '을(를) 다음에 재생합니다', color = 0x00ff00))
-#16
+    #16
     @bot.command()
     async def 즐겨찾기(ctx):
         global Ftext
@@ -467,7 +466,7 @@ class musicbot:
                     await Flist.add_reaction("\U0001F4DD")
                 else:
                     await ctx.send("아직 등록하신 즐겨찾기가 없어요.")
-#17
+    #17
     @bot.command()
     async def 즐겨찾기추가(ctx, *, msg):
         correct = 0
@@ -569,7 +568,7 @@ class musicbot:
                 elif str(reaction.emoji) == '\u0035\uFE0F\u20E3':
                     musicbot.URLPLAY(musicbot.rinklist[4])
                     await ctx.send("정상적으로 진행되었습니다.")
-#18
+    #18
     @bot.command()
     async def 정밀검색(ctx, *, msg):
         Text = ""
