@@ -129,6 +129,7 @@ class musicbot:
             embed = nextcord.Embed(title = '명령어목록',
             description = '모든 명령어 앞에는 !를 붙입니다',
             colour = nextcord.Colour.blue())
+            #class musicbot
             embed.add_field(name = '!들어와', value = '봇이 음성채널에 참가합니다(사용자가 있을경우에만)',inline = False) #01
             embed.add_field(name = '!나가', value = '봇이 음성채널에서 나갑니다', inline = False) #02
             embed.add_field(name = '!재생[제목/링크]', value = '제목/링크를 입력하면 재생합니다, 이미 재생중이라면 목록에 추가합니다', inline = False) #03
@@ -147,8 +148,12 @@ class musicbot:
             embed.add_field(name = '!즐겨찾기', value = '유저별로 플레이리스트를 저장하여 보여줍니다', inline = False) #16
             embed.add_field(name = '!즐겨찾기추가 / 즐겨찾기삭제', value = '유저별 즐겨찾기 목록에 곡을 추가/삭제 합니다', inline = False) #17
             embed.add_field(name = '!정밀검색', value = '검색한 내용의 유튜브영상을 최대 5개까지 보여줍니다') #18
+            #class weather
             embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오능의 날씨정보와 내일의 날씨정보를 알려줍니다') #19
+            #class lotto
             embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다') #20
+            #class maplestory
+            embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다') #21
 
             await ctx.send(channel, embed = embed)
 
@@ -160,7 +165,8 @@ class musicbot:
             embed.add_field(name = '.', value = 
             '목록섞기, 목록, 추가/삭제[제목,링크], 목록재생, 목록초기화, 일시정지\n'+
             '들어와, 나가, 재생[제목/링크], 반복재생[제목/링크], 멜론차트, 지금노래\n' +
-            '다시재생, 노래끄기, 스킵, 즐겨찾기, 즐겨찾기추가 / 즐겨찾기삭제, 정밀검색\n', inline = False)
+            '다시재생, 노래끄기, 스킵, 즐겨찾기, 즐겨찾기추가 / 즐겨찾기삭제, 정밀검색\n' +
+            '메소시세', inline = False)
             
             await ctx.send(channel, embed = embed)
 
@@ -694,6 +700,58 @@ class lotto:
             )
             await ctx.send(ctx.channel, embed=embed)
 
+class maplestory:
+    @bot.command()
+    #21
+    async def 메소시세(ctx):
+        hdr = {'User-Agent': 'Mozilla/5.0'}
+        url = ('https://talk.gamemarket.kr/maple/graph/')
+        req = Request(url, headers=hdr)
+        html = urllib.request.urlopen(req)
+        bsObj = bs4.BeautifulSoup(html, "html.parser")
+
+        mesoBase = bsObj.find('div', {'class':'v-data-table__wrapper'})
+        mesotitle1 = mesoBase.find_all('th', {'class':'text-center'})
+        mesotitle = '왼쪽 ' + mesotitle1[1].text.strip() + ', 오른쪽 ' + mesotitle1[2].text.strip()
+
+        meso = mesoBase.find_all('td', {'class':'text-center'})
+        meso1 = meso[1].text.strip() +'원    ' + meso[2].text.strip() +'원'
+        meso2 = meso[4].text.strip() +'원    ' + meso[5].text.strip() +'원'
+        meso3 = meso[7].text.strip() +'원    ' + meso[8].text.strip() +'원'
+        meso4 = meso[10].text.strip() +'원    ' + meso[11].text.strip() +'원'
+        meso5 = meso[13].text.strip() +'원    ' + meso[14].text.strip() +'원'
+        meso6 = meso[16].text.strip() +'원    ' + meso[17].text.strip() +'원'
+        meso7 = meso[19].text.strip() +'원    ' + meso[20].text.strip() +'원'
+        meso8 = meso[22].text.strip() +'원    ' + meso[23].text.strip() +'원'
+        meso9 = meso[25].text.strip() +'원    ' + meso[26].text.strip() +'원'
+        meso10 = meso[28].text.strip() +'원    ' + meso[29].text.strip() +'원'
+        meso11 = meso[31].text.strip() +'원    ' + meso[32].text.strip() +'원'
+        meso12 = meso[34].text.strip() +'원    ' + meso[35].text.strip() +'원'
+
+        embed = nextcord.Embed(
+            title = '메이플 메소시세',
+            description = '어제자 메이플 메소 시세입니다',
+            colour = nextcord.Colour.blue()
+        )
+        embed.add_field(name='서버별 시세',value=str(mesotitle), inline=False)
+        embed.add_field(name='스카니아', value=str(meso1), inline=True)  
+        embed.add_field(name='베라', value=str(meso2), inline=True)
+        embed.add_field(name='루나', value=str(meso3), inline=True)
+        embed.add_field(name='제니스', value=str(meso4), inline=True)
+        embed.add_field(name='크로아', value=str(meso5), inline=True)
+        embed.add_field(name='유니온', value=str(meso6), inline=True)
+        embed.add_field(name='엘리시움', value=str(meso7), inline=True)
+        embed.add_field(name='이노시스', value=str(meso8), inline=True)
+        embed.add_field(name='레드', value=str(meso9), inline=True)
+        embed.add_field(name='오로라', value=str(meso10), inline=True)
+        embed.add_field(name='아케인', value=str(meso11), inline=True)
+        embed.add_field(name='노바', value=str(meso12), inline=True)
+        embed.add_field(
+            name='현재 오류상태로 가격 텍스트가 불러와지지 않습니다.',
+            value='https://talk.gamemarket.kr/maple/graph/를 참고해주세요',
+            inline=False)
+
+        await ctx.send(ctx.channel, embed = embed)
 
 @bot.event
 async def on_ready():
