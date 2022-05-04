@@ -748,7 +748,7 @@ class maplestory:
         embed.add_field(name='노바', value=str(meso12), inline=True)
         embed.add_field(
             name='현재 오류상태로 가격 텍스트가 불러와지지 않습니다.',
-            value='https://talk.gamemarket.kr/maple/graph/를 참고해주세요',
+            value='https://talk.gamemarket.kr/maple/graph 를 참고해주세요',
             inline=False)
 
         await ctx.send(ctx.channel, embed = embed)
