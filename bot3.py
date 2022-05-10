@@ -130,30 +130,30 @@ class musicbot:
             description = '모든 명령어 앞에는 !를 붙입니다',
             colour = nextcord.Colour.blue())
             #class musicbot
-            embed.add_field(name = '!들어와', value = '봇이 음성채널에 참가합니다(사용자가 있을경우에만)',inline = False) #01
-            embed.add_field(name = '!나가', value = '봇이 음성채널에서 나갑니다', inline = False) #02
-            embed.add_field(name = '!재생[제목/링크]', value = '제목/링크를 입력하면 재생합니다, 이미 재생중이라면 목록에 추가합니다', inline = False) #03
-            embed.add_field(name = '!반복재생[제목/링크]', value = '제목/링크를 입력하면 그 노래를 반복재생합니다.', inline = False) #04
-            embed.add_field(name = '!멜론차트', value = '최신 주의 멜론차트를 재생합니다', inline = False) #05
-            embed.add_field(name = '!지금노래', value = '현재 재생중인 곡의 제목을 알려줍니다', inline = False) #06
-            embed.add_field(name = '!목록', value = '앞으로 재생할 곡의 리스트를 보여줍니다.', inline = False) #07
-            embed.add_field(name = '!추가/삭제[제목,링크]', value = '목록에있는 리스트에 추가/삭제 합니다', inline = False) #08
-            embed.add_field(name = '!목록재생', value = '목록에 등록되어있는 리스트를 재생합니다', inline = False) #09
-            embed.add_field(name = '!목록초기화', value = '현재 목록에 등록된 모든 노래를 초기화시킵니다', inline = False) #10
-            embed.add_field(name = '!목록섞기', value = '현재 목록에 등록된 모든 노래의 순서를 랜덤하게 섞습니다', inline = False) #11
-            embed.add_field(name = '!일시정지', value = '현재 재생중인 곡을 일시정지 시킵니다.', inline = False) #12
-            embed.add_field(name = '!다시재생', value = '일시정지중인 곡을 다시 재생시킵니다', inline = False) #13
-            embed.add_field(name = '!노래끄기', value = '현재 재생중인 곡을 즉시종료시킵니다', inline = False) #14
-            embed.add_field(name = '!스킵', value = '현재 재생중인 곡을 스킵하고 다음곡을 재생합니다', inline = False) #15
-            embed.add_field(name = '!즐겨찾기', value = '유저별로 플레이리스트를 저장하여 보여줍니다', inline = False) #16
-            embed.add_field(name = '!즐겨찾기추가 / 즐겨찾기삭제', value = '유저별 즐겨찾기 목록에 곡을 추가/삭제 합니다', inline = False) #17
+            embed.add_field(name = '!들어와', value = '봇이 음성채널에 참가합니다(사용자가 있을경우에만)',inline = True) #01
+            embed.add_field(name = '!나가', value = '봇이 음성채널에서 나갑니다', inline = True) #02
+            embed.add_field(name = '!재생[제목/링크]', value = '제목/링크를 입력하면 재생합니다, 이미 재생중이라면 목록에 추가합니다', inline = True) #03
+            embed.add_field(name = '!반복재생[제목/링크]', value = '제목/링크를 입력하면 그 노래를 반복재생합니다.', inline = True) #04
+            embed.add_field(name = '!멜론차트', value = '최신 주의 멜론차트를 재생합니다', inline = True) #05
+            embed.add_field(name = '!지금노래', value = '현재 재생중인 곡의 제목을 알려줍니다', inline = True) #06
+            embed.add_field(name = '!목록', value = '앞으로 재생할 곡의 리스트를 보여줍니다.', inline = True) #07
+            embed.add_field(name = '!추가/삭제[제목,링크]', value = '목록에있는 리스트에 추가/삭제 합니다', inline = True) #08
+            embed.add_field(name = '!목록재생', value = '목록에 등록되어있는 리스트를 재생합니다', inline = True) #09
+            embed.add_field(name = '!목록초기화', value = '현재 목록에 등록된 모든 노래를 초기화시킵니다', inline = True) #10
+            embed.add_field(name = '!목록섞기', value = '현재 목록에 등록된 모든 노래의 순서를 랜덤하게 섞습니다', inline = True) #11
+            embed.add_field(name = '!일시정지', value = '현재 재생중인 곡을 일시정지 시킵니다.', inline = True) #12
+            embed.add_field(name = '!다시재생', value = '일시정지중인 곡을 다시 재생시킵니다', inline = True) #13
+            embed.add_field(name = '!노래끄기', value = '현재 재생중인 곡을 즉시종료시킵니다', inline = True) #14
+            embed.add_field(name = '!스킵', value = '현재 재생중인 곡을 스킵하고 다음곡을 재생합니다', inline = True) #15
+            embed.add_field(name = '!즐겨찾기', value = '유저별로 플레이리스트를 저장하여 보여줍니다', inline = True) #16
+            embed.add_field(name = '!즐겨찾기추가 / 즐겨찾기삭제', value = '유저별 즐겨찾기 목록에 곡을 추가/삭제 합니다', inline = True) #17
             embed.add_field(name = '!정밀검색', value = '검색한 내용의 유튜브영상을 최대 5개까지 보여줍니다') #18
             #class weather
-            embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오능의 날씨정보와 내일의 날씨정보를 알려줍니다') #19
+            embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오능의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #19
             #class lotto
-            embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다') #20
+            embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #20
             #class maplestory
-            embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다') #21
+            embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다', inline = True) #21
 
             await ctx.send(channel, embed = embed)
 
