@@ -709,31 +709,20 @@ class lotto:
 
     @bot.command()
     async def 복권(ctx):
-            Text = ""
-            number = [1, 2, 3, 4, 5, 6, 7]
-            count = 0
-            for i in range(0, 6):
-                num = random.randrange(1, 46)
-                number[i] = num
-                if count >= 1:
-                    for j in range(0, i):
-                        if number[i] == number[j]:  # 만약 현재랜덤값이 이전숫자들과 값이 같다면
-                            number[i] = random.randrange(1, 46)
-                            if number[i] == number[j]:  # 만약 다시 생성한 랜덤값이 이전숫자들과 또 같다면
-                                number[i] = random.randrange(1, 46)
-                                if number[i] == number[j]:  # 만약 다시 생성한 랜덤값이 이전숫자들과 또 같다면
-                                    number[i] = random.randrange(1, 46)                     
 
+        number = []
 
-                count = count + 1
-                Text = Text + "  " + str(number[i])
+        for i in range (1, 47):
+            number.append(i)
 
-            embed = nextcord.Embed(
-                title="복권 숫자!",
-                description=Text.strip(),
-                colour=nextcord.Color.red()
-            )
-            await ctx.send(ctx.channel, embed=embed)
+        lotto_number = random.sample(number, 6)
+
+        embed = nextcord.Embed(
+            title="복권 숫자!",
+            description=lotto_number,
+            colour=nextcord.Color.red()
+        )
+        await ctx.send(ctx.channel, embed=embed)
 
 class maplestory:
     @bot.command()
