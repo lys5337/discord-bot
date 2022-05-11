@@ -149,11 +149,12 @@ class musicbot:
             embed.add_field(name = '!즐겨찾기추가 / 즐겨찾기삭제', value = '유저별 즐겨찾기 목록에 곡을 추가/삭제 합니다', inline = True) #17
             embed.add_field(name = '!정밀검색', value = '검색한 내용의 유튜브영상을 최대 5개까지 보여줍니다') #18
             #class weather
-            embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오능의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #19
+            embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #19
+            embed.add_field(name = '!해외날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #20
             #class lotto
-            embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #20
+            embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #21
             #class maplestory
-            embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다', inline = True) #21
+            embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다', inline = True) #22
 
             await ctx.send(channel, embed = embed)
 
@@ -619,11 +620,11 @@ class musicbot:
         await Alist.add_reaction("\u0033\uFE0F\u20E3")
         await Alist.add_reaction("\u0034\uFE0F\u20E3")
         await Alist.add_reaction("\u0035\uFE0F\u20E3")
-#19
+
 class weather:
 
     location = []
-
+    #19
     @bot.command()
     async def 날씨(ctx, *,msg):
         weather.location.append(msg)
@@ -633,43 +634,77 @@ class weather:
         req = Request(url, headers=hdr)
         html = urllib.request.urlopen(req)
         bsObj = bs4.BeautifulSoup(html, "html.parser")
-        todayBase = bsObj.find('div', {'class': 'weather_info'})
-        tommorrowBase = bsObj.find('ul', {'class': 'weather_info_list'})
+        today_Base = bsObj.find('div', {'class': 'weather_info'})
+        tommorrow_Base = bsObj.find('ul', {'class': 'weather_info_list'})
 
-        todayTemp1 = todayBase.find('div', {'class': 'temperature_text'})
-        todayTemp2 = todayTemp1.find('strong')
-        todayTemp = todayTemp2.text.strip()  # 온도
+        today_Temp1 = today_Base.find('div', {'class': 'temperature_text'})
+        today_Temp2 = today_Temp1.find('strong')
+        today_Temp = today_Temp2.text.strip()  # 온도
 
-        thanYesturday1 = todayBase.find('div', {'class':'temperature_info'})
-        thanYesturday = thanYesturday1.text.strip() #현재상태
+        thanYesturday1 = today_Base.find('div', {'class':'temperature_info'})
+        than_Yesturday = thanYesturday1.text.strip() #현재상태
 
-        todayDust1 = todayBase.find('ul', {'class': 'today_chart_list'})
-        todayDust = todayDust1.text.strip() #대기상태
+        today_Dust1 = today_Base.find('ul', {'class': 'today_chart_list'})
+        today_Dust = today_Dust1.text.strip() #대기상태
 
-        tommorrowTemp = []
-        tommorrowTemp = tommorrowBase.find_all('div', {'class': 'inner'})
-        tommorrowMornig = tommorrowTemp[0].text.strip() #내일오전
-        tommorrowAfternoon = tommorrowTemp[1].text.strip() #내일오후
+        tommorrow_Temp = []
+        tommorrow_Temp = tommorrow_Base.find_all('div', {'class': 'inner'})
+        tommorrow_Morning = tommorrow_Temp[0].text.strip() #내일오전
+        tommorrow_Afternoon = tommorrow_Temp[1].text.strip() #내일오후
 
         embed = nextcord.Embed(
             title = str(weather.location) + ' 날씨 정보',
             description = str(weather.location) + '날씨 정보입니다.',
             colour = nextcord.Colour.gold()
         )
-        embed.add_field(name='현재온도', value=str(todayTemp), inline=False)  # 현재온도
-        embed.add_field(name='현재상태', value=str(thanYesturday), inline=False)  # 현재상태
-        embed.add_field(name='대기상태', value=str(todayDust), inline=False)  # 대기상태
+        embed.add_field(name='현재온도', value=str(today_Temp), inline=False)  # 현재온도
+        embed.add_field(name='현재상태', value=str(than_Yesturday), inline=False)  # 현재상태
+        embed.add_field(name='대기상태', value=str(today_Dust), inline=False)  # 대기상태
         embed.add_field(
             name='**----------------------------------↑오늘----------------------------------**',
             value='**----------------------------------↓내일----------------------------------**', 
             inline=False)  # 구분선
-        embed.add_field(name='내일오전', value=str(tommorrowMornig), inline=False) #내일오전
-        embed.add_field(name='내일오후', value=str(tommorrowAfternoon), inline=False) #내일오후
+        embed.add_field(name='내일오전', value=str(tommorrow_Morning), inline=False) #내일오전
+        embed.add_field(name='내일오후', value=str(tommorrow_Afternoon), inline=False) #내일오후
 
         await ctx.send(ctx.channel,embed=embed)
 
         del weather.location[0]
-#20
+    #20
+    @bot.command()
+    async def 해외날씨(ctx, *,msg):
+        weather.location.append(msg)
+        enc_location = urllib.parse.quote(str(weather.location[0]) + '날씨')
+        hdr = {'User-Agent': 'Mozilla/5.0'}
+        url = ('https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=' + enc_location)
+        req = Request(url, headers=hdr)
+        html = urllib.request.urlopen(req)
+        bsObj = bs4.BeautifulSoup(html, "html.parser")
+
+        todayBase = bsObj.find('div', {'class': 'info_data'})
+        today = todayBase.text.strip() #오늘날씨
+
+        tommorrow_Base = bsObj.find('div', {'class' : 'tomorrow_area _mainTabContent'})
+
+        tommorrow = tommorrow_Base.find_all('div', {'class' : 'main_info morning_box'})
+        tommorrow_Morning = tommorrow[0].text.strip() #내일오전
+        tommorrow_Afternoon = tommorrow[1].text.strip() #내일오후
+
+        embed = nextcord.Embed(
+            title = str(weather.location) + ' 날씨 정보',
+            description = str(weather.location) + '날씨 정보입니다.',
+            colour = nextcord.Colour.gold()
+        )
+        embed.add_field(name='현재상태', value=str(today), inline=False)  #오늘날씨
+        embed.add_field(
+            name='**----------------------------------↑오늘----------------------------------**',
+            value='**----------------------------------↓내일----------------------------------**', 
+            inline=False)  # 구분선
+        embed.add_field(name='내일오전', value=str(tommorrow_Morning), inline=False) #내일오전
+        embed.add_field(name='내일오후', value=str(tommorrow_Afternoon), inline=False) #내일오후
+
+        await ctx.send(ctx.channel,embed=embed)
+#21
 class lotto:
 
     @bot.command()
@@ -702,7 +737,7 @@ class lotto:
 
 class maplestory:
     @bot.command()
-    #21
+    #22
     async def 메소시세(ctx):
         hdr = {'User-Agent': 'Mozilla/5.0'}
         url = ('https://talk.gamemarket.kr/maple/graph/')
