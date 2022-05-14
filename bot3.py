@@ -621,11 +621,11 @@ class musicbot:
         await Alist.add_reaction("\u0033\uFE0F\u20E3")
         await Alist.add_reaction("\u0034\uFE0F\u20E3")
         await Alist.add_reaction("\u0035\uFE0F\u20E3")
-#19
+
 class weather:
 
     location = []
-
+    #19
     @bot.command()
     async def 날씨(ctx, *,msg):
         weather.location.append(msg)
@@ -671,7 +671,7 @@ class weather:
         await ctx.send(ctx.channel,embed=embed)
 
         del weather.location[0]
-
+    #20
     @bot.command()
     async def 해외날씨(ctx, *,msg):
         weather.location.append(msg)
@@ -705,9 +705,10 @@ class weather:
         embed.add_field(name='내일오후', value=str(tommorrow_Afternoon), inline=False) #내일오후
 
         await ctx.send(ctx.channel,embed=embed)
-#21
+
 class lotto:
 
+    #21
     @bot.command()
     async def 복권(ctx):
 
@@ -779,7 +780,7 @@ class maplestory:
             inline=False)
 
         await ctx.send(ctx.channel, embed = embed)
-    
+
     #23
     @bot.command()
     async def 유저정보(ctx, *, msg):
@@ -792,10 +793,14 @@ class maplestory:
         html = urllib.request.urlopen(req)
         bsObj = bs4.BeautifulSoup(html, "html.parser")
         maple_data_base = bsObj.find('div', {'class':'row text-center'})
+        user_info_base = bsObj.find_all('div', {'class' : 'row row-normal user-additional'})
+        user_info_base = bsObj.find('div', {'class' : 'row row-normal user-additional'})
+
         maple_date_base = maple_data_base.find_all('div', {'class' : 'user-summary-date'})
         maple_rank_base = maple_data_base.find_all('div', {'class' : 'mb-2'})
         dojang_and_theseed = maple_data_base.find_all('div', {'class' : 'py-0 py-sm-4'})
         union_and_achievement = maple_data_base.find_all('div', {'class' : 'pt-3 pb-2 pb-sm-3'})
+        user_info = user_info_base.find_all('div', {'class' : 'col-lg-2 col-md-4 col-sm-4 col-6 mt-3'})
 
         dojang = dojang_and_theseed[0].text.strip() #층수 / 기록
         dojang_date = maple_date_base[0].text.strip() #기준일
@@ -812,29 +817,35 @@ class maplestory:
         achievement = union_and_achievement[1].text.strip() #등급 / 점수
         achievement_date = maple_date_base[3].text.strip() #기준일
         achievement_rank = maple_rank_base[3].text.strip() #랭킹
+        
+        userinfo = (user_info[0].text.strip() + '\n' + 
+                    user_info[1].text.strip() + '\n' + 
+                    user_info[2].text.strip() + '\n' + 
+                    user_info[3].text.strip())
 
         embed = nextcord.Embed(
             title = '메이플 유저정보',
             description = str(maplestory.username[0]) + '의 정보입니다',
             colour = nextcord.Colour.orange()
         )
-        embed.add_field(name='무릉 층수 / 기록',value=str(dojang), inline=True)
+        embed.add_field(name='캐릭터 랭킹',value=str(userinfo), inline=False)
+        embed.add_field(name='무릉',value=str(dojang), inline=True)
         embed.add_field(name='기준일',value=str(dojang_date), inline=True)
         embed.add_field(name='랭킹',value=str(dojang_rank), inline=True)
-        embed.add_field(name='더시드 층수 / 기록',value=str(theseed), inline=True)
+        embed.add_field(name='더시드',value=str(theseed), inline=True)
         embed.add_field(name='기준일',value=str(theseed_date), inline=True)
         embed.add_field(name='랭킹',value=str(theseed_rank), inline=True)
-        embed.add_field(name='유니온 등급 / 레벨',value=str(union), inline=True)
+        embed.add_field(name='유니온',value=str(union), inline=True)
         embed.add_field(name='기준일',value=str(union_date), inline=True)
         embed.add_field(name='랭킹',value=str(union_rank), inline=True)
-        embed.add_field(name='업적 등급 / 점수',value=str(achievement), inline=True)
+        embed.add_field(name='업적',value=str(achievement), inline=True)
         embed.add_field(name='기준일',value=str(achievement_date), inline=True)
         embed.add_field(name='랭킹',value=str(achievement_rank), inline=True)
 
         await ctx.send(ctx.channel, embed = embed)
 
         del maplestory.username[0]
-    
+ 
 
 @bot.event
 async def on_ready():
