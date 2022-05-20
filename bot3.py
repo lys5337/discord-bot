@@ -30,6 +30,71 @@ intents = nextcord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents = intents)
 client = nextcord.Client()
 
+#00
+@bot.command()
+async def 명령어(ctx):
+    detail_command = Button(label="자세히", style = nextcord.ButtonStyle.green)
+    simple_command = Button(label="간단히", style = nextcord.ButtonStyle.green)
+    channel = ctx.channel
+    
+    async def detail_command_callback(interaction):
+        embed = nextcord.Embed(title = '명령어목록',
+        description = '모든 명령어 앞에는 !를 붙입니다',
+        colour = nextcord.Colour.blue())
+        #class musicbot
+        embed.add_field(name = '!들어와', value = '봇이 음성채널에 참가합니다(사용자가 있을경우에만)',inline = True) #01
+        embed.add_field(name = '!나가', value = '봇이 음성채널에서 나갑니다', inline = True) #02
+        embed.add_field(name = '!재생[제목/링크]', value = '제목/링크를 입력하면 재생합니다, 이미 재생중이라면 목록에 추가합니다', inline = True) #03
+        embed.add_field(name = '!반복재생[제목/링크]', value = '제목/링크를 입력하면 그 노래를 반복재생합니다.', inline = True) #04
+        embed.add_field(name = '!멜론차트', value = '최신 주의 멜론차트를 재생합니다', inline = True) #05
+        embed.add_field(name = '!지금노래', value = '현재 재생중인 곡의 제목을 알려줍니다', inline = True) #06
+        embed.add_field(name = '!목록', value = '앞으로 재생할 곡의 리스트를 보여줍니다.', inline = True) #07
+        embed.add_field(name = '!추가/삭제[제목,링크]', value = '목록에있는 리스트에 추가/삭제 합니다', inline = True) #08
+        embed.add_field(name = '!목록재생', value = '목록에 등록되어있는 리스트를 재생합니다', inline = True) #09
+        embed.add_field(name = '!목록초기화', value = '현재 목록에 등록된 모든 노래를 초기화시킵니다', inline = True) #10
+        embed.add_field(name = '!목록섞기', value = '현재 목록에 등록된 모든 노래의 순서를 랜덤하게 섞습니다', inline = True) #11
+        embed.add_field(name = '!일시정지', value = '현재 재생중인 곡을 일시정지 시킵니다.', inline = True) #12
+        embed.add_field(name = '!다시재생', value = '일시정지중인 곡을 다시 재생시킵니다', inline = True) #13
+        embed.add_field(name = '!노래끄기', value = '현재 재생중인 곡을 즉시종료시킵니다', inline = True) #14
+        embed.add_field(name = '!스킵', value = '현재 재생중인 곡을 스킵하고 다음곡을 재생합니다', inline = True) #15
+        embed.add_field(name = '!즐겨찾기', value = '유저별로 플레이리스트를 저장하여 보여줍니다', inline = True) #16
+        embed.add_field(name = '!즐겨찾기추가 / 즐겨찾기삭제', value = '유저별 즐겨찾기 목록에 곡을 추가/삭제 합니다', inline = True) #17
+        embed.add_field(name = '!정밀검색', value = '검색한 내용의 유튜브영상을 최대 5개까지 보여줍니다') #18
+        #class weather
+        embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #19
+        embed.add_field(name = '!해외날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #20
+        #class lotto
+        embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #21
+        #class maplestory
+        embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다', inline = True) #22
+        embed.add_field(name = '!유저정보[닉네임]', value = '해당하는 닉네임의 유저정보를 제공합니다', inline = True) #23
+        embed.add_field(name = '!강화공식', value = '주문의 흔적, 스타포스의 강화수치를 제공합니다', inline = True) #24
+        embed.add_field(name = '!무기추옵', value = '파프니르, 앱솔랩스, 아케인셰이드, 제네시스 무기의 추가옵션을 제공합니다', inline = True)#25
+
+        await ctx.send(channel, embed = embed)
+
+    async def simple_command_callback(interaction):
+        embed = nextcord.Embed(
+        title = '명령어목록',
+        description = '모든 명령어 앞에는 !를 붙입니다',
+        colour = nextcord.Colour.blue())
+        embed.add_field(name = '.', value = 
+        '목록섞기, 목록, 추가/삭제[제목,링크], 목록재생, 목록초기화, 일시정지\n'+
+        '들어와, 나가, 재생[제목/링크], 반복재생[제목/링크], 멜론차트, 지금노래\n' +
+        '다시재생, 노래끄기, 스킵, 즐겨찾기, 즐겨찾기추가 / 즐겨찾기삭제, 정밀검색\n' +
+        '날씨, 해외날씨, 복권, 메소시세, 유저정보[닉네임], 강화공식\n', inline = False)
+        
+        await ctx.send(channel, embed = embed)
+
+    detail_command.callback = detail_command_callback
+    simple_command.callback = simple_command_callback
+
+    view = View()
+    view.add_item(detail_command)
+    view.add_item(simple_command)
+
+    await ctx.send(embed = nextcord.Embed(title='명령어 설명',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.blue()), view=view)
+
 class musicbot:
 
     user = []           #유저가 입력한 노래 정보
@@ -118,68 +183,7 @@ class musicbot:
                 URL = info['formats'][0]['url']
                 vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
                 client.loop.create_task(musicbot.subtitle_song(ctx, URL))
-    #00
-    @bot.command()
-    async def 명령어(ctx):
-        detail_command = Button(label="자세히", style = nextcord.ButtonStyle.green)
-        simple_command = Button(label="간단히", style = nextcord.ButtonStyle.green)
-        channel = ctx.channel
-        
-        async def detail_command_callback(interaction):
-            embed = nextcord.Embed(title = '명령어목록',
-            description = '모든 명령어 앞에는 !를 붙입니다',
-            colour = nextcord.Colour.blue())
-            #class musicbot
-            embed.add_field(name = '!들어와', value = '봇이 음성채널에 참가합니다(사용자가 있을경우에만)',inline = True) #01
-            embed.add_field(name = '!나가', value = '봇이 음성채널에서 나갑니다', inline = True) #02
-            embed.add_field(name = '!재생[제목/링크]', value = '제목/링크를 입력하면 재생합니다, 이미 재생중이라면 목록에 추가합니다', inline = True) #03
-            embed.add_field(name = '!반복재생[제목/링크]', value = '제목/링크를 입력하면 그 노래를 반복재생합니다.', inline = True) #04
-            embed.add_field(name = '!멜론차트', value = '최신 주의 멜론차트를 재생합니다', inline = True) #05
-            embed.add_field(name = '!지금노래', value = '현재 재생중인 곡의 제목을 알려줍니다', inline = True) #06
-            embed.add_field(name = '!목록', value = '앞으로 재생할 곡의 리스트를 보여줍니다.', inline = True) #07
-            embed.add_field(name = '!추가/삭제[제목,링크]', value = '목록에있는 리스트에 추가/삭제 합니다', inline = True) #08
-            embed.add_field(name = '!목록재생', value = '목록에 등록되어있는 리스트를 재생합니다', inline = True) #09
-            embed.add_field(name = '!목록초기화', value = '현재 목록에 등록된 모든 노래를 초기화시킵니다', inline = True) #10
-            embed.add_field(name = '!목록섞기', value = '현재 목록에 등록된 모든 노래의 순서를 랜덤하게 섞습니다', inline = True) #11
-            embed.add_field(name = '!일시정지', value = '현재 재생중인 곡을 일시정지 시킵니다.', inline = True) #12
-            embed.add_field(name = '!다시재생', value = '일시정지중인 곡을 다시 재생시킵니다', inline = True) #13
-            embed.add_field(name = '!노래끄기', value = '현재 재생중인 곡을 즉시종료시킵니다', inline = True) #14
-            embed.add_field(name = '!스킵', value = '현재 재생중인 곡을 스킵하고 다음곡을 재생합니다', inline = True) #15
-            embed.add_field(name = '!즐겨찾기', value = '유저별로 플레이리스트를 저장하여 보여줍니다', inline = True) #16
-            embed.add_field(name = '!즐겨찾기추가 / 즐겨찾기삭제', value = '유저별 즐겨찾기 목록에 곡을 추가/삭제 합니다', inline = True) #17
-            embed.add_field(name = '!정밀검색', value = '검색한 내용의 유튜브영상을 최대 5개까지 보여줍니다') #18
-            #class weather
-            embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #19
-            embed.add_field(name = '!해외날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #20
-            #class lotto
-            embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #21
-            #class maplestory
-            embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다', inline = True) #22
-            embed.add_field(name = '!유저정보[닉네임]', value = '해당하는 닉네임의 유저정보를 제공합니다', inline = True) #23
 
-            await ctx.send(channel, embed = embed)
-
-        async def simple_command_callback(interaction):
-            embed = nextcord.Embed(
-            title = '명령어목록',
-            description = '모든 명령어 앞에는 !를 붙입니다',
-            colour = nextcord.Colour.blue())
-            embed.add_field(name = '.', value = 
-            '목록섞기, 목록, 추가/삭제[제목,링크], 목록재생, 목록초기화, 일시정지\n'+
-            '들어와, 나가, 재생[제목/링크], 반복재생[제목/링크], 멜론차트, 지금노래\n' +
-            '다시재생, 노래끄기, 스킵, 즐겨찾기, 즐겨찾기추가 / 즐겨찾기삭제, 정밀검색\n' +
-            '날씨, 해외날씨, 복권, 메소시세, 유저정보[닉네임]\n', inline = False)
-            
-            await ctx.send(channel, embed = embed)
-
-        detail_command.callback = detail_command_callback
-        simple_command.callback = simple_command_callback
-
-        view = View()
-        view.add_item(detail_command)
-        view.add_item(simple_command)
-    
-        await ctx.send(embed = nextcord.Embed(title='명령어 설명',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.blue()), view=view)
     #01
     @bot.command() 
     async def 들어와(ctx): 
@@ -845,7 +849,604 @@ class maplestory:
         await ctx.send(ctx.channel, embed = embed)
 
         del maplestory.username[0]
- 
+
+    #24
+    @bot.command()
+    async def 강화공식(ctx):
+        jumun = Button(label="주문의 흔적", style = nextcord.ButtonStyle.green)
+        star_force_140 = Button(label="스타포스(140)", style = nextcord.ButtonStyle.green)
+        star_force_150 = Button(label="스타포스(150)", style = nextcord.ButtonStyle.green)
+        star_force_160 = Button(label="스타포스(160)", style = nextcord.ButtonStyle.green)
+        star_force_200 = Button(label="스타포스(200)", style = nextcord.ButtonStyle.green)
+
+        async def jumun_callback(interaction):
+            embed = nextcord.Embed(
+                title = '강화수치',
+                description = '주문의 흔적 강화수치입니다',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='주문의 흔적', value='장비 레벨별 강화수치', inline=False)
+            embed.add_field(name='0 ~ 70(무기)', 
+                            value=
+                            '100% : 공/마 + 1\n'+
+                            '70% : 공/마 + 2\n' +
+                            '30% : 공/마 + 3, 주스텟 + 1\n' +
+                            '15% : 공/마 + 5, 주스텟 + 2\n', inline=True)
+            embed.add_field(name='80 ~ 110(무기)', 
+                            value=
+                            '100% : 공/마 + 2\n'+
+                            '70% : 공/마 + 3, 주스텟 + 1\n' +
+                            '30% : 공/마 + 5, 주스텟 + 2\n' +
+                            '15% : 공/마 + 7, 주스텟 + 3\n', inline=True)
+            embed.add_field(name='120 ~ 200(무기)', 
+                            value=
+                            '100% : 공/마 + 3, 주스텟 + 1\n'+
+                            '70% : 공/마 + 3, 주스텟 + 2\n' +
+                            '30% : 공/마 + 7, 주스텟 + 3\n' +
+                            '15% : 공/마 + 9, 주스텟 + 4\n', inline=True)
+            embed.add_field(name='0 ~ 70(방어구)',
+                            value=
+                            '100% : 주스텟 + 1, 방어력 + 1, HP + 5\n' +
+                            '70% : 주스텟 + 2, 방어력 + 2, HP + 15\n ' +
+                            '30% : 주스텟 + 2, HP + 30\n ', inline=True)
+            embed.add_field(name='80 ~ 110(방어구)',
+                            value=
+                            '100% : 주스텟 + 2, 방어력 + 2, HP + 20\n' +
+                            '70% : 주스텟 + 3, 방어력 + 4, HP + 40\n ' +
+                            '30% : 주스텟 + 5, 방어력 + 7,HP + 70\n ', inline=True)
+            embed.add_field(name='120 ~ 200(방어구)',
+                            value=
+                            '100% : 주스텟 + 3, 방어력 + 3, HP + 30\n' +
+                            '70% : 주스텟 + 4, 방어력 + 5, HP + 70\n ' +
+                            '30% : 주스텟 + 7, 방어력 + 10, HP + 120\n ', inline=True)
+            embed.add_field(name='0 ~ 70(장갑)',
+                            value=
+                            '100% : 방어력 + 3\n' +
+                            '70% : 공/마 + 1\n ' +
+                            '30% : 공/마 + 2\n ', inline=True)
+            embed.add_field(name='80 ~ 200(장갑)',
+                            value=
+                            '100% : 공/마 + 1\n' +
+                            '70% : 공/마 + 2\n ' +
+                            '30% : 공/마 + 3\n ', inline=True)
+            
+            await ctx.send(ctx.channel, embed = embed)
+
+        async def star_force_140_callback(interaction):
+            embed = nextcord.Embed(
+                title = '강화수치',
+                description = '스타포스의 강화수치입니다',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='140',
+                            value=
+                            '1 ~ 5성\n주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' + 
+                            '6 ~ 15성\n주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' +
+                            '16성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 8\n'
+                            '17성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 9\n'
+                            '18성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 10\n'
+                            '19성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 11\n'
+                            '20성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 12\n'
+                            '21성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 13\n'
+                            '22성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 15\n',inline=True)
+            
+            await ctx.send(ctx.channel, embed = embed)
+
+        async def star_force_150_callback(interaction):
+            embed = nextcord.Embed(
+                title = '강화수치',
+                description = '스타포스의 강화수치입니다',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='150',
+                            value=
+                            '1 ~ 5성\n주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' + 
+                            '6 ~ 15성\n주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' +
+                            '16성\n주스텟 + 11, 방어구 : 공/마 + 9, 무기 : 공/마 + 8\n'
+                            '17성\n주스텟 + 11, 방어구 : 공/마 + 10, 무기 : 공/마 + 9\n'
+                            '18성\n주스텟 + 11, 방어구 : 공/마 + 11, 무기 : 공/마 + 9\n'
+                            '19성\n주스텟 + 11, 방어구 : 공/마 + 12, 무기 : 공/마 + 10\n'
+                            '20성\n주스텟 + 11, 방어구 : 공/마 + 13, 무기 : 공/마 + 11\n'
+                            '21성\n주스텟 + 11, 방어구 : 공/마 + 14, 무기 : 공/마 + 12\n'
+                            '22성\n주스텟 + 11, 방어구 : 공/마 + 15, 무기 : 공/마 + 13\n',inline=True)
+            
+            await ctx.send(ctx.channel, embed = embed)
+        
+        async def star_force_160_callback(interaction):
+            embed = nextcord.Embed(
+                title = '강화수치',
+                description = '스타포스의 강화수치입니다',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='160',
+                            value=
+                            '1 ~ 5성\n주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' + 
+                            '6 ~ 15성\n주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' +
+                            '16성\n주스텟 + 13, 방어구 : 공/마 + 10, 무기 : 공/마 + 9\n'
+                            '17성\n주스텟 + 13, 방어구 : 공/마 + 11, 무기 : 공/마 + 9\n'
+                            '18성\n주스텟 + 13, 방어구 : 공/마 + 12, 무기 : 공/마 + 10\n'
+                            '19성\n주스텟 + 13, 방어구 : 공/마 + 13, 무기 : 공/마 + 11\n'
+                            '20성\n주스텟 + 13, 방어구 : 공/마 + 14, 무기 : 공/마 + 12\n'
+                            '21성\n주스텟 + 13, 방어구 : 공/마 + 15, 무기 : 공/마 + 13\n'
+                            '22성\n주스텟 + 13, 방어구 : 공/마 + 17, 무기 : 공/마 + 14\n',inline=True)
+            
+            await ctx.send(ctx.channel, embed = embed)
+
+        async def star_force_200_callback(interaction):
+            embed = nextcord.Embed(
+                title = '강화수치',
+                description = '스타포스의 강화수치입니다',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='200',
+                            value=
+                            '1 ~ 5성\n주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' + 
+                            '6 ~ 15성\n주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' +
+                            '16성\n주스텟 + 15, 방어구 : 공/마 + 12, 무기 : 공/마 + 13\n'
+                            '17성\n주스텟 + 15, 방어구 : 공/마 + 13, 무기 : 공/마 + 13\n'
+                            '18성\n주스텟 + 15, 방어구 : 공/마 + 14, 무기 : 공/마 + 14\n'
+                            '19성\n주스텟 + 15, 방어구 : 공/마 + 15, 무기 : 공/마 + 14\n'
+                            '20성\n주스텟 + 15, 방어구 : 공/마 + 16, 무기 : 공/마 + 15\n'
+                            '21성\n주스텟 + 15, 방어구 : 공/마 + 17, 무기 : 공/마 + 16\n'
+                            '22성\n주스텟 + 15, 방어구 : 공/마 + 19, 무기 : 공/마 + 17\n',inline=True)
+            
+            await ctx.send(ctx.channel, embed = embed)
+
+        jumun.callback = jumun_callback
+        star_force_140.callback = star_force_140_callback
+        star_force_150.callback = star_force_150_callback
+        star_force_160.callback = star_force_160_callback
+        star_force_200.callback = star_force_200_callback
+
+        view = View()
+        view.add_item(jumun)
+        view.add_item(star_force_140)
+        view.add_item(star_force_150)
+        view.add_item(star_force_160)
+        view.add_item(star_force_200)
+
+        await ctx.send(embed = nextcord.Embed(title='강화수치',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.orange()), view=view)
+        
+    #25
+    async def 무기추옵(ctx):
+
+        wapon_150 = Button(label='150제', style = nextcord.ButtonStyle.green)
+        wapon_160 = Button(label='160제', style = nextcord.ButtonStyle.green)
+        wapon_200_1 = Button(label='200제', style = nextcord.ButtonStyle.green)
+        wapon_200_2 = Button(label='200제(제네시스)', style = nextcord.ButtonStyle.green)
+            
+        async def wapon_150_callback(Interaction):
+
+            embed = nextcord.Embed(
+                title = '추옵표',
+                description = '150(파프니르) 무기의 추옵표 입니다\n왼쪽부터 1 ~ 5추옵',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='아대', value='36 28 21 16 11', inline=True)
+
+            embed.add_field(name='건', value='52 40 31 23 16', inline=True)
+
+            embed.add_field(name='너클', value='53 41 31 23 16', inline=True)
+            embed.add_field(name='소울슈터', value='53 41 31 23 16', inline=True)
+            embed.add_field(name='에너지소드', value='53 41 31 23 16', inline=True)
+            embed.add_field(name='건틀렛 리볼버', value='53 41 31 23 16', inline=True)
+
+            embed.add_field(name='폴암', value='63 49 38 27 19', inline=True)
+
+            embed.add_field(name='활', value='66 52 39 29 20', inline=True)
+            embed.add_field(name='듀얼보우건', value='66 52 39 29 20', inline=True)
+            embed.add_field(name='에인션트 보우', value='66 52 39 29 20', inline=True)
+            embed.add_field(name='제인', value='66 52 39 29 20', inline=True)
+            embed.add_field(name='단검', value='66 52 39 29 20', inline=True)
+            embed.add_field(name='부채', value='66 52 39 29 20', inline=True)
+
+            embed.add_field(name='한손검', value='68 53 40 29 20', inline=True)
+            embed.add_field(name='한손도끼', value='68 53 40 29 20', inline=True)
+            embed.add_field(name='한손둔기', value='68 53 40 29 20', inline=True)
+            embed.add_field(name='석궁', value='68 53 40 29 20', inline=True)
+            embed.add_field(name='케인', value='68 53 40 29 20', inline=True)
+
+            embed.add_field(name='두손검', value='71 55 42 31 21', inline=True)
+            embed.add_field(name='데스페라도', value='71 55 42 31 21', inline=True)
+            embed.add_field(name='튜너', value='71 55 42 31 21', inline=True)
+            embed.add_field(name='두손도끼', value='71 55 42 31 21', inline=True)
+            embed.add_field(name='두손둔기', value='71 55 42 31 21', inline=True)
+            embed.add_field(name='창', value='71 55 42 31 21', inline=True)
+
+            embed.add_field(name='핸드캐논', value='72 56 43 31 21', inline=True)
+
+            embed.add_field(name='완드', value='83 65 49 36 25', inline=True)
+            embed.add_field(name='샤이닝로드', value='83 65 49 36 25', inline=True)
+            embed.add_field(name='ESP리미터', value='83 65 49 36 25', inline=True)
+            embed.add_field(name='매직건틀렛', value='83 65 49 36 25', inline=True)
+            
+            embed.add_field(name='스태프', value='84 66 50 36 25', inline=True)
+            
+
+            await ctx.send(ctx.channel, embed = embed)
+            
+        async def wapon_160_callback(Interaction):
+
+            embed = nextcord.Embed(
+                title = '추옵표',
+                description = '160제(앱솔랩스) 무기의 추옵표 입니다\n왼쪽부터 1 ~ 5추옵',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='아대', value='53 42 32 23 16', inline=True)
+
+            embed.add_field(name='건', value='77 60 46 33 23', inline=True)
+
+            embed.add_field(name='너클', value='79 62 47 34 24', inline=True)
+            embed.add_field(name='소울슈터', value='79 62 47 34 24', inline=True)
+            embed.add_field(name='에너지소드', value='79 62 47 34 24', inline=True)
+            embed.add_field(name='건틀렛 리볼버', value='79 62 47 34 24', inline=True)
+
+            embed.add_field(name='폴암', value='95 74 56 41 28', inline=True)
+
+            embed.add_field(name='활', value='99 77 59 43 29', inline=True)
+            embed.add_field(name='듀얼보우건', value='99 77 59 43 29', inline=True)
+            embed.add_field(name='에인션트 보우', value='99 77 59 43 29', inline=True)
+            embed.add_field(name='제인', value='99 77 59 43 29', inline=True)
+            embed.add_field(name='단검', value='99 77 59 43 29', inline=True)
+            embed.add_field(name='부채', value='99 77 59 43 29', inline=True)
+
+            embed.add_field(name='한손검', value='101 79 60 44 30', inline=True)
+            embed.add_field(name='한손도끼', value='101 79 60 44 30', inline=True)
+            embed.add_field(name='한손둔기', value='101 79 60 44 30', inline=True)
+            embed.add_field(name='석궁', value='101 79 60 44 30', inline=True)
+            embed.add_field(name='케인', value='101 79 60 44 30', inline=True)
+
+            embed.add_field(name='두손검', value='106 82 63 46 31', inline=True)
+            embed.add_field(name='데스페라도', value='106 82 63 46 31', inline=True)
+            embed.add_field(name='튜너', value='106 82 63 46 31', inline=True)
+            embed.add_field(name='두손도끼', value='106 82 63 46 31', inline=True)
+            embed.add_field(name='두손둔기', value='106 82 63 46 31', inline=True)
+            embed.add_field(name='창', value='106 82 63 46 31', inline=True)
+
+            embed.add_field(name='핸드캐논', value='108 84 64 47 32', inline=True)
+
+            embed.add_field(name='완드', value='124 97 73 54 37', inline=True)
+            embed.add_field(name='샤이닝로드', value='124 97 73 54 37', inline=True)
+            embed.add_field(name='ESP리미터', value='124 97 73 54 37', inline=True)
+            embed.add_field(name='매직건틀렛', value='124 97 73 54 37', inline=True)
+            
+            embed.add_field(name='스태프', value='126 98 75 54 37', inline=True)
+
+            await ctx.send(ctx.channel, embed = embed)
+            
+        async def wapon_200_1_callback(Interaction):
+
+            embed = nextcord.Embed(
+                title = '추옵표',
+                description = '200제(아케인셰이드) 무기의 추옵표 입니다\n왼쪽부터 1 ~ 5추옵',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='아대', value='92 72 55 40 27', inline=True)
+
+            embed.add_field(name='건', value='133 104 79 58 39', inline=True)
+
+            embed.add_field(name='너클', value='136 106 81 59 40', inline=True)
+            embed.add_field(name='소울슈터', value='136 106 81 59 40', inline=True)
+            embed.add_field(name='에너지소드', value='136 106 81 59 40', inline=True)
+            embed.add_field(name='건틀렛 리볼버', value='136 106 81 59 40', inline=True)
+
+            embed.add_field(name='폴암', value='163 127 96 70 48', inline=True)
+
+            embed.add_field(name='활', value='170 133 101 73 50', inline=True)
+            embed.add_field(name='듀얼보우건', value='170 133 101 73 50', inline=True)
+            embed.add_field(name='에인션트 보우', value='170 133 101 73 50', inline=True)
+            embed.add_field(name='제인', value='170 133 101 73 50', inline=True)
+            embed.add_field(name='단검', value='170 133 101 73 50', inline=True)
+            embed.add_field(name='부채', value='170 133 101 73 50', inline=True)
+
+            embed.add_field(name='한손검', value='175 136 103 75 51', inline=True)
+            embed.add_field(name='한손도끼', value='175 136 103 75 51', inline=True)
+            embed.add_field(name='한손둔기', value='175 136 103 75 51', inline=True)
+            embed.add_field(name='석궁', value='175 136 103 75 51', inline=True)
+            embed.add_field(name='케인', value='175 136 103 75 51', inline=True)
+
+            embed.add_field(name='두손검', value='182 142 108 78 54', inline=True)
+            embed.add_field(name='데스페라도', value='182 142 108 78 54', inline=True)
+            embed.add_field(name='튜너', value='182 142 108 78 54', inline=True)
+            embed.add_field(name='두손도끼', value='182 142 108 78 54', inline=True)
+            embed.add_field(name='두손둔기', value='182 142 108 78 54', inline=True)
+            embed.add_field(name='창', value='182 142 108 78 54', inline=True)
+
+            embed.add_field(name='핸드캐논', value='186 145 110 80 55', inline=True)
+
+            embed.add_field(name='완드', value='214 167 126 92 63', inline=True)
+            embed.add_field(name='샤이닝로드', value='214 167 126 92 63', inline=True)
+            embed.add_field(name='ESP리미터', value='214 167 126 92 63', inline=True)
+            embed.add_field(name='매직건틀렛', value='214 167 126 92 63', inline=True)
+            
+            embed.add_field(name='스태프', value='218 170 129 94 64', inline=True)
+
+            await ctx.send(ctx.channel, embed = embed)
+            
+        async def wapon_200_2_callback(Interaction):
+
+            embed = nextcord.Embed(
+                title = '추옵표',
+                description ='200제(제네시스) 무기의 추옵표 입니다\n왼쪽부터 1 ~ 5추옵',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='아대', value='106 83 63 46 31', inline=True)
+
+            embed.add_field(name='건', value='154 120 91 66 45', inline=True)
+
+            embed.add_field(name='너클', value='157 123 93 68 46', inline=True)
+            embed.add_field(name='소울슈터', value='157 123 93 68 46', inline=True)
+            embed.add_field(name='에너지소드', value='157 123 93 68 46', inline=True)
+            embed.add_field(name='건틀렛 리볼버', value='157 123 93 68 46', inline=True)
+
+            embed.add_field(name='폴암', value='187 146 111 81 55', inline=True)
+
+            embed.add_field(name='활', value='196 153 116 84 58', inline=True)
+            embed.add_field(name='듀얼보우건', value='196 153 116 84 58', inline=True)
+            embed.add_field(name='에인션트 보우', value='196 153 116 84 58', inline=True)
+            embed.add_field(name='제인', value='196 153 116 84 58', inline=True)
+            embed.add_field(name='단검', value='196 153 116 84 58', inline=True)
+            embed.add_field(name='부채', value='196 153 116 84 58', inline=True)
+
+            embed.add_field(name='한손검', value='201 157 119 87 59', inline=True)
+            embed.add_field(name='한손도끼', value='201 157 119 87 59', inline=True)
+            embed.add_field(name='한손둔기', value='201 157 119 87 59', inline=True)
+            embed.add_field(name='석궁', value='201 157 119 87 59', inline=True)
+            embed.add_field(name='케인', value='201 157 119 87 59', inline=True)
+
+            embed.add_field(name='두손검', value='210 164 124 90 62', inline=True)
+            embed.add_field(name='데스페라도', value='210 164 124 90 62', inline=True)
+            embed.add_field(name='튜너', value='210 164 124 90 62', inline=True)
+            embed.add_field(name='두손도끼', value='210 164 124 90 62', inline=True)
+            embed.add_field(name='두손둔기', value='210 164 124 90 62', inline=True)
+            embed.add_field(name='창', value='210 164 124 90 62', inline=True)
+
+            embed.add_field(name='핸드캐논', value='215 167 127 92 63', inline=True)
+
+            embed.add_field(name='완드', value='246 192 146 106 72', inline=True)
+            embed.add_field(name='샤이닝로드', value='246 192 146 106 72', inline=True)
+            embed.add_field(name='ESP리미터', value='246 192 146 106 72', inline=True)
+            embed.add_field(name='매직건틀렛', value='246 192 146 106 72', inline=True)
+            
+            embed.add_field(name='스태프', value='250 195 148 108 74', inline=True)
+
+            await ctx.send(ctx.channel, embed = embed)
+
+        wapon_150.callback = wapon_150_callback
+        wapon_160.callback = wapon_160_callback
+        wapon_200_1.callback = wapon_200_1_callback
+        wapon_200_2.callback = wapon_200_2_callback
+        
+
+        view = View()
+
+        view.add_item(wapon_150)
+        view.add_item(wapon_160)
+        view.add_item(wapon_200_1)
+        view.add_item(wapon_200_2)
+
+        await ctx.send(embed = nextcord.Embed(title='무기 추옵표',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.orange()), view=view)
+
+        
+    #25
+    async def 무기추옵(ctx):
+
+        wapon_150 = Button(label='150제', style = nextcord.ButtonStyle.green)
+        wapon_160 = Button(label='160제', style = nextcord.ButtonStyle.green)
+        wapon_200_1 = Button(label='200제', style = nextcord.ButtonStyle.green)
+        wapon_200_2 = Button(label='200제(제네시스)', style = nextcord.ButtonStyle.green)
+            
+        async def wapon_150_callback(Interaction):
+
+            embed = nextcord.Embed(
+                title = '추옵표',
+                description = '150(파프니르) 무기의 추옵표 입니다\n왼쪽부터 1 ~ 5추옵',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='아대', value='36 28 21 16 11', inline=True)
+
+            embed.add_field(name='건', value='52 40 31 23 16', inline=True)
+
+            embed.add_field(name='너클', value='53 41 31 23 16', inline=True)
+            embed.add_field(name='소울슈터', value='53 41 31 23 16', inline=True)
+            embed.add_field(name='에너지소드', value='53 41 31 23 16', inline=True)
+            embed.add_field(name='건틀렛 리볼버', value='53 41 31 23 16', inline=True)
+
+            embed.add_field(name='폴암', value='63 49 38 27 19', inline=True)
+
+            embed.add_field(name='활', value='66 52 39 29 20', inline=True)
+            embed.add_field(name='듀얼보우건', value='66 52 39 29 20', inline=True)
+            embed.add_field(name='에인션트 보우', value='66 52 39 29 20', inline=True)
+            embed.add_field(name='제인', value='66 52 39 29 20', inline=True)
+            embed.add_field(name='단검', value='66 52 39 29 20', inline=True)
+            embed.add_field(name='부채', value='66 52 39 29 20', inline=True)
+
+            embed.add_field(name='한손검', value='68 53 40 29 20', inline=True)
+            embed.add_field(name='한손도끼', value='68 53 40 29 20', inline=True)
+            embed.add_field(name='한손둔기', value='68 53 40 29 20', inline=True)
+            embed.add_field(name='석궁', value='68 53 40 29 20', inline=True)
+            embed.add_field(name='케인', value='68 53 40 29 20', inline=True)
+
+            embed.add_field(name='두손검', value='71 55 42 31 21', inline=True)
+            embed.add_field(name='데스페라도', value='71 55 42 31 21', inline=True)
+            embed.add_field(name='튜너', value='71 55 42 31 21', inline=True)
+            embed.add_field(name='두손도끼', value='71 55 42 31 21', inline=True)
+            embed.add_field(name='두손둔기', value='71 55 42 31 21', inline=True)
+            embed.add_field(name='창', value='71 55 42 31 21', inline=True)
+
+            embed.add_field(name='핸드캐논', value='72 56 43 31 21', inline=True)
+
+            embed.add_field(name='완드', value='83 65 49 36 25', inline=True)
+            embed.add_field(name='샤이닝로드', value='83 65 49 36 25', inline=True)
+            embed.add_field(name='ESP리미터', value='83 65 49 36 25', inline=True)
+            embed.add_field(name='매직건틀렛', value='83 65 49 36 25', inline=True)
+            
+            embed.add_field(name='스태프', value='84 66 50 36 25', inline=True)
+            
+
+            await ctx.send(ctx.channel, embed = embed)
+            
+        async def wapon_160_callback(Interaction):
+
+            embed = nextcord.Embed(
+                title = '추옵표',
+                description = '160제(앱솔랩스) 무기의 추옵표 입니다\n왼쪽부터 1 ~ 5추옵',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='아대', value='53 42 32 23 16', inline=True)
+
+            embed.add_field(name='건', value='77 60 46 33 23', inline=True)
+
+            embed.add_field(name='너클', value='79 62 47 34 24', inline=True)
+            embed.add_field(name='소울슈터', value='79 62 47 34 24', inline=True)
+            embed.add_field(name='에너지소드', value='79 62 47 34 24', inline=True)
+            embed.add_field(name='건틀렛 리볼버', value='79 62 47 34 24', inline=True)
+
+            embed.add_field(name='폴암', value='95 74 56 41 28', inline=True)
+
+            embed.add_field(name='활', value='99 77 59 43 29', inline=True)
+            embed.add_field(name='듀얼보우건', value='99 77 59 43 29', inline=True)
+            embed.add_field(name='에인션트 보우', value='99 77 59 43 29', inline=True)
+            embed.add_field(name='제인', value='99 77 59 43 29', inline=True)
+            embed.add_field(name='단검', value='99 77 59 43 29', inline=True)
+            embed.add_field(name='부채', value='99 77 59 43 29', inline=True)
+
+            embed.add_field(name='한손검', value='101 79 60 44 30', inline=True)
+            embed.add_field(name='한손도끼', value='101 79 60 44 30', inline=True)
+            embed.add_field(name='한손둔기', value='101 79 60 44 30', inline=True)
+            embed.add_field(name='석궁', value='101 79 60 44 30', inline=True)
+            embed.add_field(name='케인', value='101 79 60 44 30', inline=True)
+
+            embed.add_field(name='두손검', value='106 82 63 46 31', inline=True)
+            embed.add_field(name='데스페라도', value='106 82 63 46 31', inline=True)
+            embed.add_field(name='튜너', value='106 82 63 46 31', inline=True)
+            embed.add_field(name='두손도끼', value='106 82 63 46 31', inline=True)
+            embed.add_field(name='두손둔기', value='106 82 63 46 31', inline=True)
+            embed.add_field(name='창', value='106 82 63 46 31', inline=True)
+
+            embed.add_field(name='핸드캐논', value='108 84 64 47 32', inline=True)
+
+            embed.add_field(name='완드', value='124 97 73 54 37', inline=True)
+            embed.add_field(name='샤이닝로드', value='124 97 73 54 37', inline=True)
+            embed.add_field(name='ESP리미터', value='124 97 73 54 37', inline=True)
+            embed.add_field(name='매직건틀렛', value='124 97 73 54 37', inline=True)
+            
+            embed.add_field(name='스태프', value='126 98 75 54 37', inline=True)
+
+            await ctx.send(ctx.channel, embed = embed)
+            
+        async def wapon_200_1_callback(Interaction):
+
+            embed = nextcord.Embed(
+                title = '추옵표',
+                description = '200제(아케인셰이드) 무기의 추옵표 입니다\n왼쪽부터 1 ~ 5추옵',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='아대', value='92 72 55 40 27', inline=True)
+
+            embed.add_field(name='건', value='133 104 79 58 39', inline=True)
+
+            embed.add_field(name='너클', value='136 106 81 59 40', inline=True)
+            embed.add_field(name='소울슈터', value='136 106 81 59 40', inline=True)
+            embed.add_field(name='에너지소드', value='136 106 81 59 40', inline=True)
+            embed.add_field(name='건틀렛 리볼버', value='136 106 81 59 40', inline=True)
+
+            embed.add_field(name='폴암', value='163 127 96 70 48', inline=True)
+
+            embed.add_field(name='활', value='170 133 101 73 50', inline=True)
+            embed.add_field(name='듀얼보우건', value='170 133 101 73 50', inline=True)
+            embed.add_field(name='에인션트 보우', value='170 133 101 73 50', inline=True)
+            embed.add_field(name='제인', value='170 133 101 73 50', inline=True)
+            embed.add_field(name='단검', value='170 133 101 73 50', inline=True)
+            embed.add_field(name='부채', value='170 133 101 73 50', inline=True)
+
+            embed.add_field(name='한손검', value='175 136 103 75 51', inline=True)
+            embed.add_field(name='한손도끼', value='175 136 103 75 51', inline=True)
+            embed.add_field(name='한손둔기', value='175 136 103 75 51', inline=True)
+            embed.add_field(name='석궁', value='175 136 103 75 51', inline=True)
+            embed.add_field(name='케인', value='175 136 103 75 51', inline=True)
+
+            embed.add_field(name='두손검', value='182 142 108 78 54', inline=True)
+            embed.add_field(name='데스페라도', value='182 142 108 78 54', inline=True)
+            embed.add_field(name='튜너', value='182 142 108 78 54', inline=True)
+            embed.add_field(name='두손도끼', value='182 142 108 78 54', inline=True)
+            embed.add_field(name='두손둔기', value='182 142 108 78 54', inline=True)
+            embed.add_field(name='창', value='182 142 108 78 54', inline=True)
+
+            embed.add_field(name='핸드캐논', value='186 145 110 80 55', inline=True)
+
+            embed.add_field(name='완드', value='214 167 126 92 63', inline=True)
+            embed.add_field(name='샤이닝로드', value='214 167 126 92 63', inline=True)
+            embed.add_field(name='ESP리미터', value='214 167 126 92 63', inline=True)
+            embed.add_field(name='매직건틀렛', value='214 167 126 92 63', inline=True)
+            
+            embed.add_field(name='스태프', value='218 170 129 94 64', inline=True)
+
+            await ctx.send(ctx.channel, embed = embed)
+            
+        async def wapon_200_2_callback(Interaction):
+
+            embed = nextcord.Embed(
+                title = '추옵표',
+                description ='200제(제네시스) 무기의 추옵표 입니다\n왼쪽부터 1 ~ 5추옵',
+                colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name='아대', value='106 83 63 46 31', inline=True)
+
+            embed.add_field(name='건', value='154 120 91 66 45', inline=True)
+
+            embed.add_field(name='너클', value='157 123 93 68 46', inline=True)
+            embed.add_field(name='소울슈터', value='157 123 93 68 46', inline=True)
+            embed.add_field(name='에너지소드', value='157 123 93 68 46', inline=True)
+            embed.add_field(name='건틀렛 리볼버', value='157 123 93 68 46', inline=True)
+
+            embed.add_field(name='폴암', value='187 146 111 81 55', inline=True)
+
+            embed.add_field(name='활', value='196 153 116 84 58', inline=True)
+            embed.add_field(name='듀얼보우건', value='196 153 116 84 58', inline=True)
+            embed.add_field(name='에인션트 보우', value='196 153 116 84 58', inline=True)
+            embed.add_field(name='제인', value='196 153 116 84 58', inline=True)
+            embed.add_field(name='단검', value='196 153 116 84 58', inline=True)
+            embed.add_field(name='부채', value='196 153 116 84 58', inline=True)
+
+            embed.add_field(name='한손검', value='201 157 119 87 59', inline=True)
+            embed.add_field(name='한손도끼', value='201 157 119 87 59', inline=True)
+            embed.add_field(name='한손둔기', value='201 157 119 87 59', inline=True)
+            embed.add_field(name='석궁', value='201 157 119 87 59', inline=True)
+            embed.add_field(name='케인', value='201 157 119 87 59', inline=True)
+
+            embed.add_field(name='두손검', value='210 164 124 90 62', inline=True)
+            embed.add_field(name='데스페라도', value='210 164 124 90 62', inline=True)
+            embed.add_field(name='튜너', value='210 164 124 90 62', inline=True)
+            embed.add_field(name='두손도끼', value='210 164 124 90 62', inline=True)
+            embed.add_field(name='두손둔기', value='210 164 124 90 62', inline=True)
+            embed.add_field(name='창', value='210 164 124 90 62', inline=True)
+
+            embed.add_field(name='핸드캐논', value='215 167 127 92 63', inline=True)
+
+            embed.add_field(name='완드', value='246 192 146 106 72', inline=True)
+            embed.add_field(name='샤이닝로드', value='246 192 146 106 72', inline=True)
+            embed.add_field(name='ESP리미터', value='246 192 146 106 72', inline=True)
+            embed.add_field(name='매직건틀렛', value='246 192 146 106 72', inline=True)
+            
+            embed.add_field(name='스태프', value='250 195 148 108 74', inline=True)
+
+            await ctx.send(ctx.channel, embed = embed)
+
+        wapon_150.callback = wapon_150_callback
+        wapon_160.callback = wapon_160_callback
+        wapon_200_1.callback = wapon_200_1_callback
+        wapon_200_2.callback = wapon_200_2_callback
+        
+
+        view = View()
+
+        view.add_item(wapon_150)
+        view.add_item(wapon_160)
+        view.add_item(wapon_200_1)
+        view.add_item(wapon_200_2)
+
+        await ctx.send(embed = nextcord.Embed(title='무기 추옵표',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.orange()), view=view)
 
 @bot.event
 async def on_ready():
