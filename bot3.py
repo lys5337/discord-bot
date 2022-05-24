@@ -69,7 +69,7 @@ async def 명령어(ctx):
         embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다', inline = True) #22
         embed.add_field(name = '!유저정보[닉네임]', value = '해당하는 닉네임의 유저정보를 제공합니다', inline = True) #23
         embed.add_field(name = '!강화공식', value = '주문의 흔적, 스타포스의 강화수치를 제공합니다', inline = True) #24
-        embed.add_field(name = '!무기추옵', value = '파프니르, 앱솔랩스, 아케인셰이드, 제네시스 무기의 추가옵션을 제공합니다', inline = True)#25
+        embed.add_field(name = '!무기추옵', value = '파프니르, 앱솔랩스, 아케인셰이드, 제네시스 무기의 추가옵션을 제공합니다', inline = True) #25
 
         await ctx.send(channel, embed = embed)
 
@@ -162,7 +162,7 @@ class musicbot:
                 del musicbot.musictitle[0]
                 del musicbot.song_queue[0]
                 vc.play(nextcord.FFmpegPCMAudio(URL,**FFMPEG_OPTIONS), after=lambda e: musicbot.play_next(ctx))
-    
+
     def again(ctx, url):
         global number
         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
@@ -173,6 +173,7 @@ class musicbot:
             URL = info['formats'][0]['url']
             if not vc.is_playing():
                 vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS), after = lambda e: musicbot.again(ctx, url))               
+
     def URLPLAY(ctx, url):
         YDL_OPTIONS = {'format': 'bestaudio','noplaylist':'True'}
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
@@ -307,7 +308,7 @@ class musicbot:
             with YoutubeDL(YDL_OPTIONS) as ydl:
                 info = ydl.extract_info(url, download=False)
             URL = info['formats'][0]['url']
-            await ctx.send(embed = nextcord.Embed(title = "노래 재생", description = "현재 " + musicbot.musicnow[0] + "을(를) 재생하고 있습니다.", color = 0x00ff00))
+            await ctx.send(embed = nextcord.Embed(title = "노래 재생", description = "현재 " + "멜론차트" + "을(를) 재생하고 있습니다.", color = 0x00ff00))
             vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
         else:
             await ctx.send("이미 노래가 재생 중이라 노래를 재생할 수 없어요!")
@@ -731,6 +732,7 @@ class lotto:
         await ctx.send(ctx.channel, embed=embed)
 
 class maplestory:
+
     username = []
 
     #22
@@ -784,7 +786,6 @@ class maplestory:
             inline=False)
 
         await ctx.send(ctx.channel, embed = embed)
-
     #23
     @bot.command()
     async def 유저정보(ctx, *, msg):
@@ -849,7 +850,6 @@ class maplestory:
         await ctx.send(ctx.channel, embed = embed)
 
         del maplestory.username[0]
-
     #24
     @bot.command()
     async def 강화공식(ctx):
@@ -1005,9 +1005,9 @@ class maplestory:
         view.add_item(star_force_160)
         view.add_item(star_force_200)
 
-        await ctx.send(embed = nextcord.Embed(title='강화수치',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.orange()), view=view)
-        
+        await ctx.send(embed = nextcord.Embed(title='강화수치',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.orange()), view=view)        
     #25
+    @bot.command()
     async def 무기추옵(ctx):
 
         wapon_150 = Button(label='150제', style = nextcord.ButtonStyle.green)
@@ -1231,7 +1231,7 @@ async def on_ready():
     print('다음으로 로그인합니다: ')
     print(bot.user.name)
     print('connection was succeseful')
-    game = nextcord.Game('엄데이트')
+    game = nextcord.Game('업데이트')
     await bot.change_presence(status=nextcord.Status.online, activity = game)
     
 bot.run(TOKEN)
