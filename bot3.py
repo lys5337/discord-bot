@@ -1227,659 +1227,238 @@ class maplestory:
         view.add_item(wapon_200_2)
 
         await ctx.send(embed = nextcord.Embed(title='무기 추옵표',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.orange()), view=view)
-
+    #26
     @bot.command()
-    async def 큐브시뮬(ctx, *, msg):
-        redcube = Button(label='레드큐브', style = nextcord.ButtonStyle.green)
-        blackcube = Button(label='블랙큐브', style = nextcord.ButtonStyle.green)
-        additional = Button(label='에디셔널', style = nextcord.ButtonStyle.green)
+    async def 레드큐브(ctx, *, msg):
+        wapon = Button(label='무기', style = nextcord.ButtonStyle.green)
+        emblem = Button(label='엠블렘', style = nextcord.ButtonStyle.green)
+        sub_wapon = Button(label='보조무기(포스실드, 소울링 제외)', style = nextcord.ButtonStyle.green)
+        force_and_soul = Button(label='포스실드, 소울링', style = nextcord.ButtonStyle.green)
+        shield = Button(label='방패', style = nextcord.ButtonStyle.green)
+        cap = Button(label='모자', style = nextcord.ButtonStyle.green)
+        top = Button(label='상의', style = nextcord.ButtonStyle.green)
+        onepiece = Button(label='한벌옷', style = nextcord.ButtonStyle.green)
+        bottom = Button(label='하의', style = nextcord.ButtonStyle.green)
+        shoes = Button(label='신발', style = nextcord.ButtonStyle.green)
+        gloves = Button(label='장갑', style = nextcord.ButtonStyle.green)
+        cloak = Button(label='망토', style = nextcord.ButtonStyle.green)
+        belt = Button(label='벨트', style = nextcord.ButtonStyle.green)
+        shoulder = Button(label='어깨장식', style = nextcord.ButtonStyle.green)
+        face = Button(label='얼굴장식', style = nextcord.ButtonStyle.green)
+        eyes = Button(label='눈장식', style = nextcord.ButtonStyle.green)
+        earring = Button(label='귀고리', style = nextcord.ButtonStyle.green)
+        ring = Button(label='반지', style = nextcord.ButtonStyle.green)
+        necklace = Button(label='목걸이', style = nextcord.ButtonStyle.green)
+        heart = Button(label='기계심장', style = nextcord.ButtonStyle.green)
 
-        redcube.callback = redcube_callback
-        blackcube.callback = blackcube_callback
-        additional.callback = additional_callback
+        async def wapon_callback(Interaction):
+
+            maple_cube.redcube.wapon(1,int(msg))
+
+            embed = nextcord.Embed(
+            title = '레드큐브 무기',
+            description = '레드큐브 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.redcube.wapon_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def emblem_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+            
+        async def sub_wapon_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def force_and_soul_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def shield_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+            
+        async def cap_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def top_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def onepiece_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def bottom_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def shoes_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def gloves_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def cloak_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def belt_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def shoulder_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def face_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def eyes_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def earring_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def ring_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def necklace_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        async def heart_callback(Interaction):
+            embed = nextcord.Embed(
+            title = '구현중',
+            description ='구현중',
+            colour = nextcord.Colour.orange()
+            )
+            await ctx.send(ctx.channel, embed=embed)
+
+        wapon.callback = wapon_callback
+        emblem.callback = emblem_callback
+        sub_wapon.callback = sub_wapon_callback
+        force_and_soul.callback = force_and_soul_callback
+        shield.callback = shield_callback
+        cap.callback = cap_callback
+        top.callback = top_callback
+        onepiece.callback = onepiece_callback
+        bottom.callback = bottom_callback
+        shoes.callback = shoes_callback
+        gloves.callback = gloves_callback
+        cloak.callback = cloak_callback
+        belt.callback = belt_callback
+        shoulder.callback = shoulder_callback
+        face.callback = face_callback
+        eyes.callback = eyes_callback
+        earring.callback = earring_callback
+        ring.callback = ring_callback
+        necklace.callback = necklace_callback
+        heart.callback = heart_callback  
 
         view = View()
+        view.add_item(wapon)
+        view.add_item(emblem)
+        view.add_item(sub_wapon)
+        view.add_item(force_and_soul)
+        view.add_item(shield)
+        view.add_item(cap)
+        view.add_item(top)
+        view.add_item(onepiece)
+        view.add_item(bottom)
+        view.add_item(shoes)
+        view.add_item(gloves)
+        view.add_item(cloak)
+        view.add_item(belt)
+        view.add_item(shoulder)
+        view.add_item(face)
+        view.add_item(eyes)
+        view.add_item(earring)
+        view.add_item(ring)
+        view.add_item(necklace)
+        view.add_item(heart) 
 
-        view.add_item(redcube)
-        view.add_item(blackcube)
-        view.add_item(additional)
-
-        await ctx.send(embed = nextcord.Embed(title='큐브 시뮬레이터',description="큐브 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
-
-
-        async def redcube_callback(Interaction):
-            
-            await ctx.send(embed = nextcord.Embed(title='레드큐브',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
-
-            wapon = Button(label='무기', style = nextcord.ButtonStyle.green)
-            emblem = Button(label='엠블렘', style = nextcord.ButtonStyle.green)
-            sub_wapon = Button(label='보조무기(포스실드, 소울링 제외)', style = nextcord.ButtonStyle.green)
-            force_and_soul = Button(label='포스실드, 소울링', style = nextcord.ButtonStyle.green)
-            shield = Button(label='방패', style = nextcord.ButtonStyle.green)
-            cap = Button(label='모자', style = nextcord.ButtonStyle.green)
-            top = Button(label='상의', style = nextcord.ButtonStyle.green)
-            onepiece = Button(label='한벌옷', style = nextcord.ButtonStyle.green)
-            bottom = Button(label='하의', style = nextcord.ButtonStyle.green)
-            shoes = Button(label='신발', style = nextcord.ButtonStyle.green)
-            gloves = Button(label='장갑', style = nextcord.ButtonStyle.green)
-            cloak = Button(label='망토', style = nextcord.ButtonStyle.green)
-            belt = Button(label='벨트', style = nextcord.ButtonStyle.green)
-            shoulder = Button(label='어깨장식', style = nextcord.ButtonStyle.green)
-            face = Button(label='얼굴장식', style = nextcord.ButtonStyle.green)
-            eyes = Button(label='눈장식', style = nextcord.ButtonStyle.green)
-            earring = Button(label='귀고리', style = nextcord.ButtonStyle.green)
-            ring = Button(label='반지', style = nextcord.ButtonStyle.green)
-            necklace = Button(label='목걸이', style = nextcord.ButtonStyle.green)
-            heart = Button(label='기계심장', style = nextcord.ButtonStyle.green)
-
-            view.add_item(wapon)
-            view.add_item(emblem)
-            view.add_item(sub_wapon)
-            view.add_item(force_and_soul)
-            view.add_item(shield)
-            view.add_item(cap)
-            view.add_item(top)
-            view.add_item(onepiece)
-            view.add_item(bottom)
-            view.add_item(shoes)
-            view.add_item(gloves)
-            view.add_item(cloak)
-            view.add_item(belt)
-            view.add_item(shoulder)
-            view.add_item(face)
-            view.add_item(eyes)
-            view.add_item(earring)
-            view.add_item(ring)
-            view.add_item(necklace)
-            view.add_item(heart)
-
-            wapon.callback = wapon_callback
-            emblem.callback = emblem_callback
-            sub_wapon.callback = sub_wapon_callback
-            force_and_soul.callback = force_and_soul_callback
-            shield.callback = shield_callback
-            cap.callback = cap_callback
-            top.callback = top_callback
-            onepiece.callback = onepiece_callback
-            bottom.callback = bottom_callback
-            shoes.callback = shoes_callback
-            gloves.callback = gloves_callback
-            cloak.callback = cloak_callback
-            belt.callback = belt_callback
-            shoulder.callback = shoulder_callback
-            face.callback = face_callback
-            eyes.callback = eyes_callback
-            earring.callback = earring_callback
-            ring.callback = ring_callback
-            necklace.callback = necklace_callback
-            heart.callback = heart_callback
-
-            async def wapon_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-
-            async def emblem_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-                
-            async def sub_wapon_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            
-            async def force_and_soul_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def shield_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def cap_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def top_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def onepiece_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def bottom_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def shoes_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def gloves_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def cloak_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def belt_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def shoulder_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def face_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def eyes_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def earring_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def ring_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def necklace_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def heart_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-          
-        async def blackcube_callback(Interaction):
-
-            await ctx.send(embed = nextcord.Embed(title='블랙큐브',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
-
-            wapon = Button(label='무기', style = nextcord.ButtonStyle.green)
-            emblem = Button(label='엠블렘', style = nextcord.ButtonStyle.green)
-            sub_wapon = Button(label='보조무기(포스실드, 소울링 제외)', style = nextcord.ButtonStyle.green)
-            force_and_soul = Button(label='포스실드, 소울링', style = nextcord.ButtonStyle.green)
-            shield = Button(label='방패', style = nextcord.ButtonStyle.green)
-            cap = Button(label='모자', style = nextcord.ButtonStyle.green)
-            top = Button(label='상의', style = nextcord.ButtonStyle.green)
-            onepiece = Button(label='한벌옷', style = nextcord.ButtonStyle.green)
-            bottom = Button(label='하의', style = nextcord.ButtonStyle.green)
-            shoes = Button(label='신발', style = nextcord.ButtonStyle.green)
-            gloves = Button(label='장갑', style = nextcord.ButtonStyle.green)
-            cloak = Button(label='망토', style = nextcord.ButtonStyle.green)
-            belt = Button(label='벨트', style = nextcord.ButtonStyle.green)
-            shoulder = Button(label='어깨장식', style = nextcord.ButtonStyle.green)
-            face = Button(label='얼굴장식', style = nextcord.ButtonStyle.green)
-            eyes = Button(label='눈장식', style = nextcord.ButtonStyle.green)
-            earring = Button(label='귀고리', style = nextcord.ButtonStyle.green)
-            ring = Button(label='반지', style = nextcord.ButtonStyle.green)
-            necklace = Button(label='목걸이', style = nextcord.ButtonStyle.green)
-            heart = Button(label='기계심장', style = nextcord.ButtonStyle.green) 
-
-            view.add_item(wapon)
-            view.add_item(emblem)
-            view.add_item(sub_wapon)
-            view.add_item(force_and_soul)
-            view.add_item(shield)
-            view.add_item(cap)
-            view.add_item(top)
-            view.add_item(onepiece)
-            view.add_item(bottom)
-            view.add_item(shoes)
-            view.add_item(gloves)
-            view.add_item(cloak)
-            view.add_item(belt)
-            view.add_item(shoulder)
-            view.add_item(face)
-            view.add_item(eyes)
-            view.add_item(earring)
-            view.add_item(ring)
-            view.add_item(necklace)
-            view.add_item(heart)    
-
-            wapon.callback = wapon_callback
-            emblem.callback = emblem_callback
-            sub_wapon.callback = sub_wapon_callback
-            force_and_soul.callback = force_and_soul_callback
-            shield.callback = shield_callback
-            cap.callback = cap_callback
-            top.callback = top_callback
-            onepiece.callback = onepiece_callback
-            bottom.callback = bottom_callback
-            shoes.callback = shoes_callback
-            gloves.callback = gloves_callback
-            cloak.callback = cloak_callback
-            belt.callback = belt_callback
-            shoulder.callback = shoulder_callback
-            face.callback = face_callback
-            eyes.callback = eyes_callback
-            earring.callback = earring_callback
-            ring.callback = ring_callback
-            necklace.callback = necklace_callback
-            heart.callback = heart_callback
-
-            async def wapon_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-
-            async def emblem_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-                
-            async def sub_wapon_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            
-            async def force_and_soul_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def shield_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def cap_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def top_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def onepiece_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def bottom_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def shoes_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def gloves_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def cloak_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def belt_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def shoulder_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def face_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def eyes_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def earring_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def ring_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def necklace_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def heart_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-
-        async def additional_callback(Interaction):
-
-            await ctx.send(embed = nextcord.Embed(title='에디셔널',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
-
-            wapon = Button(label='무기', style = nextcord.ButtonStyle.green)
-            emblem = Button(label='엠블렘', style = nextcord.ButtonStyle.green)
-            sub_wapon = Button(label='보조무기(포스실드, 소울링 제외)', style = nextcord.ButtonStyle.green)
-            force_and_soul = Button(label='포스실드, 소울링', style = nextcord.ButtonStyle.green)
-            shield = Button(label='방패', style = nextcord.ButtonStyle.green)
-            cap = Button(label='모자', style = nextcord.ButtonStyle.green)
-            top = Button(label='상의', style = nextcord.ButtonStyle.green)
-            onepiece = Button(label='한벌옷', style = nextcord.ButtonStyle.green)
-            bottom = Button(label='하의', style = nextcord.ButtonStyle.green)
-            shoes = Button(label='신발', style = nextcord.ButtonStyle.green)
-            gloves = Button(label='장갑', style = nextcord.ButtonStyle.green)
-            cloak = Button(label='망토', style = nextcord.ButtonStyle.green)
-            belt = Button(label='벨트', style = nextcord.ButtonStyle.green)
-            shoulder = Button(label='어깨장식', style = nextcord.ButtonStyle.green)
-            face = Button(label='얼굴장식', style = nextcord.ButtonStyle.green)
-            eyes = Button(label='눈장식', style = nextcord.ButtonStyle.green)
-            earring = Button(label='귀고리', style = nextcord.ButtonStyle.green)
-            ring = Button(label='반지', style = nextcord.ButtonStyle.green)
-            necklace = Button(label='목걸이', style = nextcord.ButtonStyle.green)
-            heart = Button(label='기계심장', style = nextcord.ButtonStyle.green)
-
-            view.add_item(wapon)
-            view.add_item(emblem)
-            view.add_item(sub_wapon)
-            view.add_item(force_and_soul)
-            view.add_item(shield)
-            view.add_item(cap)
-            view.add_item(top)
-            view.add_item(onepiece)
-            view.add_item(bottom)
-            view.add_item(shoes)
-            view.add_item(gloves)
-            view.add_item(cloak)
-            view.add_item(belt)
-            view.add_item(shoulder)
-            view.add_item(face)
-            view.add_item(eyes)
-            view.add_item(earring)
-            view.add_item(ring)
-            view.add_item(necklace)
-            view.add_item(heart)
-
-            wapon.callback = wapon_callback
-            emblem.callback = emblem_callback
-            sub_wapon.callback = sub_wapon_callback
-            force_and_soul.callback = force_and_soul_callback
-            shield.callback = shield_callback
-            cap.callback = cap_callback
-            top.callback = top_callback
-            onepiece.callback = onepiece_callback
-            bottom.callback = bottom_callback
-            shoes.callback = shoes_callback
-            gloves.callback = gloves_callback
-            cloak.callback = cloak_callback
-            belt.callback = belt_callback
-            shoulder.callback = shoulder_callback
-            face.callback = face_callback
-            eyes.callback = eyes_callback
-            earring.callback = earring_callback
-            ring.callback = ring_callback
-            necklace.callback = necklace_callback
-            heart.callback = heart_callback
-
-            async def wapon_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-
-            async def emblem_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-                
-            async def sub_wapon_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            
-            async def force_and_soul_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def shield_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def cap_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def top_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def onepiece_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def bottom_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def shoes_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def gloves_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def cloak_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def belt_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def shoulder_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def face_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def eyes_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def earring_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def ring_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def necklace_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-            async def heart_callback():
-                embed = nextcord.Embed(
-                title = '구현중',
-                description ='구현중',
-                colour = nextcord.Colour.orange()
-                )
-                await ctx.send(ctx.channel, embed=embed)
-
+        await ctx.send(embed = nextcord.Embed(title='레드큐브',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
 
 @bot.event
 async def on_ready():
