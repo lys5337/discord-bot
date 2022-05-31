@@ -1311,7 +1311,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 방패',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.shield_result)), inline=True)
@@ -1324,7 +1324,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 모자',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.cap_result)), inline=True)
@@ -1337,7 +1337,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 상의',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.top_result)), inline=True)
@@ -1350,7 +1350,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 한벌옷',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.suit_result)), inline=True)
@@ -1363,7 +1363,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 하의',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.bottom_result)), inline=True)
@@ -1376,7 +1376,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 신발',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.shoes_result)), inline=True)
@@ -1389,7 +1389,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 장갑',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.gloves_result)), inline=True)
@@ -1402,7 +1402,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 망토',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.cloak_result)), inline=True)
@@ -1415,7 +1415,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 벨트',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.belt_result)), inline=True)
@@ -1428,7 +1428,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 어깨장식',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.shoulder_result)), inline=True)
@@ -1441,7 +1441,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 얼굴장식',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.face_result)), inline=True)
@@ -1454,7 +1454,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 눈장식',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.eyes_result)), inline=True)
@@ -1467,7 +1467,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 귀고리',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.earring_result)), inline=True)
@@ -1480,7 +1480,7 @@ class maplestory:
 
             embed = nextcord.Embed(
             title = '레드큐브 반지',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.ring_result)), inline=True)
@@ -1492,8 +1492,8 @@ class maplestory:
             maple_cube.redcube.necklace(0, int(msg))
 
             embed = nextcord.Embed(
-            title = '레드큐브',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            title = '레드큐브 목걸이',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.necklace_result)), inline=True)
@@ -1505,8 +1505,8 @@ class maplestory:
             maple_cube.redcube.heart(0, int(msg))
 
             embed = nextcord.Embed(
-            title = '레드큐브',
-             description = '레드큐브 ' + str(msg) + ' 회',
+            title = '레드큐브 기계심장',
+            description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
             embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.heart_result)), inline=True)
