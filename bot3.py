@@ -72,6 +72,7 @@ async def 명령어(ctx):
         embed.add_field(name = '!유저정보[닉네임]', value = '해당하는 닉네임의 유저정보를 제공합니다', inline = True) #23
         embed.add_field(name = '!강화공식', value = '주문의 흔적, 스타포스의 강화수치를 제공합니다', inline = True) #24
         embed.add_field(name = '!무기추옵', value = '파프니르, 앱솔랩스, 아케인셰이드, 제네시스 무기의 추가옵션을 제공합니다', inline = True) #25
+        embed.add_field(name = '!레드큐브[횟수]', value = '레드큐브를 [횟수] 만큼 시뮬레이션 해줍니다.') #26
 
         await ctx.send(channel, embed = embed)
 
@@ -84,7 +85,8 @@ async def 명령어(ctx):
         '목록섞기, 목록, 추가/삭제[제목,링크], 목록재생, 목록초기화, 일시정지\n'+
         '들어와, 나가, 재생[제목/링크], 반복재생[제목/링크], 멜론차트, 지금노래\n' +
         '다시재생, 노래끄기, 스킵, 즐겨찾기, 즐겨찾기추가 / 즐겨찾기삭제, 정밀검색\n' +
-        '날씨, 해외날씨, 복권, 메소시세, 유저정보[닉네임], 강화공식, 무기추옵\n', inline = False)
+        '날씨, 해외날씨, 복권, 메소시세, 유저정보[닉네임], 강화공식, 무기추옵\n' +
+        '레드큐브\n', inline = False)
         
         await ctx.send(channel, embed = embed)
 
@@ -1356,100 +1358,161 @@ class maplestory:
             maple_cube.suit_result.clear()
 
         async def bottom_callback(Interaction):
+
+            maple_cube.redcube.bottom(0, int(msg))
+
             embed = nextcord.Embed(
-            title = '레드큐브',
+            title = '레드큐브 하의',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.bottom_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.bottom_result.clear()
 
         async def shoes_callback(Interaction):
+
+            maple_cube.redcube.shoes(0, int(msg))
+
             embed = nextcord.Embed(
-            title = '레드큐브',
+            title = '레드큐브 신발',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.shoes_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.shoes_result.clear()
 
         async def gloves_callback(Interaction):
+
+            maple_cube.redcube.gloves(0, int(msg))
+
             embed = nextcord.Embed(
-            title = '레드큐브',
+            title = '레드큐브 장갑',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.gloves_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.gloves_result.clear()
 
         async def cloak_callback(Interaction):
+
+            maple_cube.redcube.cloak(0, int(msg))
+
             embed = nextcord.Embed(
-            title = '레드큐브',
+            title = '레드큐브 망토',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.cloak_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.cloak_result.clear()
 
         async def belt_callback(Interaction):
+
+            maple_cube.redcube.belt(0, int(msg))
+
             embed = nextcord.Embed(
-            title = '레드큐브',
+            title = '레드큐브 벨트',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.belt_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.belt_result.clear()
 
         async def shoulder_callback(Interaction):
+
+            maple_cube.redcube.shoulder(0, int(msg))
+
             embed = nextcord.Embed(
-            title = '레드큐브',
+            title = '레드큐브 어깨장식',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.shoulder_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.shoulder_result.clear()
 
         async def face_callback(Interaction):
+
+            maple_cube.redcube.face(0, int(msg))
+
             embed = nextcord.Embed(
-            title = '레드큐브',
+            title = '레드큐브 얼굴장식',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.face_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.face_result.clear()
 
         async def eyes_callback(Interaction):
+
+            maple_cube.redcube.eyes(0, int(msg))
+
             embed = nextcord.Embed(
-            title = '레드큐브',
+            title = '레드큐브 눈장식',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.eyes_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.eyes_result.clear()
 
         async def earring_callback(Interaction):
+
+            maple_cube.redcube.earring(0, int(msg))
+
             embed = nextcord.Embed(
-            title = '레드큐브',
+            title = '레드큐브 귀고리',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.earring_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.earring_result.clear()
 
         async def ring_callback(Interaction):
+
+            maple_cube.redcube.ring(0, int(msg))
+
             embed = nextcord.Embed(
-            title = '레드큐브',
+            title = '레드큐브 반지',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.ring_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.ring_result.clear()
 
         async def necklace_callback(Interaction):
+
+            maple_cube.redcube.necklace(0, int(msg))
+
             embed = nextcord.Embed(
             title = '레드큐브',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.necklace_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.necklace_result.clear()
 
         async def heart_callback(Interaction):
+
+            maple_cube.redcube.heart(0, int(msg))
+
             embed = nextcord.Embed(
             title = '레드큐브',
              description = '레드큐브 ' + str(msg) + ' 회',
             colour = nextcord.Colour.orange()
             )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.heart_result)), inline=True)
             await ctx.send(ctx.channel, embed=embed)
+            maple_cube.heart_result.clear()
+
 
         wapon.callback = wapon_callback
         emblem.callback = emblem_callback
