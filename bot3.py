@@ -72,7 +72,9 @@ async def 명령어(ctx):
         embed.add_field(name = '!유저정보[닉네임]', value = '해당하는 닉네임의 유저정보를 제공합니다', inline = True) #23
         embed.add_field(name = '!강화공식', value = '주문의 흔적, 스타포스의 강화수치를 제공합니다', inline = True) #24
         embed.add_field(name = '!무기추옵', value = '파프니르, 앱솔랩스, 아케인셰이드, 제네시스 무기의 추가옵션을 제공합니다', inline = True) #25
-        embed.add_field(name = '!블랙큐브[횟수]', value = '블랙큐브를 [횟수] 만큼 시뮬레이션 해줍니다.') #26
+        embed.add_field(name = '!레드큐브[횟수]', value = '레드큐브를 [횟수] 만큼 시뮬레이션 해줍니다.') #26
+        embed.add_field(name = '!블랙큐브[횟수]', value = '블랙큐브를 [횟수] 만큼 시뮬레이션 해줍니다.') #27
+        embed.add_field(name = '!에디셔널[횟수]', value = '에디셔널큐브를 [횟수] 만큼 시뮬레이션 해줍니다.') #28
 
         await ctx.send(channel, embed = embed)
 
@@ -1950,6 +1952,335 @@ class maplestory:
         view.add_item(heart) 
 
         await ctx.send(embed = nextcord.Embed(title='블랙큐브',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
+    #28
+    @bot.command()
+    async def 에디셔널(ctx, *, msg):
+        wapon = Button(label='무기', style = nextcord.ButtonStyle.green)
+        emblem = Button(label='엠블렘', style = nextcord.ButtonStyle.green)
+        sub_wapon = Button(label='보조무기(포스실드, 소울링 제외)', style = nextcord.ButtonStyle.green)
+        force_and_soul = Button(label='포스실드, 소울링', style = nextcord.ButtonStyle.green)
+        shield = Button(label='방패', style = nextcord.ButtonStyle.green)
+        cap = Button(label='모자', style = nextcord.ButtonStyle.green)
+        top = Button(label='상의', style = nextcord.ButtonStyle.green)
+        suit = Button(label='한벌옷', style = nextcord.ButtonStyle.green)
+        bottom = Button(label='하의', style = nextcord.ButtonStyle.green)
+        shoes = Button(label='신발', style = nextcord.ButtonStyle.green)
+        gloves = Button(label='장갑', style = nextcord.ButtonStyle.green)
+        cloak = Button(label='망토', style = nextcord.ButtonStyle.green)
+        belt = Button(label='벨트', style = nextcord.ButtonStyle.green)
+        shoulder = Button(label='어깨장식', style = nextcord.ButtonStyle.green)
+        face = Button(label='얼굴장식', style = nextcord.ButtonStyle.green)
+        eyes = Button(label='눈장식', style = nextcord.ButtonStyle.green)
+        earring = Button(label='귀고리', style = nextcord.ButtonStyle.green)
+        ring = Button(label='반지', style = nextcord.ButtonStyle.green)
+        necklace = Button(label='목걸이', style = nextcord.ButtonStyle.green)
+        heart = Button(label='기계심장', style = nextcord.ButtonStyle.green)
+
+        async def wapon_callback(Interaction):
+
+            maple_cube.additional.wapon(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 무기',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.wapon_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.wapon_result.clear()
+
+        async def emblem_callback(Interaction):
+
+            maple_cube.additional.emblem(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 엠블렘',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.emblem_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.emblem_result.clear()
+            
+        async def sub_wapon_callback(Interaction):
+
+            maple_cube.additional.sub_wapon(0, int(msg))
+            
+            embed = nextcord.Embed(
+            title = '에디셔널 보조무기',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.sub_wapon_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.sub_wapon_result.clear()
+
+        async def force_and_soul_callback(Interaction):
+
+            maple_cube.additional.force_and_soul(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 포스실드, 소울링',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.force_and_soul_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.force_and_soul_result.clear()
+
+        async def shield_callback(Interaction):
+
+            maple_cube.additional.shield(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 방패',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.shield_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.shield_result.clear()
+            
+        async def cap_callback(Interaction):
+            
+            maple_cube.additional.cap(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 모자',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.cap_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.cap_result.clear()
+
+        async def top_callback(Interaction):
+
+            maple_cube.additional.top(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 상의',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.top_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.top_result.clear()
+
+        async def suit_callback(Interaction):
+
+            maple_cube.additional.suit(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 한벌옷',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.suit_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.suit_result.clear()
+
+        async def bottom_callback(Interaction):
+
+            maple_cube.additional.bottom(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 하의',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.bottom_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.bottom_result.clear()
+
+        async def shoes_callback(Interaction):
+
+            maple_cube.additional.shoes(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 신발',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.shoes_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.shoes_result.clear()
+
+        async def gloves_callback(Interaction):
+
+            maple_cube.additional.gloves(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 장갑',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.gloves_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.gloves_result.clear()
+
+        async def cloak_callback(Interaction):
+
+            maple_cube.additional.cloak(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 망토',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.cloak_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.cloak_result.clear()
+
+        async def belt_callback(Interaction):
+
+            maple_cube.additional.belt(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 벨트',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.belt_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.belt_result.clear()
+
+        async def shoulder_callback(Interaction):
+
+            maple_cube.additional.shoulder(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 어깨장식',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.shoulder_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.shoulder_result.clear()
+
+        async def face_callback(Interaction):
+
+            maple_cube.additional.face(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 얼굴장식',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.face_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.face_result.clear()
+
+        async def eyes_callback(Interaction):
+
+            maple_cube.additional.eyes(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 눈장식',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.eyes_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.eyes_result.clear()
+
+        async def earring_callback(Interaction):
+
+            maple_cube.additional.earring(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 귀고리',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.earring_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.earring_result.clear()
+
+        async def ring_callback(Interaction):
+
+            maple_cube.additional.ring(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 반지',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.ring_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.ring_result.clear()
+
+        async def necklace_callback(Interaction):
+
+            maple_cube.additional.necklace(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 목걸이',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.necklace_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.necklace_result.clear()
+
+        async def heart_callback(Interaction):
+
+            maple_cube.additional.heart(0, int(msg))
+
+            embed = nextcord.Embed(
+            title = '에디셔널 기계심장',
+            description = '에디셔널 ' + str(msg) + ' 회',
+            colour = nextcord.Colour.orange()
+            )
+            embed.add_field(name=str(msg)+'회의 결과입니다', value=('\n'.join(maple_cube.heart_result)), inline=True)
+            await ctx.send(ctx.channel, embed=embed)
+            maple_cube.heart_result.clear()
+
+
+        wapon.callback = wapon_callback
+        emblem.callback = emblem_callback
+        sub_wapon.callback = sub_wapon_callback
+        force_and_soul.callback = force_and_soul_callback
+        shield.callback = shield_callback
+        cap.callback = cap_callback
+        top.callback = top_callback
+        suit.callback = suit_callback
+        bottom.callback = bottom_callback
+        shoes.callback = shoes_callback
+        gloves.callback = gloves_callback
+        cloak.callback = cloak_callback
+        belt.callback = belt_callback
+        shoulder.callback = shoulder_callback
+        face.callback = face_callback
+        eyes.callback = eyes_callback
+        earring.callback = earring_callback
+        ring.callback = ring_callback
+        necklace.callback = necklace_callback
+        heart.callback = heart_callback  
+
+        view = View()
+        view.add_item(wapon)
+        view.add_item(emblem)
+        view.add_item(sub_wapon)
+        view.add_item(force_and_soul)
+        view.add_item(shield)
+        view.add_item(cap)
+        view.add_item(top)
+        view.add_item(suit)
+        view.add_item(bottom)
+        view.add_item(shoes)
+        view.add_item(gloves)
+        view.add_item(cloak)
+        view.add_item(belt)
+        view.add_item(shoulder)
+        view.add_item(face)
+        view.add_item(eyes)
+        view.add_item(earring)
+        view.add_item(ring)
+        view.add_item(necklace)
+        view.add_item(heart) 
+
+        await ctx.send(embed = nextcord.Embed(title='에디셔널',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
     
 @bot.event
 async def on_ready():

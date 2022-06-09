@@ -1,5 +1,6 @@
 import numpy as np
 
+#각 함수별 결과값
 wapon_result = []
 emblem_result = []
 sub_wapon_result = []
@@ -1132,66 +1133,94 @@ class blackcube:
         if a == b:
             return
         else: 
-            face_op_1 = np.random.choice(face_1, 1, p = [])
-            face_op_2 = np.random.choice(face_2, 1, p = [])
-            face_op_3 = np.random.choice(face_3, 1, p = [])
+            face_op_1 = np.random.choice(face_1, 1, p = 
+            [0.093024,0.093024,0.093024,0.093024,0.093023,0.093023,0.093023,0.069767,0.069767,0.069767,0.069767,0.069767])
+            face_op_2 = np.random.choice(face_2, 1, p = 
+            [0.090909,0.090909,0.090909,0.090909,0.109091,0.109091,0.072727,0.072727,0.072727,
+            0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.013954,0.013953,0.013953,0.013953,0.013953])
+            face_op_3 = np.random.choice(face_3, 1, p = 
+            [0.107955,0.107955,0.107955,0.107955,0.129545,0.129545,0.086364,0.086364,0.086364,
+            0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.003489,0.003488,0.003488,0.003488,0.003488])
             
-            face_result.append(str() + ' ' + str() + ' ' + str())
+            face_result.append(str(face_op_1) + ' ' + str(face_op_2) + ' ' + str(face_op_3))
         face (a+1, b) 
 
     def eyes (a, b):
         if a == b:
             return
         else: 
-            eyes_op_1 = np.random.choice(eyes_1, 1, p = [])
-            eyes_op_2 = np.random.choice(eyes_2, 1, p = [])
-            eyes_op_3 = np.random.choice(eyes_3, 1, p = [])
+            eyes_op_1 = np.random.choice(eyes_1, 1, p = 
+            [0.093024,0.093024,0.093024,0.093024,0.093023,0.093023,0.093023,0.069767,0.069767,0.069767,0.069767,0.069767])
+            eyes_op_2 = np.random.choice(eyes_2, 1, p = 
+            [0.090909,0.090909,0.090909,0.090909,0.109091,0.109091,0.072727,0.072727,0.072727,
+            0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.013954,0.013953,0.013953,0.013953,0.013953])
+            eyes_op_3 = np.random.choice(eyes_3, 1, p = 
+            [0.107955,0.107955,0.107955,0.107955,0.129545,0.129545,0.086364,0.086364,0.086364,
+            0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.003489,0.003488,0.003488,0.003488,0.003488])
             
-            eyes_result.append(str() + ' ' + str() + ' ' + str())
+            eyes_result.append(str(eyes_op_1) + ' ' + str(eyes_op_2) + ' ' + str(eyes_op_3))
         eyes (a+1, b) 
 
     def earring (a, b):
         if a == b:
             return
         else: 
-            earring_op_1 = np.random.choice(earring_1, 1, p = [])
-            earring_op_2 = np.random.choice(earring_2, 1, p = [])
+            earring_op_1 = np.random.choice(earring_1, 1, p = 
+            [0.093024,0.093024,0.093024,0.093024,0.093023,0.093023,0.093023,0.069767,0.069767,0.069767,0.069767,0.069767])
+            earring_op_2 = np.random.choice(earring_2, 1, p = 
+            [0.090909,0.090909,0.090909,0.090909,0.109091,0.109091,0.072727,0.072727,0.072727,
+            0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.013954,0.013953,0.013953,0.013953,0.013953])
             earring_op_3 = np.random.choice(earring_3, 1, p = [])
             
-            earring_result.append(str() + ' ' + str() + ' ' + str())
+            earring_result.append(str(earring_op_1) + ' ' + str(earring_op_2) + ' ' + str(earring_op_3))
         earring (a+1, b) 
 
     def ring (a, b):
         if a == b:
             return
         else: 
-            ring_op_1 = np.random.choice(ring_1, 1, p = [])
-            ring_op_1 = np.random.choice(ring_2, 1, p = [])
-            ring_op_1 = np.random.choice(ring_3, 1, p = [])
+            ring_op_1 = np.random.choice(ring_1, 1, p = 
+            [0.093024,0.093024,0.093024,0.093024,0.093023,0.093023,0.093023,0.069767,0.069767,0.069767,0.069767,0.069767])
+            ring_op_1 = np.random.choice(ring_2, 1, p = 
+            [0.090909,0.090909,0.090909,0.090909,0.109091,0.109091,0.072727,0.072727,0.072727,
+            0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.013954,0.013953,0.013953,0.013953,0.013953])
+            ring_op_1 = np.random.choice(ring_3, 1, p = 
+            [0.107955,0.107955,0.107955,0.107955,0.129545,0.129545,0.086364,0.086364,0.086364,
+            0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.003489,0.003488,0.003488,0.003488,0.003488])
             
-            ring_result.append(str() + ' ' + str() + ' ' + str())
+            ring_result.append(str(ring_op_1) + ' ' + str(ring_op_2) + ' ' + str(ring_op_2))
         ring (a+1, b)
 
     def necklace (a, b):
         if a == b:
             return
         else: 
-            necklace_op_1 = np.random.choice(necklace_1, 1, p = [])
-            necklace_op_2 = np.random.choice(necklace_2, 1, p = [])
-            necklace_op_3 = np.random.choice(necklace_3, 1, p = [])
+            necklace_op_1 = np.random.choice(necklace_1, 1, p = 
+            [0.093024,0.093024,0.093024,0.093024,0.093023,0.093023,0.093023,0.069767,0.069767,0.069767,0.069767,0.069767])
+            necklace_op_2 = np.random.choice(necklace_2, 1, p = 
+            [0.090909,0.090909,0.090909,0.090909,0.109091,0.109091,0.072727,0.072727,0.072727,
+            0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.013954,0.013953,0.013953,0.013953,0.013953])
+            necklace_op_3 = np.random.choice(necklace_3, 1, p = 
+            [0.107955,0.107955,0.107955,0.107955,0.129545,0.129545,0.086364,0.086364,0.086364,
+            0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.003489,0.003488,0.003488,0.003488,0.003488])
             
-            necklace_result.append(str() + ' ' + str() + ' ' + str())
+            necklace_result.append(str(necklace_op_1) + ' ' + str(necklace_op_2) + ' ' + str(necklace_op_3))
         necklace (a+1, b) 
 
     def heart (a, b):
         if a == b:
             return
         else: 
-            heart_op_1 = np.random.choice(heart_1, 1, p = [])
-            heart_op_2 = np.random.choice(heart_2, 1, p = [])
-            heart_op_3 = np.random.choice(heart_3, 1, p = [])
+            heart_op_1 = np.random.choice(heart_1, 1, p = 
+            [0.129032,0.129032,0.129032,0.129032,0.129033,0.129033,0.129032,0.096774])
+            heart_op_2 = np.random.choice(heart_2, 1, p = 
+            [0.090910,0.090910,0.090910,0.090910,0.109091,0.109091,0.072727,0.072727,0.072727,
+            0.025806,0.025806,0.025806,0.025806,0.025806,0.025806,0.025806,0.019355])
+            heart_op_3 = np.random.choice(heart_3, 1, p = 
+            [0.107955,0.107955,0.107955,0.107955,0.129545,0.129545,0.086364,0.086364,0.086364,
+            0.006451,0.006451,0.006451,0.006451,0.006452,0.006452,0.006452,0.004838])
             
-            heart_result.append(str() + ' ' + str() + ' ' + str())
+            heart_result.append(str(heart_op_1) + ' ' + str(heart_op_2) + ' ' + str(heart_op_3))
         heart (a+1, b)
 
 class additional:
