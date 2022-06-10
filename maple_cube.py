@@ -595,7 +595,7 @@ class redcube:
             0.000975,0.000975,0.000975,0.000975,0.000488,0.000488,0.000488,0.000488,0.000732,0.000488,0.000488,0.000488,0.000488,0.000488,0.000488,0.000488])
             
             wapon_result.append(str(wapon_op_1) + ' ' + str(wapon_op_2) + ' ' + str(wapon_op_3))
-        wapon (a+1, b) 
+        redcube.wapon (a+1, b) 
 
     def emblem (a, b):
         if a == b:
@@ -611,7 +611,7 @@ class redcube:
             0.001143,0.001143,0.001143,0.001143,0.000571,0.000571,0.000571,0.000571,0.000857,0.000571,0.000571,0.000571,0.000571])
 
             emblem_result.append(str(emblem_op_1) + ' ' + str(emblem_op_2) + ' ' + str(emblem_op_3))            
-        emblem (a+1, b)
+        redcube.emblem (a+1, b)
 
     def sub_wapon (a, b):
         if a == b:
@@ -629,7 +629,7 @@ class redcube:
             ])
 
             sub_wapon_result.append(str(sub_wapon_op_1) + ' ' + str(sub_wapon_op_2) + ' ' + str(sub_wapon_op_3))    
-        sub_wapon (a+1, b)
+        redcube.sub_wapon (a+1, b)
 
     def force_and_soul (a, b):
         if a == b:
@@ -645,7 +645,7 @@ class redcube:
             0.000851,0.000851,0.000851,0.000851,0.000426,0.000426,0.000426,0.000426,0.000638,0.000426,0.000426,0.000426,0.000426,0.000638,0.000638,0.000425,0.000425,0.000425])
 
             force_and_soul_result.append(str(force_and_soul_op_1) + ' ' + str(force_and_soul_op_2) + ' ' + str(force_and_soul_op_3))    
-        force_and_soul (a+1, b)
+        redcube.force_and_soul (a+1, b)
     force_and_soul_result 
 
     def shield (a, b):
@@ -662,7 +662,7 @@ class redcube:
             0.000851,0.000851,0.000851,0.000851,0.000426,0.000426,0.000426,0.000426,0.000638,0.000426,0.000426,0.000426,0.000426,0.000638,0.000638,0.000425,0.000425,0.000425])
 
             shield_result.append(str(shield_op_1) + ' ' + str(shield_op_2) + ' ' + str(shield_op_3))        
-        shield (a+1, b)
+        redcube.shield (a+1, b)
 
     def cap (a, b):
         if a == b:
@@ -678,7 +678,7 @@ class redcube:
             0.000889,0.000889,0.000889,0.000889,0.000889,0.000889,0.000889,0.000667,0.000667,0.000667,0.000667,0.000444,0.000667])
             
             cap_result.append(str(cap_op_1) + ' ' + str(cap_op_2) + ' ' + str(cap_op_3))
-        cap (a+1, b)
+        redcube.cap (a+1, b)
 
     def top (a, b):
         if a == b:
@@ -694,7 +694,7 @@ class redcube:
             0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000698,0.000698,0.000698,0.000698,0.000698])
             
             top_result.append(str(top_op_1) + ' ' + str(top_op_2) + ' ' + str(top_op_3))
-        top (a+1, b)
+        redcube.top (a+1, b)
 
     def suit (a, b):
         if a == b:
@@ -710,7 +710,7 @@ class redcube:
             0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000698,0.000698,0.000698,0.000698,0.000698])
             
             suit_result.append(str(suit_op_1) + ' ' + str(suit_op_2) + ' ' + str(suit_op_3))
-        suit (a+1, b)
+        redcube.suit (a+1, b)
 
     def bottom (a, b):
         if a == b:
@@ -726,7 +726,7 @@ class redcube:
             0.001081,0.001081,0.001081,0.001081,0.001081,0.001081,0.001081,0.000811,0.000812,0.000812])
             
             bottom_result.append(str(bottom_op_1) + ' ' + str(bottom_op_2) + ' ' + str(bottom_op_3))
-        bottom (a+1, b)
+        redcube.bottom (a+1, b)
 
     def shoes (a, b):
         if a == b:
@@ -742,7 +742,7 @@ class redcube:
             0.001000,0.001000,0.001000,0.001000,0.001000,0.001000,0.001000,0.000750,0.000750,0.000750,0.000750])
             
             shoes_result.append(str(shoes_op_1) + ' ' + str(shoes_op_2) + ' ' + str(shoes_op_3))
-        shoes (a+1, b)
+        redcube.shoes (a+1, b)
 
     def gloves (a, b):
         if a == b:
@@ -758,7 +758,7 @@ class redcube:
             0.000909,0.000909,0.000909,0.000909,0.000909,0.000909,0.000909,0.000909,0.000682,0.000682,0.000682,0.000682])
             
             gloves_result.append(str(gloves_op_1) + ' ' + str(gloves_op_2) + ' ' + str(gloves_op_3))
-        gloves (a+1, b)
+        redcube.gloves (a+1, b)
 
     def cloak (a, b):
         if a == b:
@@ -774,7 +774,7 @@ class redcube:
             0.001081,0.001081,0.001081,0.001081,0.001081,0.001081,0.001081,0.000811,0.000811,0.000811])
             
             cloak_result.append(str(cloak_op_1) + ' ' + str(cloak_op_2) + ' ' + str(cloak_op_3))
-        cloak (a+1, b)
+        redcube.cloak (a+1, b)
 
     def belt (a, b):
         if a == b:
@@ -790,7 +790,7 @@ class redcube:
             0.001081,0.001081,0.001081,0.001081,0.001081,0.001081,0.001081,0.000811,0.000811,0.000811])
             
             belt_result.append(str(belt_op_1) + ' ' + str(belt_op_2) + ' ' + str(belt_op_3))
-        belt (a+1, b)
+        redcube.belt (a+1, b)
 
     def shoulder (a, b):
         if a == b:
@@ -806,7 +806,7 @@ class redcube:
             0.001081,0.001081,0.001081,0.001081,0.001081,0.001081,0.001081,0.000811,0.000811,0.000811])
             
             shoulder_result.append(str(shoulder_op_1) + ' ' + str(shoulder_op_2) + ' ' + str(shoulder_op_3))
-        shoulder (a+1, b)
+        redcube.shoulder (a+1, b)
 
     def face (a, b):
         if a == b:
@@ -822,7 +822,7 @@ class redcube:
             0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000698,0.000698,0.000698,0.000698,0.000698])
             
             face_result.append(str(face_op_1) + ' ' + str(face_op_2) + ' ' + str(face_op_3))
-        face (a+1, b)
+        redcube.face (a+1, b)
 
     def eyes (a, b):
         if a == b:
@@ -838,7 +838,7 @@ class redcube:
             0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000698,0.000698,0.000698,0.000698,0.000698])
             
             eyes_result.append(str(eyes_op_1) + ' ' + str(eyes_op_2) + ' ' + str(eyes_op_3))
-        eyes (a+1, b)
+        redcube.eyes (a+1, b)
     def earring (a, b):
         if a == b:
             return
@@ -853,7 +853,7 @@ class redcube:
             0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000698,0.000698,0.000698,0.000698,0.000698])
             
             earring_result.append(str(earring_op_1) + ' ' + str(earring_op_2) + ' ' + str(earring_op_3))
-        earring (a+1, b)
+        redcube.earring (a+1, b)
 
     def ring (a, b):
         if a == b:
@@ -869,7 +869,7 @@ class redcube:
             0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000698,0.000698,0.000698,0.000698,0.000698])
             
             ring_result.append(str(ring_op_1) + ' ' + str(ring_op_2) + ' ' + str(ring_op_3))
-        ring (a+1, b) 
+        redcube.ring (a+1, b) 
 
     def necklace (a, b):
         if a == b:
@@ -885,7 +885,7 @@ class redcube:
             0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000930,0.000698,0.000698,0.000698,0.000698,0.000698])
             
             necklace_result.append(str(necklace_op_1) + ' ' + str(necklace_op_2) + ' ' + str(necklace_op_3))
-        necklace (a+1, b) 
+        redcube.necklace (a+1, b) 
 
     def heart (a, b):
         if a == b:
@@ -901,7 +901,7 @@ class redcube:
             0.001290,0.001290,0.001290,0.001290,0.001290,0.001290,0.001290,0.000970])
             
             heart_result.append(str(heart_op_1) + ' ' + str(heart_op_2) + ' ' + str(heart_op_3))
-        heart (a+1, b) 
+        redcube.heart (a+1, b) 
 
 class blackcube:
 
@@ -919,7 +919,7 @@ class blackcube:
             0.004878,0.004878,0.004878,0.004878,0.002439,0.002439,0.002439,0.002439,0.003659,0.002439,0.002439,0.002439,0.002439,0.002439,0.002439,0.002439])
             
             wapon_result.append(str(wapon_op_1) + ' ' + str(wapon_op_2) + ' ' + str(wapon_op_3))
-        wapon (a+1, b) 
+        blackcube.wapon (a+1, b) 
 
     def emblem (a, b):
         if a == b:
@@ -935,7 +935,7 @@ class blackcube:
             0.005714,0.005714,0.005714,0.005714,0.002857,0.002857,0.002857,0.002857,0.004286,0.002857,0.002857,0.002858,0.002858])
 
             emblem_result.append(str(emblem_op_1) + ' ' + str(emblem_op_2) + ' ' + str(emblem_op_3))            
-        emblem (a+1, b) 
+        blackcube.emblem (a+1, b) 
 
     def sub_wapon (a, b):
         if a == b:
@@ -951,7 +951,7 @@ class blackcube:
             0.004255,0.004255,0.004255,0.004255,0.002128,0.002128,0.002128,0.002128,0.003192,0.002128,0.002128,0.002128,0.002128,0.003191,0.003191,0.002128,0.002128,0.002128])
 
             sub_wapon_result.append(str(sub_wapon_op_1) + ' ' + str(sub_wapon_op_2) + ' ' + str(sub_wapon_op_3))    
-        sub_wapon (a+1, b) 
+        blackcube.sub_wapon (a+1, b) 
 
     def force_and_soul (a, b):
         if a == b:
@@ -967,7 +967,7 @@ class blackcube:
             0.004255,0.004255,0.004255,0.004255,0.002128,0.002128,0.002128,0.002128,0.003192,0.002128,0.002128,0.002128,0.002128,0.003191,0.003191,0.002128,0.002128,0.002128])
 
             force_and_soul_result.append(str(force_and_soul_op_1) + ' ' + str(force_and_soul_op_2) + ' ' + str(force_and_soul_op_3))    
-        force_and_soul (a+1, b) 
+        blackcube.force_and_soul (a+1, b) 
 
     def shield (a, b):
         if a == b:
@@ -983,7 +983,7 @@ class blackcube:
             0.004255,0.004255,0.004255,0.004255,0.002128,0.002128,0.002128,0.002128,0.003192,0.002128,0.002128,0.002128,0.002128,0.003191,0.003191,0.002128,0.002128,0.002128])
 
             shield_result.append(str(shield_op_1) + ' ' + str(shield_op_2) + ' ' + str(shield_op_3))        
-        shield (a+1, b) 
+        blackcube.shield (a+1, b) 
 
     def cap (a, b):
         if a == b:
@@ -999,7 +999,7 @@ class blackcube:
             0.004445,0.004445,0.004445,0.004445,0.004445,0.004445,0.004445,0.003333,0.003333,0.003333,0.003333,0.002222,0.003333])
             
             cap_result.append(str(cap_op_1) + ' ' + str(cap_op_2) + ' ' + str(cap_op_3))
-        cap (a+1, b) 
+        blackcube.cap (a+1, b) 
 
     def top (a, b):
         if a == b:
@@ -1015,7 +1015,7 @@ class blackcube:
             0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.003488,0.003488,0.003488,0.003488,0.003487])
             
             top_result.append(str(top_op_1) + ' ' + str(top_op_2) + ' ' + str(top_op_3))
-        top (a+1, b) 
+        blackcube.top (a+1, b) 
 
     def suit (a, b):
         if a == b:
@@ -1031,7 +1031,7 @@ class blackcube:
             0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.003488,0.003488,0.003488,0.003488,0.003487])
             
             suit_result.append(str(suit_op_1) + ' ' + str(suit_op_2) + ' ' + str(suit_op_3))
-        suit (a+1, b) 
+        blackcube.suit (a+1, b) 
 
     def bottom (a, b):
         if a == b:
@@ -1047,7 +1047,7 @@ class blackcube:
             0.005405,0.005405,0.005405,0.005405,0.005405,0.005405,0.005405,0.004055,0.004054,0.004054])
             
             bottom_result.append(str(bottom_op_1) + ' ' + str(bottom_op_2) + ' ' + str(bottom_op_3))
-        bottom (a+1, b) 
+        blackcube.bottom (a+1, b)
 
     def shoes (a, b):
         if a == b:
@@ -1063,7 +1063,7 @@ class blackcube:
             0.005000,0.005000,0.005000,0.005000,0.005000,0.005000,0.005000,0.003750,0.003750,0.003750,0.003750])
             
             shoes_result.append(str(shoes_op_1) + ' ' + str(shoes_op_2) + ' ' + str(shoes_op_3))
-        shoes (a+1, b) 
+        blackcube.shoes (a+1, b) 
 
     def gloves (a, b):
         if a == b:
@@ -1079,7 +1079,7 @@ class blackcube:
             0.004545,0.004545,0.004545,0.004545,0.004546,0.004546,0.004545,0.004545,0.003409,0.003409,0.003409,0.003409])
             
             gloves_result.append(str(gloves_op_1) + ' ' + str(gloves_op_2) + ' ' + str(gloves_op_3))
-        gloves (a+1, b) 
+        blackcube.gloves (a+1, b) 
 
     def cloak (a, b):
         if a == b:
@@ -1095,7 +1095,7 @@ class blackcube:
             0.005405,0.005405,0.005405,0.005405,0.005405,0.005405,0.005405,0.004054,0.004054,0.004054])
             
             cloak_result.append(str(cloak_op_1) + ' ' + str(cloak_op_2) + ' ' + str(cloak_op_3))
-        cloak (a+1, b) 
+        blackcube.cloak (a+1, b) 
 
     def belt (a, b):
         if a == b:
@@ -1111,7 +1111,7 @@ class blackcube:
             0.005405,0.005405,0.005405,0.005405,0.005405,0.005405,0.005405,0.004054,0.004054,0.004054])
             
             belt_result.append(str(belt_op_1) + ' ' + str(belt_op_2) + ' ' + str(belt_op_3))
-        belt (a+1, b) 
+        blackcube.belt (a+1, b) 
 
     def shoulder (a, b):
         if a == b:
@@ -1127,7 +1127,7 @@ class blackcube:
             0.005405,0.005405,0.005405,0.005405,0.005405,0.005405,0.005405,0.004054,0.004054,0.00405])
             
             shoulder_result.append(str(shoulder_op_1) + ' ' + str(shoulder_op_2) + ' ' + str(shoulder_op_3))
-        shoulder (a+1, b) 
+        blackcube.shoulder (a+1, b) 
 
     def face (a, b):
         if a == b:
@@ -1143,7 +1143,7 @@ class blackcube:
             0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.003489,0.003488,0.003488,0.003488,0.003488])
             
             face_result.append(str(face_op_1) + ' ' + str(face_op_2) + ' ' + str(face_op_3))
-        face (a+1, b) 
+        blackcube.face (a+1, b) 
 
     def eyes (a, b):
         if a == b:
@@ -1159,7 +1159,7 @@ class blackcube:
             0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.003489,0.003488,0.003488,0.003488,0.003488])
             
             eyes_result.append(str(eyes_op_1) + ' ' + str(eyes_op_2) + ' ' + str(eyes_op_3))
-        eyes (a+1, b) 
+        blackcube.eyes (a+1, b) 
 
     def earring (a, b):
         if a == b:
@@ -1173,7 +1173,7 @@ class blackcube:
             earring_op_3 = np.random.choice(earring_3, 1, p = [])
             
             earring_result.append(str(earring_op_1) + ' ' + str(earring_op_2) + ' ' + str(earring_op_3))
-        earring (a+1, b) 
+        blackcube.earring (a+1, b) 
 
     def ring (a, b):
         if a == b:
@@ -1181,15 +1181,15 @@ class blackcube:
         else: 
             ring_op_1 = np.random.choice(ring_1, 1, p = 
             [0.093024,0.093024,0.093024,0.093024,0.093023,0.093023,0.093023,0.069767,0.069767,0.069767,0.069767,0.069767])
-            ring_op_1 = np.random.choice(ring_2, 1, p = 
+            ring_op_2 = np.random.choice(ring_2, 1, p = 
             [0.090909,0.090909,0.090909,0.090909,0.109091,0.109091,0.072727,0.072727,0.072727,
             0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.018605,0.013954,0.013953,0.013953,0.013953,0.013953])
-            ring_op_1 = np.random.choice(ring_3, 1, p = 
+            ring_op_3 = np.random.choice(ring_3, 1, p = 
             [0.107955,0.107955,0.107955,0.107955,0.129545,0.129545,0.086364,0.086364,0.086364,
             0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.003489,0.003488,0.003488,0.003488,0.003488])
             
-            ring_result.append(str(ring_op_1) + ' ' + str(ring_op_2) + ' ' + str(ring_op_2))
-        ring (a+1, b)
+            ring_result.append(str(ring_op_1) + ' ' + str(ring_op_2) + ' ' + str(ring_op_3))
+        blackcube.ring (a+1, b)
 
     def necklace (a, b):
         if a == b:
@@ -1205,7 +1205,7 @@ class blackcube:
             0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.004651,0.003489,0.003488,0.003488,0.003488,0.003488])
             
             necklace_result.append(str(necklace_op_1) + ' ' + str(necklace_op_2) + ' ' + str(necklace_op_3))
-        necklace (a+1, b) 
+        blackcube.necklace (a+1, b) 
 
     def heart (a, b):
         if a == b:
@@ -1221,7 +1221,7 @@ class blackcube:
             0.006451,0.006451,0.006451,0.006451,0.006452,0.006452,0.006452,0.004838])
             
             heart_result.append(str(heart_op_1) + ' ' + str(heart_op_2) + ' ' + str(heart_op_3))
-        heart (a+1, b)
+        blackcube.heart (a+1, b)
 
 class additional:
 
