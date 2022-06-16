@@ -87,24 +87,8 @@ async def 명령어(ctx):
         embed.add_field(name = '!블랙큐브[횟수]', value = '블랙큐브를 [횟수] 만큼 시뮬레이션 해줍니다.', inline = True) #27
         embed.add_field(name = '!에디셔널[횟수]', value = '에디셔널큐브를 [횟수] 만큼 시뮬레이션 해줍니다.', inline = True) #28
 
-<<<<<<< HEAD
         embed.add_field(name = '----------------------------------↑메이플----------------------------------', 
                         value = '----------------------------------↓undefined----------------------------------', inline = False)
-=======
-        await ctx.send(channel, embed = embed)
-
-    async def simple_command_callback(interaction):
-        embed = nextcord.Embed(
-        title = '명령어목록',
-        description = '모든 명령어 앞에는 !를 붙입니다',
-        colour = nextcord.Colour.blue())
-        embed.add_field(name = '.', value = 
-        '목록섞기, 목록, 추가/삭제[제목,링크], 목록재생, 목록초기화, 일시정지\n'+
-        '들어와, 나가, 재생[제목/링크], 반복재생[제목/링크], 멜론차트, 지금노래\n' +
-        '다시재생, 노래끄기, 스킵, 즐겨찾기, 즐겨찾기추가 / 즐겨찾기삭제, 정밀검색\n' +
-        '날씨, 해외날씨, 복권, 메소시세, 유저정보[닉네임], 강화공식, 무기추옵\n' +
-        '레드큐브, 블랙큐브, 에디셔널\n', inline = False)
->>>>>>> 79389163665ef09eb9f207c29833b95de455d6e2
         
         await ctx.send(channel, embed = embed)
 
