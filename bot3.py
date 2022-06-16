@@ -35,11 +35,11 @@ client = nextcord.Client()
 #00
 @bot.command()
 async def 명령어(ctx):
-    detail_command = Button(label="자세히", style = nextcord.ButtonStyle.green)
-    simple_command = Button(label="간단히", style = nextcord.ButtonStyle.green)
+    command_music = Button(label="음악봇", style = nextcord.ButtonStyle.green)
+    command_game = Button(label="게임봇", style = nextcord.ButtonStyle.green)
     channel = ctx.channel
     
-    async def detail_command_callback(interaction):
+    async def command_music_callback(interaction):
         embed = nextcord.Embed(title = '명령어목록',
         description = '모든 명령어 앞에는 !를 붙입니다',
         colour = nextcord.Colour.blue())
@@ -62,20 +62,35 @@ async def 명령어(ctx):
         embed.add_field(name = '!즐겨찾기', value = '유저별로 플레이리스트를 저장하여 보여줍니다', inline = True) #16
         embed.add_field(name = '!즐겨찾기추가 / 즐겨찾기삭제', value = '유저별 즐겨찾기 목록에 곡을 추가/삭제 합니다', inline = True) #17
         embed.add_field(name = '!정밀검색', value = '검색한 내용의 유튜브영상을 최대 5개까지 보여줍니다') #18
+
+        embed.add_field(name = '----------------------------------↑음악----------------------------------', 
+                        value = '----------------------------------↓기타----------------------------------', inline = False)
+        #class lotto
+        embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #21
         #class weather
         embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #19
         embed.add_field(name = '!해외날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #20
-        #class lotto
-        embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #21
+
+        await ctx.send(channel, embed = embed)
+
+    async def command_game_callback(interaction):
+        embed = nextcord.Embed(title = '명령어목록',
+        description = '모든 명령어 앞에는 !를 붙입니다',
+        colour = nextcord.Colour.blue())
+
         #class maplestory
         embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다', inline = True) #22
         embed.add_field(name = '!유저정보[닉네임]', value = '해당하는 닉네임의 유저정보를 제공합니다', inline = True) #23
         embed.add_field(name = '!강화공식', value = '주문의 흔적, 스타포스의 강화수치를 제공합니다', inline = True) #24
         embed.add_field(name = '!무기추옵', value = '파프니르, 앱솔랩스, 아케인셰이드, 제네시스 무기의 추가옵션을 제공합니다', inline = True) #25
-        embed.add_field(name = '!레드큐브[횟수]', value = '레드큐브를 [횟수] 만큼 시뮬레이션 해줍니다.') #26
-        embed.add_field(name = '!블랙큐브[횟수]', value = '블랙큐브를 [횟수] 만큼 시뮬레이션 해줍니다.') #27
-        embed.add_field(name = '!에디셔널[횟수]', value = '에디셔널큐브를 [횟수] 만큼 시뮬레이션 해줍니다.') #28
+        embed.add_field(name = '!레드큐브[횟수]', value = '레드큐브를 [횟수] 만큼 시뮬레이션 해줍니다.', inline = True) #26
+        embed.add_field(name = '!블랙큐브[횟수]', value = '블랙큐브를 [횟수] 만큼 시뮬레이션 해줍니다.', inline = True) #27
+        embed.add_field(name = '!에디셔널[횟수]', value = '에디셔널큐브를 [횟수] 만큼 시뮬레이션 해줍니다.', inline = True) #28
 
+<<<<<<< HEAD
+        embed.add_field(name = '----------------------------------↑메이플----------------------------------', 
+                        value = '----------------------------------↓undefined----------------------------------', inline = False)
+=======
         await ctx.send(channel, embed = embed)
 
     async def simple_command_callback(interaction):
@@ -88,16 +103,18 @@ async def 명령어(ctx):
         '들어와, 나가, 재생[제목/링크], 반복재생[제목/링크], 멜론차트, 지금노래\n' +
         '다시재생, 노래끄기, 스킵, 즐겨찾기, 즐겨찾기추가 / 즐겨찾기삭제, 정밀검색\n' +
         '날씨, 해외날씨, 복권, 메소시세, 유저정보[닉네임], 강화공식, 무기추옵\n' +
-        '레드큐브\n', inline = False)
+        '레드큐브, 블랙큐브, 에디셔널\n', inline = False)
+>>>>>>> 79389163665ef09eb9f207c29833b95de455d6e2
         
         await ctx.send(channel, embed = embed)
 
-    detail_command.callback = detail_command_callback
-    simple_command.callback = simple_command_callback
+    command_music.callback = command_music_callback
+    command_game.callback = command_game_callback
 
     view = View()
-    view.add_item(detail_command)
-    view.add_item(simple_command)
+    view.add_item(command_music)
+    view.add_item(command_game)
+
 
     await ctx.send(embed = nextcord.Embed(title='명령어 설명',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.blue()), view=view)
 
@@ -1622,7 +1639,6 @@ class maplestory:
         view.add_item(heart) 
 
         await ctx.send(embed = nextcord.Embed(title='레드큐브',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
-
     #27
     @bot.command()
     async def 블랙큐브(ctx, *, msg):
