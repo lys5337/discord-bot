@@ -1,6 +1,7 @@
 from gc import callbacks
 from http.client import NON_AUTHORITATIVE_INFORMATION
 from logging import StrFormatStyle
+from sqlite3 import enable_shared_cache
 from tkinter import Button
 from unittest import result
 import nextcord
@@ -23,14 +24,15 @@ import urllib
 import urllib.request
 import numpy as np
 import maple_cube
+import lol_info
 
-TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN.txt','r')
+TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN_testbot.txt','r')
 TOKEN = TOKENVALUE.read()
 TOKENVALUE.close()
 
 intents = nextcord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents = intents)
-client = nextcord.Client()
+client = nextcord.Client(enable_debug_events = True)
 
 #00
 @bot.command()
@@ -88,7 +90,9 @@ async def 명령어(ctx):
         embed.add_field(name = '!에디셔널[횟수]', value = '에디셔널큐브를 [횟수] 만큼 시뮬레이션 해줍니다.', inline = True) #28
 
         embed.add_field(name = '----------------------------------↑메이플----------------------------------', 
-                        value = '----------------------------------↓undefined----------------------------------', inline = False)
+                        value = '----------------------------------↓롤----------------------------------', inline = False)
+        #class lol
+        embed.add_field(name = '!룬[챔피언 이름]', value = '해당 챔피언의 포지션별 룬을 알려줍니다', inline = True) #29
         
         await ctx.send(channel, embed = embed)
 
@@ -2282,6 +2286,24 @@ class maplestory:
 
         await ctx.send(embed = nextcord.Embed(title='에디셔널',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
     
+class lol:
+
+    champ = []
+
+    @bot.command()
+    async def 룬(ctx, *, msg):
+        lol.champ.append(msg)
+        for i in range(160):
+            if lol.champ[0] == lol_info.champ_name.champ_kr[i]:
+                msg = lol_info.champ_name.champ_en[i]
+                break
+        
+        hdr = {'User-Agent': 'Mozilla/5.0'}
+        url = ('https://poro.gg/champions/'+str(msg)+'/sr/top?region=kr')
+        req = Request(url, headers=hdr)
+        html = urllib.request.urlopen(req)
+
+        
 @bot.event
 async def on_ready():
     print('다음으로 로그인합니다: ')
