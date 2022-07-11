@@ -2287,21 +2287,54 @@ class maplestory:
         await ctx.send(embed = nextcord.Embed(title='에디셔널',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
     
 class lol:
-
+    
     champ = []
+    line = []
 
     @bot.command()
     async def 룬(ctx, *, msg):
+        top = Button(label='탑', style = nextcord.ButtonStyle.green)
+        jng = Button(label='정글', style = nextcord.ButtonStyle.green)
+        mid = Button(label='미드', style = nextcord.ButtonStyle.green)
+        adc = Button(label='원딜', style = nextcord.ButtonStyle.green)
+        sup = Button(label='서폿', style = nextcord.ButtonStyle.green)
+        
+        async def top_callback(interaction):
+            lol.line.append('top')
+        async def jng_callback(interaction):
+            lol.line.append('jng')
+        async def mid_callback(interaction):
+            lol.line.append('mid')
+        async def adc_callback(interaction):
+            lol.line.append('adc')
+        async def sup_callback(interaction):
+            lol.line.append('sup')
+
+        top.callback = top_callback
+        jng.callback = jng_callback
+        mid.callback = mid_callback
+        adc.callback = adc_callback
+        sup.callback = sup_callback
+
+        view = View()
+        view.add_item(top)
+        view.add_item(jng)
+        view.add_item(mid)
+        view.add_item(adc)
+        view.add_item(sup)
+
         lol.champ.append(msg)
         for i in range(160):
             if lol.champ[0] == lol_info.champ_name.champ_kr[i]:
                 msg = lol_info.champ_name.champ_en[i]
+                del lol.champ[0]
                 break
         
         hdr = {'User-Agent': 'Mozilla/5.0'}
-        url = ('https://poro.gg/champions/'+str(msg)+'/sr/top?region=kr')
+        url = ('https://poro.gg/champions/'+str(lol.champ[0])+'/sr/'+str(lol.line[0]))
         req = Request(url, headers=hdr)
         html = urllib.request.urlopen(req)
+        bsObj = bs4.BeautifulSoup(html, "html.parser")
 
         
 @bot.event

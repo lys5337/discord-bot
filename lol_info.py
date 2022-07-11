@@ -19,5 +19,9 @@ class champ_name:
     ]
 
     champ_en = [
-        'garen'
+        'garen','galio','gangplank','gragas','graves','그웬','gnar','nami','nasus','nautilus',
+        'nocturne','nunu','nidalee','neeko','darius','diana','draven','ryze','rakan','rammus',
+        'lux','rumble','레나타글라스크','renekton','leona','reksai','렐','rengar','lucian','lulu',
+        'leblanc','leesin','riven','lissandra','릴리아','masteryi','maokai','malzahar','malphite','mordekaiser',
+        'morgana','dr.mundo','missfortune','bard','varus','vi','veigar','vayne','벡스','벨베스',
     ]
