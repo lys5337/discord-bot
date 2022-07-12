@@ -2293,6 +2293,14 @@ class lol:
 
     @bot.command()
     async def 룬(ctx, *, msg):
+
+        lol.champ.append(msg)
+        for i in range(160):
+            if lol.champ[0] == lol_info.champ_name.champ_kr[i]:
+                msg = lol_info.champ_name.champ_en[i]
+        
+        del lol.champ[0]
+
         top = Button(label='탑', style = nextcord.ButtonStyle.green)
         jng = Button(label='정글', style = nextcord.ButtonStyle.green)
         mid = Button(label='미드', style = nextcord.ButtonStyle.green)
@@ -2301,15 +2309,25 @@ class lol:
         
         async def top_callback(interaction):
             lol.line.append('top')
+            await ctx.send('https://poro.gg/champions/'+str(msg)+'/sr/'+str(lol.line[0]))
+            del lol.line[0]
         async def jng_callback(interaction):
             lol.line.append('jng')
+            await ctx.send('https://poro.gg/champions/'+str(msg)+'/sr/'+str(lol.line[0]))
+            del lol.line[0]
         async def mid_callback(interaction):
             lol.line.append('mid')
+            await ctx.send('https://poro.gg/champions/'+str(msg)+'/sr/'+str(lol.line[0]))
+            del lol.line[0]
         async def adc_callback(interaction):
             lol.line.append('adc')
+            await ctx.send('https://poro.gg/champions/'+str(msg)+'/sr/'+str(lol.line[0]))
+            del lol.line[0]
         async def sup_callback(interaction):
             lol.line.append('sup')
-
+            await ctx.send('https://poro.gg/champions/'+str(msg)+'/sr/'+str(lol.line[0]))
+            del lol.line[0]
+            
         top.callback = top_callback
         jng.callback = jng_callback
         mid.callback = mid_callback
@@ -2323,20 +2341,8 @@ class lol:
         view.add_item(adc)
         view.add_item(sup)
 
-        lol.champ.append(msg)
-        for i in range(160):
-            if lol.champ[0] == lol_info.champ_name.champ_kr[i]:
-                msg = lol_info.champ_name.champ_en[i]
-                del lol.champ[0]
-                break
-        
-        hdr = {'User-Agent': 'Mozilla/5.0'}
-        url = ('https://poro.gg/champions/'+str(lol.champ[0])+'/sr/'+str(lol.line[0]))
-        req = Request(url, headers=hdr)
-        html = urllib.request.urlopen(req)
-        bsObj = bs4.BeautifulSoup(html, "html.parser")
+        await ctx.send(embed = nextcord.Embed(title='룬 정보',description='포지션을 선택해주세요', colour=nextcord.Colour.orange()), view=view)
 
-        
 @bot.event
 async def on_ready():
     print('다음으로 로그인합니다: ')
