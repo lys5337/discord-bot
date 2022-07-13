@@ -2343,6 +2343,29 @@ class lol:
 
         await ctx.send(embed = nextcord.Embed(title='룬 정보',description='포지션을 선택해주세요', colour=nextcord.Colour.orange()), view=view)
 
+    @bot.command()
+    async def 추천메타(ctx):
+
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        options.add_argument('window-size=1920x1080')
+        driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
+        
+        try:
+            driver.get('https://lolchess.gg/meta')
+            # 스크린샷 전에 시간 두기(로딩이 느릴수도 있으니)
+            time.sleep(3)
+            # 창 최대화
+            driver.maximize_window()
+            # 스크린샷 찍기
+            driver.save_screenshot(r"E:\lol_info\a.png")
+            # 종료 (모든 탭 종료)
+            driver.quit()
+            print("### capture complete")
+        except Exception as e:
+            print('### error msg :: ', e)
+            driver.quit()
+            
 @bot.event
 async def on_ready():
     print('다음으로 로그인합니다: ')
