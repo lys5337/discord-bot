@@ -2353,13 +2353,9 @@ class lol:
         
         try:
             driver.get('https://lolchess.gg/meta')
-            # 스크린샷 전에 시간 두기(로딩이 느릴수도 있으니)
             time.sleep(3)
-            # 창 최대화
             driver.maximize_window()
-            # 스크린샷 찍기
             driver.save_screenshot(r"E:\lol_info\a.png")
-            # 종료 (모든 탭 종료)
             driver.quit()
             print("### capture complete")
         except Exception as e:
