@@ -23,5 +23,16 @@ class champ_name:
         'nocturne','nunu','nidalee','neeko','darius','diana','draven','ryze','rakan','rammus',
         'lux','rumble','레나타글라스크','renekton','leona','reksai','렐','rengar','lucian','lulu',
         'leblanc','leesin','riven','lissandra','릴리아','masteryi','maokai','malzahar','malphite','mordekaiser',
-        'morgana','dr.mundo','missfortune','bard','varus','vi','veigar','vayne','벡스','벨베스',
+        'morgana','drmundo','missfortune','bard','varus','vi','veigar','vayne','벡스','벨베스',
+        'velkoz','voilbear','braum','brand','vladimir','blitzcrank','비비고','viktor','poppy','사미라',
+        'sion','sylas','shaco','senna','세라핀','sejuani','sett','sona','soraka','shen',
+        'shyvana','swain','skarner','sivir','xinzhao','syndra','singed','thresh','ahri','amumu',
+        'aurelionsol','ivern','azir','akali','아크샨','aatrox','aphelios','alistar','annie','anivia',
+        'ashe','yasuo','ekko','elise','wukong','ornn','orianna','olaf','요네','yorick',
+        'udyr','urgot','warwick','yummi','irelia','evelynn','ezreal','illaoi','jarvaniv','xayah',
+        'zyra','zac','janna','jax','zed','xerath','제리','jayce','zoe','ziggs',
+        'jhin','zilean','jinx','chogath','karma','camile','kassadin','karthus','cassiopeia','kaisa',
+        'khazix','katarina','kalista','kennen','caitlyn','kayn','kayle','kogmaw','corki','quinn',
+        'kled','qiyana','kindred','taric','talon','taliyah','tahmkench','trundle','tristana','tryndamere',
+        'twistedfate','twitch','teemo','pyke','pantheon','fiddlesticks','fiora','fizz','heimerdinger','헤카림'
     ]
