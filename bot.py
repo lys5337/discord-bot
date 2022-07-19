@@ -2298,6 +2298,9 @@ class lol:
         for i in range(160):
             if lol.champ[0] == lol_info.champ_name.champ_kr[i]:
                 msg = lol_info.champ_name.champ_en[i]
+            elif lol.champ[0] == lol_info.champ_name.champ_slang_kr[i]:
+                msg = lol_info.champ_name.champ_slang_en[i]
+
         
         del lol.champ[0]
 
