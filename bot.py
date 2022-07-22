@@ -26,7 +26,7 @@ import numpy as np
 import maple_cube
 import lol_info
 
-TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN_testbot.txt','r')
+TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN.txt','r')
 TOKEN = TOKENVALUE.read()
 TOKENVALUE.close()
 
@@ -2351,19 +2351,25 @@ class lol:
 
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
-        options.add_argument('window-size=1920x1080')
+        options.add_argument('window-size=1920x3400')
         driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
-        
+
         try:
             driver.get('https://lolchess.gg/meta')
-            time.sleep(3)
-            driver.maximize_window()
-            driver.save_screenshot(r"E:\lol_info\a.png")
+            driver.find_element_by_xpath('//*[@id="toggle-meta-show-name"]').click()
+            element = driver.find_element_by_class_name('guide-meta__group__content')
+            element_png = element.screenshot_as_png
+            with open('TFT_meta.png.png', 'wb') as file:
+                file.write(element_png)
             driver.quit()
             print("### capture complete")
         except Exception as e:
             print('### error msg :: ', e)
             driver.quit()
+
+        pic_name = 'TFT_meta.png'
+        pic = pic_name.split(' ')[0]
+        await ctx.send(file = nextcord.File(pic))
             
 @bot.event
 async def on_ready():
