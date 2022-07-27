@@ -2295,12 +2295,13 @@ class lol:
     async def 룬(ctx, *, msg):
 
         lol.champ.append(msg)
-        for i in range(160):
+        for i in range(len(lol_info.champ_name.champ_kr)):
             if lol.champ[0] == lol_info.champ_name.champ_kr[i]:
                 msg = lol_info.champ_name.champ_en[i]
-            elif lol.champ[0] == lol_info.champ_name.champ_slang_kr[i]:
+        
+        for i in range (len(lol_info.champ_name.champ_slang_kr)):
+            if lol.champ[0] == lol_info.champ_name.champ_slang_kr[i]:
                 msg = lol_info.champ_name.champ_slang_en[i]
-
         
         del lol.champ[0]
 
