@@ -14,6 +14,7 @@ from numpy import number
 from youtube_dl import YoutubeDL
 import bs4
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from nextcord import Embed, FFmpegPCMAudio, Interaction
 import asyncio
 import time
