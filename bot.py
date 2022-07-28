@@ -94,7 +94,8 @@ async def 명령어(ctx):
                         value = '----------------------------------↓롤----------------------------------', inline = False)
         #class lol
         embed.add_field(name = '!룬[챔피언 이름]', value = '해당 챔피언의 포지션별 룬을 알려줍니다', inline = True) #29
-        
+        embed.add_field(name = '!추천메타', value = '현재 롤토체스 추천메타를 알려줍니다', inline = True) #29
+
         await ctx.send(channel, embed = embed)
 
     command_music.callback = command_music_callback
