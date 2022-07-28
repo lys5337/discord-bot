@@ -2288,64 +2288,34 @@ class maplestory:
     
 class lol:
     
-    champ = []
-    line = []
-
     @bot.command()
     async def 룬(ctx, *, msg):
 
-        lol.champ.append(msg)
-        for i in range(len(lol_info.champ_name.champ_kr)):
-            if lol.champ[0] == lol_info.champ_name.champ_kr[i]:
-                msg = lol_info.champ_name.champ_en[i]
-        
-        for i in range (len(lol_info.champ_name.champ_slang_kr)):
-            if lol.champ[0] == lol_info.champ_name.champ_slang_kr[i]:
-                msg = lol_info.champ_name.champ_slang_en[i]
-        
-        del lol.champ[0]
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        options.add_argument('window-size=1920x3400')
+        driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
 
-        top = Button(label='탑', style = nextcord.ButtonStyle.green)
-        jng = Button(label='정글', style = nextcord.ButtonStyle.green)
-        mid = Button(label='미드', style = nextcord.ButtonStyle.green)
-        adc = Button(label='원딜', style = nextcord.ButtonStyle.green)
-        sup = Button(label='서폿', style = nextcord.ButtonStyle.green)
-        
-        async def top_callback(interaction):
-            lol.line.append('top')
-            await ctx.send('https://poro.gg/champions/'+str(msg)+'/sr/'+str(lol.line[0]))
-            del lol.line[0]
-        async def jng_callback(interaction):
-            lol.line.append('jng')
-            await ctx.send('https://poro.gg/champions/'+str(msg)+'/sr/'+str(lol.line[0]))
-            del lol.line[0]
-        async def mid_callback(interaction):
-            lol.line.append('mid')
-            await ctx.send('https://poro.gg/champions/'+str(msg)+'/sr/'+str(lol.line[0]))
-            del lol.line[0]
-        async def adc_callback(interaction):
-            lol.line.append('adc')
-            await ctx.send('https://poro.gg/champions/'+str(msg)+'/sr/'+str(lol.line[0]))
-            del lol.line[0]
-        async def sup_callback(interaction):
-            lol.line.append('sup')
-            await ctx.send('https://poro.gg/champions/'+str(msg)+'/sr/'+str(lol.line[0]))
-            del lol.line[0]
-            
-        top.callback = top_callback
-        jng.callback = jng_callback
-        mid.callback = mid_callback
-        adc.callback = adc_callback
-        sup.callback = sup_callback
+        try:
+            driver.get('https://lol.ps/ko/statistics/')
+            element = driver.find_element_by_name('q')
+            element.clear
+            element.send_keys(str(msg))
+            element.send_keys(Keys.RETURN)
 
-        view = View()
-        view.add_item(top)
-        view.add_item(jng)
-        view.add_item(mid)
-        view.add_item(adc)
-        view.add_item(sup)
+            element = driver.find_element_by_xpath('/html/body/main/div[1]/section')
+            element_png = element.screenshot_as_png
+            with open('lune.png', 'wb') as file:
+                file.write(element_png)
+            driver.quit()
+            print("### capture complete")
+        except Exception as e:
+            print('### error msg :: ', e)
+            driver.quit()
 
-        await ctx.send(embed = nextcord.Embed(title='룬 정보',description='포지션을 선택해주세요', colour=nextcord.Colour.orange()), view=view)
+        pic_name = 'lune.png'
+        pic = pic_name.split(' ')[0]
+        await ctx.send(file = nextcord.File(pic))
 
     @bot.command()
     async def 추천메타(ctx):
