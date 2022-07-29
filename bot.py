@@ -804,7 +804,7 @@ class maplestory:
     async def 유저정보(ctx, *, msg):
 
         options = webdriver.ChromeOptions()
-        #options.add_argument('headless')
+        options.add_argument('headless')
         options.add_argument('window-size=1920x3400')
         driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
 
