@@ -802,129 +802,29 @@ class maplestory:
     #23
     @bot.command()
     async def 유저정보(ctx, *, msg):
-        maplestory.username.append(msg)
+
+        options = webdriver.ChromeOptions()
+        #options.add_argument('headless')
+        options.add_argument('window-size=1920x3400')
+        driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
+
         try:
-            enc_name = urllib.parse.quote(str(maplestory.username[0]))
-            hdr = {'User-Agent': 'Mozilla/5.0'}
-            url = ('https://maple.gg/u/' + enc_name)
-            req = Request(url, headers=hdr)
-            html = urllib.request.urlopen(req)
-            bsObj = bs4.BeautifulSoup(html, "html.parser")
-            maple_data_base = bsObj.find('div', {'class':'row text-center'})
-            user_info_base = bsObj.find('div', {'class' : 'row row-normal user-additional'})
+            driver.get('https://maple.gg/u/' + str(msg))
+            element = driver.find_element_by_xpath('//*[@id="user-profile"]/section/div[2]/div[2]/div[4]/button[3]/span').click()
+            element = driver.find_element_by_xpath('//*[@id="character-card"]/img[2]')
+            element_png = element.screenshot_as_png
+            with open('user_info.png', 'wb') as file:
+                file.write(element_png)
+            driver.quit()
+            print("### capture complete")
+        except Exception as e:
+            print('### error msg :: ', e)
+            driver.quit()
 
-            maple_date_base = maple_data_base.find_all('div', {'class' : 'user-summary-date'})
-            maple_rank_base = maple_data_base.find_all('div', {'class' : 'mb-2'})
-            dojang_and_theseed = maple_data_base.find_all('div', {'class' : 'py-0 py-sm-4'})
-            union_and_achievement = maple_data_base.find_all('div', {'class' : 'pt-3 pb-2 pb-sm-3'})
-            user_info = user_info_base.find_all('div', {'class' : 'col-lg-2 col-md-4 col-sm-4 col-6 mt-3'})
-
-            dojang = dojang_and_theseed[0].text.strip() #층수 / 기록
-            dojang_date = maple_date_base[0].text.strip() #기준일
-            dojang_rank = maple_rank_base[0].text.strip() #랭킹
-
-            theseed = dojang_and_theseed[1].text.strip() #층수 / 기록
-            theseed_date = maple_date_base[1].text.strip() #기준일
-            theseed_rank = maple_rank_base[1].text.strip() #랭킹
-
-            union = union_and_achievement[0].text.strip() #등급 / 레벨
-            union_date = maple_date_base[2].text.strip() #기준일
-            union_rank = maple_rank_base[2].text.strip() #랭킹
-
-            achievement = union_and_achievement[1].text.strip() #등급 / 점수
-            achievement_date = maple_date_base[3].text.strip() #기준일
-            achievement_rank = maple_rank_base[3].text.strip() #랭킹
-            
-            userinfo = (user_info[0].text.strip() + '\n' + 
-                        user_info[1].text.strip() + '\n' + 
-                        user_info[2].text.strip() + '\n' + 
-                        user_info[3].text.strip())
-
-            embed = nextcord.Embed(
-                title = '메이플 유저정보',
-                description = str(maplestory.username[0]) + '의 정보입니다',
-                colour = nextcord.Colour.orange()
-            )
-            embed.add_field(name='캐릭터 랭킹',value=str(userinfo), inline=False)
-
-            embed.add_field(name='무릉',value=str(dojang), inline=True)
-            embed.add_field(name='기준일',value=str(dojang_date), inline=True)
-            embed.add_field(name='랭킹',value=str(dojang_rank), inline=True)
-
-            embed.add_field(name='더시드',value=str(theseed), inline=True)
-            embed.add_field(name='기준일',value=str(theseed_date), inline=True)
-            embed.add_field(name='랭킹',value=str(theseed_rank), inline=True)
-
-            embed.add_field(name='유니온',value=str(union), inline=True)
-            embed.add_field(name='기준일',value=str(union_date), inline=True)
-            embed.add_field(name='랭킹',value=str(union_rank), inline=True)
-
-            embed.add_field(name='업적',value=str(achievement), inline=True)
-            embed.add_field(name='기준일',value=str(achievement_date), inline=True)
-            embed.add_field(name='랭킹',value=str(achievement_rank), inline=True)
-
-            await ctx.send(ctx.channel, embed = embed)
-
-            del maplestory.username[0]
-
-        except:
-            enc_name = urllib.parse.quote(str(maplestory.username[0]))
-            hdr = {'User-Agent': 'Mozilla/5.0'}
-            url = ('https://maple.gg/u/' + enc_name)
-            req = Request(url, headers=hdr)
-            html = urllib.request.urlopen(req)
-            bsObj = bs4.BeautifulSoup(html, "html.parser")
-            maple_data_base = bsObj.find('div', {'class':'row text-center'})
-            user_info_base = bsObj.find('div', {'class' : 'row row-normal user-additional'})
-
-            maple_date_base = maple_data_base.find_all('div', {'class' : 'user-summary-date'})
-            maple_rank_base = maple_data_base.find_all('div', {'class' : 'mb-2'})
-            dojang_and_theseed = maple_data_base.find_all('div', {'class' : 'py-0 py-sm-4'})
-            union_and_achievement = maple_data_base.find_all('div', {'class' : 'pt-3 pb-2 pb-sm-3'})
-            user_info = user_info_base.find_all('div', {'class' : 'col-lg-2 col-md-4 col-sm-4 col-6 mt-3'})
-
-            dojang = dojang_and_theseed[0].text.strip() #층수 / 기록
-            dojang_date = maple_date_base[0].text.strip() #기준일
-            dojang_rank = maple_rank_base[0].text.strip() #랭킹
-
-            union = union_and_achievement[0].text.strip() #등급 / 레벨
-            union_date = maple_date_base[1].text.strip() #기준일
-            union_rank = maple_rank_base[1].text.strip() #랭킹
-
-            achievement = union_and_achievement[1].text.strip() #등급 / 점수
-            achievement_date = maple_date_base[2].text.strip() #기준일
-            achievement_rank = maple_rank_base[2].text.strip() #랭킹
-
-            userinfo = (user_info[0].text.strip() + '\n' + 
-                        user_info[1].text.strip() + '\n' + 
-                        user_info[2].text.strip() + '\n' + 
-                        user_info[3].text.strip())
-
-            embed = nextcord.Embed(
-                title = '메이플 유저정보',
-                description = str(maplestory.username[0]) + '의 정보입니다',
-                colour = nextcord.Colour.orange()
-            )
-            embed.add_field(name='캐릭터 랭킹',value=str(userinfo), inline=False)
-
-            embed.add_field(name='무릉',value=str(dojang), inline=True)
-            embed.add_field(name='기준일',value=str(dojang_date), inline=True)
-            embed.add_field(name='랭킹',value=str(dojang_rank), inline=True)
-
-            embed.add_field(name='더시드',value='기록이 없습니다', inline=True)
-            embed.add_field(name='기준일',value='기록이 없습니다', inline=True)
-            embed.add_field(name='랭킹',value='기록이 없습니다', inline=True)
-            
-            embed.add_field(name='유니온',value=str(union), inline=True)
-            embed.add_field(name='기준일',value=str(union_date), inline=True)
-            embed.add_field(name='랭킹',value=str(union_rank), inline=True)
-
-            embed.add_field(name='업적',value=str(achievement), inline=True)
-            embed.add_field(name='기준일',value=str(achievement_date), inline=True)
-            embed.add_field(name='랭킹',value=str(achievement_rank), inline=True)
-
-            await ctx.send(ctx.channel, embed = embed)
-            del maplestory.username[0]
+        pic_name = 'user_info.png'
+        pic = pic_name.split(' ')[0]
+        await ctx.send(file = nextcord.File(pic))
+        
     #24
     @bot.command()
     async def 강화공식(ctx):
