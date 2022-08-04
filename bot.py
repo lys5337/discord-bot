@@ -1,14 +1,17 @@
 from gc import callbacks
 from http.client import NON_AUTHORITATIVE_INFORMATION
 from logging import StrFormatStyle
+from pydoc import describe
 from sqlite3 import enable_shared_cache
 from tkinter import Button
 from unittest import result
+from xml.dom.minidom import Element
 import nextcord
 from nextcord.ui import Button, View
 from nextcord import Intents, User, user_command
 from nextcord.ext import commands
 from nextcord.utils import get
+from pkg_resources import empty_provider
 from selenium.webdriver.chrome.options import Options
 from numpy import number
 from youtube_dl import YoutubeDL
@@ -34,6 +37,15 @@ TOKENVALUE.close()
 intents = nextcord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents = intents)
 client = nextcord.Client(enable_debug_events = True)
+
+
+def close_new_tabs(driver):
+    time.sleep(1)
+    tabs = driver.window_handles
+    print(tabs)
+    while len(tabs) !=1:
+        driver.switch_to_window(tabs[1])
+        driver.close()
 
 #00
 @bot.command()
@@ -94,8 +106,9 @@ async def 명령어(ctx):
                         value = '----------------------------------↓롤----------------------------------', inline = False)
         #class lol
         embed.add_field(name = '!룬[챔피언 이름]', value = '해당 챔피언의 포지션별 룬을 알려줍니다', inline = True) #29
-        embed.add_field(name = '!추천메타', value = '현재 롤토체스 추천메타를 알려줍니다', inline = True) #29
-
+        embed.add_field(name = '!카운터[챔피언 이름]', value = '해당하는 챔피언의 상성을 알려줍니다', inline = True) #30
+        embed.add_field(name = '!추천메타', value = '현재 롤토체스 추천메타를 알려줍니다', inline = True) #31
+        
         await ctx.send(channel, embed = embed)
 
     command_music.callback = command_music_callback
@@ -824,7 +837,6 @@ class maplestory:
         pic_name = 'user_info.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
-        
     #24
     @bot.command()
     async def 강화공식(ctx):
@@ -2190,6 +2202,9 @@ class maplestory:
     
 class lol:
     
+    champ = []
+    link = []
+    #29
     @bot.command()
     async def 룬(ctx, *, msg):
 
@@ -2207,7 +2222,35 @@ class lol:
 
             element = driver.find_element_by_xpath('/html/body/main/div[1]/section')
             element_png = element.screenshot_as_png
-            with open('lune.png', 'wb') as file:
+            with open('lol_lune.png', 'wb') as file:
+                file.write(element_png)
+            driver.quit()
+            print("### capture complete")
+        except Exception as e:
+            print('### error msg :: ', e)
+            driver.quit()
+
+        pic_name = 'lol_lune.png'
+        pic = pic_name.split(' ')[0]
+        await ctx.send(file = nextcord.File(pic))
+    #30
+    @bot.command()
+    async def 카운터(ctx, *, msg):
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        options.add_argument('window-size=1920x3400')
+        driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
+
+        try:
+            driver.get('https://lol.ps/ko/statistics/')
+            element = driver.find_element_by_name('q')
+            element.clear
+            element.send_keys(str(msg))
+            element.send_keys(Keys.RETURN)
+
+            element = driver.find_element_by_xpath('/html/body/main/div[1]/div[2]/section[2]/div')
+            element_png = element.screenshot_as_png
+            with open('lol_counter.png', 'wb') as file:
                 file.write(element_png)
             driver.quit()
             print("### capture complete")
@@ -2218,7 +2261,7 @@ class lol:
         pic_name = 'lune.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
-
+    #31
     @bot.command()
     async def 추천메타(ctx):
 
@@ -2243,7 +2286,7 @@ class lol:
         pic_name = 'TFT_meta.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
-            
+        
 @bot.event
 async def on_ready():
     print('다음으로 로그인합니다: ')
