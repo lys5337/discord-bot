@@ -105,9 +105,10 @@ async def 명령어(ctx):
         embed.add_field(name = '----------------------------------↑메이플----------------------------------', 
                         value = '----------------------------------↓롤----------------------------------', inline = False)
         #class lol
-        embed.add_field(name = '!룬[챔피언 이름]', value = '해당 챔피언의 포지션별 룬을 알려줍니다', inline = True) #29
-        embed.add_field(name = '!카운터[챔피언 이름]', value = '해당하는 챔피언의 상성을 알려줍니다', inline = True) #30
-        embed.add_field(name = '!추천메타', value = '현재 롤토체스 추천메타를 알려줍니다', inline = True) #31
+        embed.add_field(name = '!협곡[챔피언 이름]', value = '해당 챔피언의 소환사의 협곡 룬을 알려줍니다', inline = True) #29
+        embed.add_field(name = '!칼바람[챔피언 이름]', value = '해당 챔피언의 칼바람나락 룬을 알려줍니다', inline = True) #30
+        embed.add_field(name = '!카운터[챔피언 이름]', value = '해당하는 챔피언의 상성을 알려줍니다', inline = True) #31
+        embed.add_field(name = '!추천메타', value = '현재 롤토체스 추천메타를 알려줍니다', inline = True) #32
         
         await ctx.send(channel, embed = embed)
 
@@ -2206,7 +2207,7 @@ class lol:
     link = []
     #29
     @bot.command()
-    async def 룬(ctx, *, msg):
+    async def 협곡(ctx, *, msg):
 
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
@@ -2235,6 +2236,37 @@ class lol:
         await ctx.send(file = nextcord.File(pic))
     #30
     @bot.command()
+    async def 칼바람(ctx, *, msg):
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        options.add_argument('window-size=1920x3400')
+        driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
+
+        for i in range(len(lol_info.champ_name.champ_kr)):
+            if msg == lol_info.champ_name.champ_kr[i]:
+                msg = lol_info.champ_name.champ_en[i]
+        
+        for i in range(len(lol_info.champ_name.champ_slang_kr)):
+            if msg == lol_info.champ_name.champ_slang_kr[i]:
+                msg = lol_info.champ_name.champ_slang_en[i]
+        
+        try:
+            driver.get('https://poro.gg/champions/'+str(msg)+'/aram')
+            element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/section[2]')
+            element_png = element.screenshot_as_png
+            with open('lol_aram.png', 'wb') as file:
+                file.write(element_png)
+            driver.quit()
+            print("### capture complete")
+        except Exception as e:
+            print('### error msg :: ', e)
+            driver.quit()
+
+        pic_name = 'lol_aram.png'
+        pic = pic_name.split(' ')[0]
+        await ctx.send(file = nextcord.File(pic))
+    #31
+    @bot.command()
     async def 카운터(ctx, *, msg):
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
@@ -2258,10 +2290,10 @@ class lol:
             print('### error msg :: ', e)
             driver.quit()
 
-        pic_name = 'lune.png'
+        pic_name = 'lol_counter.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
-    #31
+    #32
     @bot.command()
     async def 추천메타(ctx):
 
