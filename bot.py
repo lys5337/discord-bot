@@ -765,54 +765,26 @@ class maplestory:
     #22
     @bot.command()
     async def 메소시세(ctx):
-        hdr = {'User-Agent': 'Mozilla/5.0'}
-        url = ('https://talk.gamemarket.kr/maple/graph/')
-        req = Request(url, headers=hdr)
-        html = urllib.request.urlopen(req)
-        bsObj = bs4.BeautifulSoup(html, "html.parser")
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        options.add_argument('window-size=1920x3400')
+        driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
+        
+        try:
+            driver.get('https://talk.gamemarket.kr/maple/graph/')
+            element = driver.find_element_by_xpath('//*[@id="app"]/div/div/div[3]/div/div[2]/div/div[11]/div[2]/div')
+            element_png = element.screenshot_as_png
+            with open('maple_meso.png', 'wb') as file:
+                file.write(element_png)
+            driver.quit()
+            print("### capture complete")
+        except Exception as e:
+            print('### error msg :: ', e)
+            driver.quit()
 
-        mesoBase = bsObj.find('div', {'class':'v-data-table__wrapper'})
-        mesotitle1 = mesoBase.find_all('th', {'class':'text-center'})
-        mesotitle = '왼쪽 ' + mesotitle1[1].text.strip() + ', 오른쪽 ' + mesotitle1[2].text.strip()
-
-        meso = mesoBase.find_all('td', {'class':'text-center'})
-        meso1 = meso[1].text.strip() +'원    ' + meso[2].text.strip() +'원'
-        meso2 = meso[4].text.strip() +'원    ' + meso[5].text.strip() +'원'
-        meso3 = meso[7].text.strip() +'원    ' + meso[8].text.strip() +'원'
-        meso4 = meso[10].text.strip() +'원    ' + meso[11].text.strip() +'원'
-        meso5 = meso[13].text.strip() +'원    ' + meso[14].text.strip() +'원'
-        meso6 = meso[16].text.strip() +'원    ' + meso[17].text.strip() +'원'
-        meso7 = meso[19].text.strip() +'원    ' + meso[20].text.strip() +'원'
-        meso8 = meso[22].text.strip() +'원    ' + meso[23].text.strip() +'원'
-        meso9 = meso[25].text.strip() +'원    ' + meso[26].text.strip() +'원'
-        meso10 = meso[28].text.strip() +'원    ' + meso[29].text.strip() +'원'
-        meso11 = meso[31].text.strip() +'원    ' + meso[32].text.strip() +'원'
-        meso12 = meso[34].text.strip() +'원    ' + meso[35].text.strip() +'원'
-
-        embed = nextcord.Embed(
-            title = '메이플 메소시세',
-            description = '어제자 메이플 메소 시세입니다',
-            colour = nextcord.Colour.orange()
-        )
-        embed.add_field(name='서버별 시세',value=str(mesotitle), inline=False)
-        embed.add_field(name='스카니아', value=str(meso1), inline=True)  
-        embed.add_field(name='베라', value=str(meso2), inline=True)
-        embed.add_field(name='루나', value=str(meso3), inline=True)
-        embed.add_field(name='제니스', value=str(meso4), inline=True)
-        embed.add_field(name='크로아', value=str(meso5), inline=True)
-        embed.add_field(name='유니온', value=str(meso6), inline=True)
-        embed.add_field(name='엘리시움', value=str(meso7), inline=True)
-        embed.add_field(name='이노시스', value=str(meso8), inline=True)
-        embed.add_field(name='레드', value=str(meso9), inline=True)
-        embed.add_field(name='오로라', value=str(meso10), inline=True)
-        embed.add_field(name='아케인', value=str(meso11), inline=True)
-        embed.add_field(name='노바', value=str(meso12), inline=True)
-        embed.add_field(
-            name='현재 오류상태로 가격 텍스트가 불러와지지 않습니다.',
-            value='https://talk.gamemarket.kr/maple/graph 를 참고해주세요',
-            inline=False)
-
-        await ctx.send(ctx.channel, embed = embed)
+        pic_name = 'maple_meso.png'
+        pic = pic_name.split(' ')[0]
+        await ctx.send(file = nextcord.File(pic))
     #23
     @bot.command()
     async def 유저정보(ctx, *, msg):
@@ -827,7 +799,7 @@ class maplestory:
             element = driver.find_element_by_xpath('//*[@id="user-profile"]/section/div[2]/div[2]/div[4]/button[3]/span').click()
             element = driver.find_element_by_xpath('//*[@id="character-card"]/img[2]')
             element_png = element.screenshot_as_png
-            with open('user_info.png', 'wb') as file:
+            with open('maple_user_info.png', 'wb') as file:
                 file.write(element_png)
             driver.quit()
             print("### capture complete")
@@ -835,7 +807,7 @@ class maplestory:
             print('### error msg :: ', e)
             driver.quit()
 
-        pic_name = 'user_info.png'
+        pic_name = 'maple_user_info.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
     #24
@@ -902,82 +874,74 @@ class maplestory:
 
         async def star_force_140_callback(interaction):
             embed = nextcord.Embed(
-                title = '강화수치',
-                description = '스타포스의 강화수치입니다',
+                title = '140제 강화수치',
+                description = '펜살리르, 여제 등',
                 colour = nextcord.Colour.orange()
             )
-            embed.add_field(name='140',
-                            value=
-                            '1 ~ 5성\n주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' + 
-                            '6 ~ 15성\n주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' +
-                            '16성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 8\n'
-                            '17성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 9\n'
-                            '18성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 10\n'
-                            '19성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 11\n'
-                            '20성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 12\n'
-                            '21성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 13\n'
-                            '22성\n주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 15\n',inline=True)
+            embed.add_field(name='1 ~ 5성', value='주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동', inline=False)
+            embed.add_field(name='6 ~ 15성', value='주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동', inline=False)
+            embed.add_field(name='16성', value='주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 8', inline=False)
+            embed.add_field(name='17성', value='주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 9', inline=False)
+            embed.add_field(name='18성', value='주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 10', inline=False)
+            embed.add_field(name='19성', value='주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 11', inline=False)
+            embed.add_field(name='20성', value='주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 12', inline=False)
+            embed.add_field(name='21성', value='주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 13', inline=False)
+            embed.add_field(name='22성', value='주스텟 + 9, 방어구 : 공/마 + 0, 무기 : 공/마 + 15', inline=False)
             
             await ctx.send(ctx.channel, embed = embed)
 
         async def star_force_150_callback(interaction):
             embed = nextcord.Embed(
-                title = '강화수치',
-                description = '스타포스의 강화수치입니다',
+                title = '150제 강화수치',
+                description = '카루타 세트',
                 colour = nextcord.Colour.orange()
             )
-            embed.add_field(name='150',
-                            value=
-                            '1 ~ 5성\n주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' + 
-                            '6 ~ 15성\n주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' +
-                            '16성\n주스텟 + 11, 방어구 : 공/마 + 9, 무기 : 공/마 + 8\n'
-                            '17성\n주스텟 + 11, 방어구 : 공/마 + 10, 무기 : 공/마 + 9\n'
-                            '18성\n주스텟 + 11, 방어구 : 공/마 + 11, 무기 : 공/마 + 9\n'
-                            '19성\n주스텟 + 11, 방어구 : 공/마 + 12, 무기 : 공/마 + 10\n'
-                            '20성\n주스텟 + 11, 방어구 : 공/마 + 13, 무기 : 공/마 + 11\n'
-                            '21성\n주스텟 + 11, 방어구 : 공/마 + 14, 무기 : 공/마 + 12\n'
-                            '22성\n주스텟 + 11, 방어구 : 공/마 + 15, 무기 : 공/마 + 13\n',inline=True)
+            embed.add_field(name='1 ~ 5성', value='주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동', inline=False)
+            embed.add_field(name='6 ~ 15성', value='주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동', inline=False)
+            embed.add_field(name='16성', value='주스텟 + 11, 방어구 : 공/마 + 9, 무기 : 공/마 + 8', inline=False)
+            embed.add_field(name='17성', value='주스텟 + 11, 방어구 : 공/마 + 10, 무기 : 공/마 + 9', inline=False)
+            embed.add_field(name='18성', value='주스텟 + 11, 방어구 : 공/마 + 11, 무기 : 공/마 + 9', inline=False)
+            embed.add_field(name='19성', value='주스텟 + 11, 방어구 : 공/마 + 12, 무기 : 공/마 + 10', inline=False)
+            embed.add_field(name='20성', value='주스텟 + 11, 방어구 : 공/마 + 13, 무기 : 공/마 + 11', inline=False)
+            embed.add_field(name='21성', value='주스텟 + 11, 방어구 : 공/마 + 14, 무기 : 공/마 + 12', inline=False)
+            embed.add_field(name='22성', value='주스텟 + 11, 방어구 : 공/마 + 15, 무기 : 공/마 + 13', inline=False)
             
             await ctx.send(ctx.channel, embed = embed)
         
         async def star_force_160_callback(interaction):
             embed = nextcord.Embed(
-                title = '강화수치',
-                description = '스타포스의 강화수치입니다',
+                title = '160제 강화수치',
+                description = '앱솔랩스',
                 colour = nextcord.Colour.orange()
             )
-            embed.add_field(name='160',
-                            value=
-                            '1 ~ 5성\n주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' + 
-                            '6 ~ 15성\n주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' +
-                            '16성\n주스텟 + 13, 방어구 : 공/마 + 10, 무기 : 공/마 + 9\n'
-                            '17성\n주스텟 + 13, 방어구 : 공/마 + 11, 무기 : 공/마 + 9\n'
-                            '18성\n주스텟 + 13, 방어구 : 공/마 + 12, 무기 : 공/마 + 10\n'
-                            '19성\n주스텟 + 13, 방어구 : 공/마 + 13, 무기 : 공/마 + 11\n'
-                            '20성\n주스텟 + 13, 방어구 : 공/마 + 14, 무기 : 공/마 + 12\n'
-                            '21성\n주스텟 + 13, 방어구 : 공/마 + 15, 무기 : 공/마 + 13\n'
-                            '22성\n주스텟 + 13, 방어구 : 공/마 + 17, 무기 : 공/마 + 14\n',inline=True)
+            embed.add_field(name='1 ~ 5성', value='주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동', inline=False)
+            embed.add_field(name='6 ~ 15성', value='주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동', inline=False)
+            embed.add_field(name='16성', value='주스텟 + 13, 방어구 : 공/마 + 10, 무기 : 공/마 + 9', inline=False)
+            embed.add_field(name='17성', value='주스텟 + 13, 방어구 : 공/마 + 11, 무기 : 공/마 + 9', inline=False)
+            embed.add_field(name='18성', value='주스텟 + 13, 방어구 : 공/마 + 12, 무기 : 공/마 + 10', inline=False)
+            embed.add_field(name='19성', value='주스텟 + 13, 방어구 : 공/마 + 13, 무기 : 공/마 + 11', inline=False)
+            embed.add_field(name='20성', value='주스텟 + 13, 방어구 : 공/마 + 14, 무기 : 공/마 + 12', inline=False)
+            embed.add_field(name='21성', value='주스텟 + 13, 방어구 : 공/마 + 15, 무기 : 공/마 + 13', inline=False)
+            embed.add_field(name='22성', value='주스텟 + 13, 방어구 : 공/마 + 17, 무기 : 공/마 + 14', inline=False)
             
             await ctx.send(ctx.channel, embed = embed)
 
         async def star_force_200_callback(interaction):
             embed = nextcord.Embed(
-                title = '강화수치',
-                description = '스타포스의 강화수치입니다',
+                title = '200제 강화수치',
+                description = '아케인셰이드',
                 colour = nextcord.Colour.orange()
             )
-            embed.add_field(name='200',
-                            value=
-                            '1 ~ 5성\n주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' + 
-                            '6 ~ 15성\n주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동\n' +
-                            '16성\n주스텟 + 15, 방어구 : 공/마 + 12, 무기 : 공/마 + 13\n'
-                            '17성\n주스텟 + 15, 방어구 : 공/마 + 13, 무기 : 공/마 + 13\n'
-                            '18성\n주스텟 + 15, 방어구 : 공/마 + 14, 무기 : 공/마 + 14\n'
-                            '19성\n주스텟 + 15, 방어구 : 공/마 + 15, 무기 : 공/마 + 14\n'
-                            '20성\n주스텟 + 15, 방어구 : 공/마 + 16, 무기 : 공/마 + 15\n'
-                            '21성\n주스텟 + 15, 방어구 : 공/마 + 17, 무기 : 공/마 + 16\n'
-                            '22성\n주스텟 + 15, 방어구 : 공/마 + 19, 무기 : 공/마 + 17\n',inline=True)
-            
+            embed.add_field(name='1 ~ 5성', value='주스텟 + 2, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동', inline=False)
+            embed.add_field(name='6 ~ 15성', value='주스텟 + 3, 방어구 : 공/마 + 0, 무기 : 공/마 + 변동', inline=False)
+            embed.add_field(name='16성', value='주스텟 + 15, 방어구 : 공/마 + 12, 무기 : 공/마 + 13', inline=False)
+            embed.add_field(name='17성', value='주스텟 + 15, 방어구 : 공/마 + 13, 무기 : 공/마 + 13', inline=False)
+            embed.add_field(name='18성', value='주스텟 + 15, 방어구 : 공/마 + 14, 무기 : 공/마 + 14', inline=False)
+            embed.add_field(name='19성', value='주스텟 + 15, 방어구 : 공/마 + 15, 무기 : 공/마 + 14', inline=False)
+            embed.add_field(name='20성', value='주스텟 + 15, 방어구 : 공/마 + 16, 무기 : 공/마 + 15', inline=False)
+            embed.add_field(name='21성', value='주스텟 + 15, 방어구 : 공/마 + 17, 무기 : 공/마 + 16', inline=False)
+            embed.add_field(name='22성', value='주스텟 + 15, 방어구 : 공/마 + 19, 무기 : 공/마 + 17', inline=False)
+
             await ctx.send(ctx.channel, embed = embed)
 
         jumun.callback = jumun_callback
