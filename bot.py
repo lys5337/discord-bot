@@ -560,7 +560,7 @@ class musicbot:
                 else:
                     await ctx.send("즐겨찾기에 노래가 없어서 지울 수 없어요!")
 
-     @bot.event
+    @bot.event
     async def on_reaction_add(reaction, users):
 
         options = webdriver.ChromeOptions()
