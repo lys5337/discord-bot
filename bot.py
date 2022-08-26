@@ -560,8 +560,8 @@ class musicbot:
                 else:
                     await ctx.send("즐겨찾기에 노래가 없어서 지울 수 없어요!")
 
-    @bot.event
-    async def on_reaction_add(ctx, reaction, users):
+     @bot.event
+    async def on_reaction_add(reaction, users):
 
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
@@ -592,22 +592,9 @@ class musicbot:
                                 result, URLTEST = musicbot.title(musicbot.userFlist[i][j])
                                 musicbot.song_queue.append(URLTEST)
                                 await reaction.message.channel.send(musicbot.userFlist[i][j] + "를 재생목록에 추가했어요!")
-
-                elif str(reaction.emoji) == '\u0031\uFE0F\u20E3':                  
-                    musicbot.URLPLAY(musicbot.rinklist[0])
-                    await ctx.send("정상적으로 진행되었습니다.")
-                elif str(reaction.emoji) == '\u0032\uFE0F\u20E3':
-                    musicbot.URLPLAY(musicbot.rinklist[1])
-                    await ctx.send("정상적으로 진행되었습니다.")
-                elif str(reaction.emoji) == '\u0033\uFE0F\u20E3':
-                    musicbot.URLPLAY(musicbot.rinklist[2])
-                    await ctx.send("정상적으로 진행되었습니다.")
-                elif str(reaction.emoji) == '\u0034\uFE0F\u20E3':
-                    musicbot.URLPLAY(musicbot.rinklist[3])
-                    await ctx.send("정상적으로 진행되었습니다.")
-                elif str(reaction.emoji) == '\u0035\uFE0F\u20E3':
-                    musicbot.URLPLAY(musicbot.rinklist[4])
-                    await ctx.send("정상적으로 진행되었습니다.")
+                
+                elif str(reaction.emoji) == '\U0001F4DD':
+                    await reaction.message.channel.send("플레이리스트가 나오면 생길 기능이랍니다. 추후에 올릴 영상을 기다려주세요!")
     #18
     @bot.command()
     async def 정밀검색(ctx, *, msg):
