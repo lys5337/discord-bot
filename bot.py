@@ -141,6 +141,15 @@ class musicbot:
 
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
 
         chromedriver_dir = r"C:\Users\c\Desktop\chromedriver.exe"
         driver = webdriver.Chrome(chromedriver_dir, options = options)
@@ -238,6 +247,15 @@ class musicbot:
 
             options = webdriver.ChromeOptions()
             options.add_argument('headless')
+            options.add_argument("disable-gpu") 
+            options.add_argument("disable-infobars") 
+            options.add_argument("--disable-extensions")
+            prefs = {'profile.default_content_setting_values': 
+            {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+            'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+            'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+            'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+            options.add_experimental_option('prefs', prefs)
 
             global entireText
             YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
@@ -272,6 +290,16 @@ class musicbot:
 
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
+
         global vc
         if not vc.is_playing():
             try:
@@ -314,6 +342,15 @@ class musicbot:
             
             options = webdriver.ChromeOptions()
             options.add_argument("headless")
+            options.add_argument("disable-gpu") 
+            options.add_argument("disable-infobars") 
+            options.add_argument("--disable-extensions")
+            prefs = {'profile.default_content_setting_values': 
+            {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+            'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+            'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+            'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+            options.add_experimental_option('prefs', prefs)
 
             global entireText
             YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
@@ -523,6 +560,15 @@ class musicbot:
                 
                 options = webdriver.ChromeOptions()
                 options.add_argument("headless")
+                options.add_argument("disable-gpu") 
+                options.add_argument("disable-infobars") 
+                options.add_argument("--disable-extensions")
+                prefs = {'profile.default_content_setting_values': 
+                {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+                'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+                'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+                'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+                options.add_experimental_option('prefs', prefs)
 
                 chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
                 driver = webdriver.Chrome(chromedriver_dir, options = options)
@@ -565,6 +611,15 @@ class musicbot:
 
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
 
         chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
         driver = webdriver.Chrome(chromedriver_dir, options = options)
@@ -595,6 +650,7 @@ class musicbot:
                 
                 elif str(reaction.emoji) == '\U0001F4DD':
                     await reaction.message.channel.send("플레이리스트가 나오면 생길 기능이랍니다. 추후에 올릴 영상을 기다려주세요!")
+ 
     #18
     @bot.command()
     async def 정밀검색(ctx, *, msg):
@@ -617,6 +673,15 @@ class musicbot:
 
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
 
         chromedriver_dir = r"C:\Users\c\Desktop\chromedriver.exe"
         driver = webdriver.Chrome(chromedriver_dir, options = options)
@@ -755,13 +820,23 @@ class maplestory:
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x3400')
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
+
         driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
         
         try:
             driver.get('https://talk.gamemarket.kr/maple/graph/')
             element = driver.find_element_by_xpath('//*[@id="app"]/div/div/div[3]/div/div[2]/div/div[11]/div[2]/div')
             element_png = element.screenshot_as_png
-            with open('maple_meso.png', 'wb') as file:
+            with open('pic_maple_meso.png', 'wb') as file:
                 file.write(element_png)
             driver.quit()
             print("### capture complete")
@@ -769,7 +844,7 @@ class maplestory:
             print('### error msg :: ', e)
             driver.quit()
 
-        pic_name = 'maple_meso.png'
+        pic_name = 'pic_maple_meso.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
     #23
@@ -779,6 +854,16 @@ class maplestory:
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x3400')
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
+
         driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
 
         try:
@@ -786,7 +871,7 @@ class maplestory:
             element = driver.find_element_by_xpath('//*[@id="user-profile"]/section/div[2]/div[2]/div[4]/button[3]/span').click()
             element = driver.find_element_by_xpath('//*[@id="character-card"]/img[2]')
             element_png = element.screenshot_as_png
-            with open('maple_user_info.png', 'wb') as file:
+            with open('pic_maple_user_info.png', 'wb') as file:
                 file.write(element_png)
             driver.quit()
             print("### capture complete")
@@ -794,7 +879,7 @@ class maplestory:
             print('### error msg :: ', e)
             driver.quit()
 
-        pic_name = 'maple_user_info.png'
+        pic_name = 'pic_maple_user_info.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
     #24
@@ -2163,6 +2248,15 @@ class lol:
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x3400')
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
         driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
 
         try:
@@ -2174,7 +2268,7 @@ class lol:
 
             element = driver.find_element_by_xpath('/html/body/main/div[1]/section')
             element_png = element.screenshot_as_png
-            with open('lol_lune.png', 'wb') as file:
+            with open('pic_lol_lune.png', 'wb') as file:
                 file.write(element_png)
             driver.quit()
             print("### capture complete")
@@ -2182,7 +2276,7 @@ class lol:
             print('### error msg :: ', e)
             driver.quit()
 
-        pic_name = 'lol_lune.png'
+        pic_name = 'pic_lol_lune.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
     #30
@@ -2191,6 +2285,16 @@ class lol:
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x3400')
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
+
         driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
 
         for i in range(len(lol_info.champ_name.champ_kr)):
@@ -2205,7 +2309,7 @@ class lol:
             driver.get('https://poro.gg/champions/'+str(msg)+'/aram')
             element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/section[2]')
             element_png = element.screenshot_as_png
-            with open('lol_aram.png', 'wb') as file:
+            with open('pic_lol_aram.png', 'wb') as file:
                 file.write(element_png)
             driver.quit()
             print("### capture complete")
@@ -2213,7 +2317,7 @@ class lol:
             print('### error msg :: ', e)
             driver.quit()
 
-        pic_name = 'lol_aram.png'
+        pic_name = 'pic_lol_aram.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
     #31
@@ -2222,6 +2326,16 @@ class lol:
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x3400')
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
+
         driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
 
         try:
@@ -2233,7 +2347,7 @@ class lol:
 
             element = driver.find_element_by_xpath('/html/body/main/div[1]/div[2]/section[2]/div')
             element_png = element.screenshot_as_png
-            with open('lol_counter.png', 'wb') as file:
+            with open('pic_lol_counter.png', 'wb') as file:
                 file.write(element_png)
             driver.quit()
             print("### capture complete")
@@ -2241,7 +2355,7 @@ class lol:
             print('### error msg :: ', e)
             driver.quit()
 
-        pic_name = 'lol_counter.png'
+        pic_name = 'pic_lol_counter.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
     #32
@@ -2251,6 +2365,16 @@ class lol:
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x3400')
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
+        
         driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
 
         try:
@@ -2258,7 +2382,7 @@ class lol:
             driver.find_element_by_xpath('//*[@id="toggle-meta-show-name"]').click()
             element = driver.find_element_by_class_name('guide-meta__group__content')
             element_png = element.screenshot_as_png
-            with open('TFT_meta.png', 'wb') as file:
+            with open('pic_lol_TFT_meta.png', 'wb') as file:
                 file.write(element_png)
             driver.quit()
             print("### capture complete")
@@ -2266,7 +2390,7 @@ class lol:
             print('### error msg :: ', e)
             driver.quit()
 
-        pic_name = 'TFT_meta.png'
+        pic_name = 'pic_lol_TFT_meta.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
         
