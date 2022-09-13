@@ -1,3 +1,4 @@
+from email.mime import image
 from gc import callbacks
 from http.client import NON_AUTHORITATIVE_INFORMATION
 from logging import StrFormatStyle
@@ -37,7 +38,6 @@ TOKENVALUE.close()
 intents = nextcord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents = intents)
 client = nextcord.Client(enable_debug_events = True)
-
 
 def close_new_tabs(driver):
     time.sleep(1)
@@ -109,6 +109,11 @@ async def 명령어(ctx):
         embed.add_field(name = '!칼바람[챔피언 이름]', value = '해당 챔피언의 칼바람나락 룬을 알려줍니다', inline = True) #30
         embed.add_field(name = '!카운터[챔피언 이름]', value = '해당하는 챔피언의 상성을 알려줍니다', inline = True) #31
         embed.add_field(name = '!추천메타', value = '현재 롤토체스 추천메타를 알려줍니다', inline = True) #32
+
+        embed.add_field(name = '----------------------------------↑롤----------------------------------', 
+                        value = '----------------------------------↓배그----------------------------------', inline = False)
+        #class battle_ground
+        embed.add_field(name = '!전적', value = '해당하는 유저의 랭크, 노말게임의 전적을 알려줍니다', inline = True) #33
         
         await ctx.send(channel, embed = embed)
 
@@ -2393,6 +2398,92 @@ class lol:
         pic_name = 'pic_lol_TFT_meta.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
+
+class battle_ground:
+    #33
+    @bot.command()
+    async def 전적(ctx, *, msg):
+        steam = Button(label='STEAM', style = nextcord.ButtonStyle.green)
+        kakao = Button(label='kakao', style = nextcord.ButtonStyle.green)
+        psn = Button(label='PSN', style = nextcord.ButtonStyle.green)
+        Stadia = Button(label='Stadia', style = nextcord.ButtonStyle.green)
+        Xbox = Button(label='Xbox', style = nextcord.ButtonStyle.green)
+
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        options.add_argument('window-size=1920x3400')
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
+
+        driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
+
+        
+        async def steam_callback(interaction):
+            
+            try:
+                driver.get('https://dak.gg/pubg/profile/steam/'+ str(msg))
+                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
+                element_png = element.screenshot_as_png
+                with open('pic_battleground_rank.png', 'wb') as file:
+                    file.write(element_png)
+                    
+                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
+                element_png = element.screenshot_as_png
+                with open('pic_battleground_normal.png', 'wb') as file:
+                    file.write(element_png)
+                driver.quit()
+                print("### capture complete")
+            except Exception as e:
+                print('### error msg :: ', e)
+                driver.quit()
+                embed = nextcord.Embed(
+                    title = '해당하는 유저가 없습니다',
+                    description = '닉네임을 다시 입력하여 주세요\n' + '혹은 서버를 다시 확인하여 주세요',
+                    colour = nextcord.Colour.dark_green())
+                await ctx.send(ctx.channel, embed = embed)
+                return 0
+
+            pic_name = 'pic_battleground_rank.png'
+            pic = pic_name.split(' ')[0]
+            await ctx.send('랭크')
+            await ctx.send(file = nextcord.File(pic))
+
+            pic_name = 'pic_battleground_normal.png'
+            pic = pic_name.split(' ')[0]
+            await ctx.send('일반')
+            await ctx.send(file = nextcord.File(pic))
+
+        async def kakao_callback(interaction):
+            driver.get('https://dak.gg/pubg/profile/kakao/'+ str(msg))
+        async def psn_callback(interaction):
+            driver.get('https://dak.gg/pubg/profile/PSN/'+ str(msg))
+        async def Stadia_callback(interaction):
+            driver.get('https://dak.gg/pubg/profile/Stadia/'+ str(msg))
+        async def Xbox_callback(interaction):
+            driver.get('https://dak.gg/pubg/profile/Xbox/'+ str(msg))
+
+
+        steam.callback = steam_callback
+        kakao.callback = kakao_callback
+        psn.callback = psn_callback
+        Stadia.callback = Stadia_callback
+        Xbox.callback = Xbox_callback
+
+        view = View()
+        view.add_item(steam)
+        view.add_item(kakao)
+        view.add_item(psn)
+        view.add_item(Stadia)
+        view.add_item(Xbox)
+
+        await ctx.send(embed = nextcord.Embed(title='배그 전적검색',description='서버를 선택해주세요', colour=nextcord.Colour.dark_green()), view=view)
         
 @bot.event
 async def on_ready():
