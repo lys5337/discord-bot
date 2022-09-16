@@ -2424,9 +2424,7 @@ class battle_ground:
 
         driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
 
-        
         async def steam_callback(interaction):
-            
             try:
                 driver.get('https://dak.gg/pubg/profile/steam/'+ str(msg))
                 element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
@@ -2461,14 +2459,140 @@ class battle_ground:
             await ctx.send(file = nextcord.File(pic))
 
         async def kakao_callback(interaction):
-            driver.get('https://dak.gg/pubg/profile/kakao/'+ str(msg))
-        async def psn_callback(interaction):
-            driver.get('https://dak.gg/pubg/profile/PSN/'+ str(msg))
-        async def Stadia_callback(interaction):
-            driver.get('https://dak.gg/pubg/profile/Stadia/'+ str(msg))
-        async def Xbox_callback(interaction):
-            driver.get('https://dak.gg/pubg/profile/Xbox/'+ str(msg))
+            try:
+                driver.get('https://dak.gg/pubg/profile/kakao/'+ str(msg))
+                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
+                element_png = element.screenshot_as_png
+                with open('pic_battleground_rank.png', 'wb') as file:
+                    file.write(element_png)
+                    
+                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
+                element_png = element.screenshot_as_png
+                with open('pic_battleground_normal.png', 'wb') as file:
+                    file.write(element_png)
+                driver.quit()
+                print("### capture complete")
+            except Exception as e:
+                print('### error msg :: ', e)
+                driver.quit()
+                embed = nextcord.Embed(
+                    title = '해당하는 유저가 없습니다',
+                    description = '닉네임을 다시 입력하여 주세요\n' + '혹은 서버를 다시 확인하여 주세요',
+                    colour = nextcord.Colour.dark_green())
+                await ctx.send(ctx.channel, embed = embed)
+                return 0
 
+            pic_name = 'pic_battleground_rank.png'
+            pic = pic_name.split(' ')[0]
+            await ctx.send('랭크')
+            await ctx.send(file = nextcord.File(pic))
+
+            pic_name = 'pic_battleground_normal.png'
+            pic = pic_name.split(' ')[0]
+            await ctx.send('일반')
+            await ctx.send(file = nextcord.File(pic))
+
+        async def psn_callback(interaction):
+            try:
+                driver.get('https://dak.gg/pubg/profile/psn/'+ str(msg))
+                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
+                element_png = element.screenshot_as_png
+                with open('pic_battleground_rank.png', 'wb') as file:
+                    file.write(element_png)
+                    
+                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
+                element_png = element.screenshot_as_png
+                with open('pic_battleground_normal.png', 'wb') as file:
+                    file.write(element_png)
+                driver.quit()
+                print("### capture complete")
+            except Exception as e:
+                print('### error msg :: ', e)
+                driver.quit()
+                embed = nextcord.Embed(
+                    title = '해당하는 유저가 없습니다',
+                    description = '닉네임을 다시 입력하여 주세요\n' + '혹은 서버를 다시 확인하여 주세요',
+                    colour = nextcord.Colour.dark_green())
+                await ctx.send(ctx.channel, embed = embed)
+                return 0
+
+            pic_name = 'pic_battleground_rank.png'
+            pic = pic_name.split(' ')[0]
+            await ctx.send('랭크')
+            await ctx.send(file = nextcord.File(pic))
+
+            pic_name = 'pic_battleground_normal.png'
+            pic = pic_name.split(' ')[0]
+            await ctx.send('일반')
+            await ctx.send(file = nextcord.File(pic))
+
+        async def Stadia_callback(interaction):
+            try:
+                driver.get('https://dak.gg/pubg/profile/stadia/'+ str(msg))
+                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
+                element_png = element.screenshot_as_png
+                with open('pic_battleground_rank.png', 'wb') as file:
+                    file.write(element_png)
+                    
+                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
+                element_png = element.screenshot_as_png
+                with open('pic_battleground_normal.png', 'wb') as file:
+                    file.write(element_png)
+                driver.quit()
+                print("### capture complete")
+            except Exception as e:
+                print('### error msg :: ', e)
+                driver.quit()
+                embed = nextcord.Embed(
+                    title = '해당하는 유저가 없습니다',
+                    description = '닉네임을 다시 입력하여 주세요\n' + '혹은 서버를 다시 확인하여 주세요',
+                    colour = nextcord.Colour.dark_green())
+                await ctx.send(ctx.channel, embed = embed)
+                return 0
+
+            pic_name = 'pic_battleground_rank.png'
+            pic = pic_name.split(' ')[0]
+            await ctx.send('랭크')
+            await ctx.send(file = nextcord.File(pic))
+
+            pic_name = 'pic_battleground_normal.png'
+            pic = pic_name.split(' ')[0]
+            await ctx.send('일반')
+            await ctx.send(file = nextcord.File(pic))
+
+        async def Xbox_callback(interaction):
+            try:
+                driver.get('https://dak.gg/pubg/profile/xbox/'+ str(msg))
+                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
+                element_png = element.screenshot_as_png
+                with open('pic_battleground_rank.png', 'wb') as file:
+                    file.write(element_png)
+                    
+                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
+                element_png = element.screenshot_as_png
+                with open('pic_battleground_normal.png', 'wb') as file:
+                    file.write(element_png)
+                driver.quit()
+                print("### capture complete")
+            except Exception as e:
+                print('### error msg :: ', e)
+                driver.quit()
+                embed = nextcord.Embed(
+                    title = '해당하는 유저가 없습니다',
+                    description = '닉네임을 다시 입력하여 주세요\n' + '혹은 서버를 다시 확인하여 주세요',
+                    colour = nextcord.Colour.dark_green())
+                await ctx.send(ctx.channel, embed = embed)
+                return 0
+
+            pic_name = 'pic_battleground_rank.png'
+            pic = pic_name.split(' ')[0]
+            await ctx.send('랭크')
+            await ctx.send(file = nextcord.File(pic))
+
+            pic_name = 'pic_battleground_normal.png'
+            pic = pic_name.split(' ')[0]
+            await ctx.send('일반')
+            await ctx.send(file = nextcord.File(pic))
 
         steam.callback = steam_callback
         kakao.callback = kakao_callback
