@@ -1,0 +1,17 @@
+class musicbot: 
+    youtube "최신코딩"
+
+class weather:
+    naver
+
+class maplestory:
+    "https://talk.gamemarket.kr/maple/graph/"
+    "https://maple.gg/"
+
+class lol:
+    "https://lol.ps/"
+    "https://www.op.gg/"
+
+class battleground:
+    "https://dak.gg/pubg/"
+
