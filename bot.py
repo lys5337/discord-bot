@@ -1,4 +1,3 @@
-from email.mime import image
 from gc import callbacks
 from http.client import NON_AUTHORITATIVE_INFORMATION
 from logging import StrFormatStyle
@@ -94,6 +93,7 @@ async def 명령어(ctx):
         colour = nextcord.Colour.blue())
 
         #class maplestory
+        #레벨 추가 예정
         embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다', inline = True) #22
         embed.add_field(name = '!유저정보[닉네임]', value = '해당하는 닉네임의 유저정보를 제공합니다', inline = True) #23
         embed.add_field(name = '!강화공식', value = '주문의 흔적, 스타포스의 강화수치를 제공합니다', inline = True) #24
@@ -114,6 +114,7 @@ async def 명령어(ctx):
                         value = '----------------------------------↓배그----------------------------------', inline = False)
         #class battle_ground
         embed.add_field(name = '!전적', value = '해당하는 유저의 랭크, 노말게임의 전적을 알려줍니다', inline = True) #33
+        embed.add_field(name = '!맵정보', value = '배틀그라운드 전장의 정보를 제공합니다', inline = True) #34
         
         await ctx.send(channel, embed = embed)
 
@@ -2399,7 +2400,7 @@ class lol:
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
 
-class battle_ground:
+class battleground:
     #33
     @bot.command()
     async def 전적(ctx, *, msg):
@@ -2608,6 +2609,95 @@ class battle_ground:
         view.add_item(Xbox)
 
         await ctx.send(embed = nextcord.Embed(title='배그 전적검색',description='서버를 선택해주세요', colour=nextcord.Colour.dark_green()), view=view)
+    #34
+    @bot.command()
+    async def 맵정보(ctx):
+        Erangel = Button(label='에란겔', style = nextcord.ButtonStyle.green)
+        Miramar = Button(label='미라마', style = nextcord.ButtonStyle.green)
+        Taego = Button(label='태이고', style = nextcord.ButtonStyle.green)
+        DESTON = Button(label='데스턴', style = nextcord.ButtonStyle.green)
+        Vikendi = Button(label='비켄디', style = nextcord.ButtonStyle.green)
+        Sanhok = Button(label='사녹', style = nextcord.ButtonStyle.green)
+        Paramo = Button(label='파라모', style = nextcord.ButtonStyle.green)
+        Karakin = Button(label='카라킨', style = nextcord.ButtonStyle.green)
+        HAVEN = Button(label='헤이븐', style = nextcord.ButtonStyle.green)
+        Camp = Button(label='캠프자칼(훈련장)', style = nextcord.ButtonStyle.green)
+
+        async def Erangel_callback(interaction):
+            embed = nextcord.Embed(title = '배그 맵정보',
+                    description = '에란겔',
+                    colour = nextcord.Colour.blue())
+            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/erangel/')
+
+        async def Miramar_callback(interaction):
+            embed = nextcord.Embed(title = '배그 맵정보',
+                    description = '미라마',
+                    colour = nextcord.Colour.blue())
+            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/miramar/')            
+        async def Taego_callback(interaction):
+            embed = nextcord.Embed(title = '배그 맵정보',
+                    description = '태이고',
+                    colour = nextcord.Colour.blue())
+            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/taego/')
+        async def DESTON_callback(interaction):
+            pic_name = 'pic_battleground_DESTON.png'
+            pic = pic_name.split(' ')[0]
+            await ctx.send('데스턴 (빨간색 = 등강기)\n' + '아직 인벤에 업로드되지 않은 맵이므로 정확한이미지가 없습니다')
+            await ctx.send(file = nextcord.File(pic))
+        async def Vikendi_callback(interaction):
+            embed = nextcord.Embed(title = '배그 맵정보',
+                    description = '미라마',
+                    colour = nextcord.Colour.blue())
+            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/vikendi/')                
+            await ctx.send('https://pubg.inven.co.kr/dataninfo/map/vikendi/')
+        async def Sanhok_callback(interaction):
+            embed = nextcord.Embed(title = '배그 맵정보',
+                    description = '사녹',
+                    colour = nextcord.Colour.blue())
+            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/sanhok/')    
+        async def Paramo_callback(interaction):
+            embed = nextcord.Embed(title = '배그 맵정보',
+                    description = '파라모',
+                    colour = nextcord.Colour.blue())
+            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/paramo/')    
+        async def Karakin_callback(interaction):
+            embed = nextcord.Embed(title = '배그 맵정보',
+                    description = '카라킨',
+                    colour = nextcord.Colour.blue())
+            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/karakin/')    
+        async def HAVEN_callback(interaction):
+            embed = nextcord.Embed(title = '배그 맵정보',
+                    description = '헤이븐', 
+                    colour = nextcord.Colour.blue())
+            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/haven/')    
+        async def Camp_callback(interaction):
+            await ctx.send('test success')
+
+        Erangel.callback = Erangel_callback
+        Miramar.callback = Miramar_callback
+        Taego.callback = Taego_callback
+        DESTON.callback = DESTON_callback
+        Vikendi.callback = Vikendi_callback
+        Sanhok.callback = Sanhok_callback
+        Paramo.callback = Paramo_callback
+        Karakin.callback = Karakin_callback
+        HAVEN.callback = HAVEN_callback
+        Camp.callback = Camp_callback
+
+        view = View()
+        view.add_item(Erangel)
+        view.add_item(Miramar)
+        view.add_item(Taego)
+        view.add_item(DESTON)
+        view.add_item(Vikendi)
+        view.add_item(Sanhok)
+        view.add_item(Paramo)
+        view.add_item(Karakin)
+        view.add_item(HAVEN)
+        view.add_item(Camp)
+
+        await ctx.send(embed = nextcord.Embed(title='배그 맵정보',description='원하는 맵의 버튼을 놀러주세요', colour=nextcord.Colour.dark_green()), view=view)
+
         
 @bot.event
 async def on_ready():
