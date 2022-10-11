@@ -30,7 +30,7 @@ import numpy as np
 import maple_cube
 import lol_info
 
-TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN.txt','r')
+TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN_testbot.txt','r')
 TOKEN = TOKENVALUE.read()
 TOKENVALUE.close()
 
@@ -79,11 +79,11 @@ async def 명령어(ctx):
 
         embed.add_field(name = '----------------------------------↑음악----------------------------------', 
                         value = '----------------------------------↓기타----------------------------------', inline = False)
-        #class lotto
-        embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #21
         #class weather
         embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #19
         embed.add_field(name = '!해외날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #20
+        #class lotto
+        embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #21
 
         await ctx.send(channel, embed = embed)
 
@@ -93,28 +93,28 @@ async def 명령어(ctx):
         colour = nextcord.Colour.blue())
 
         #class maplestory
-        #레벨 추가 예정
-        embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다', inline = True) #22
-        embed.add_field(name = '!유저정보[닉네임]', value = '해당하는 닉네임의 유저정보를 제공합니다', inline = True) #23
-        embed.add_field(name = '!강화공식', value = '주문의 흔적, 스타포스의 강화수치를 제공합니다', inline = True) #24
-        embed.add_field(name = '!무기추옵', value = '파프니르, 앱솔랩스, 아케인셰이드, 제네시스 무기의 추가옵션을 제공합니다', inline = True) #25
-        embed.add_field(name = '!레드큐브[횟수]', value = '레드큐브를 [횟수] 만큼 시뮬레이션 해줍니다.', inline = True) #26
-        embed.add_field(name = '!블랙큐브[횟수]', value = '블랙큐브를 [횟수] 만큼 시뮬레이션 해줍니다.', inline = True) #27
-        embed.add_field(name = '!에디셔널[횟수]', value = '에디셔널큐브를 [횟수] 만큼 시뮬레이션 해줍니다.', inline = True) #28
+        embed.add_field(name = '!메소시세', value = '전날의 메소시세를 알려줍니다', inline = True) #maple-1
+        embed.add_field(name = '!유저정보[닉네임]', value = '해당하는 닉네임의 유저정보를 제공합니다', inline = True) #maple-2
+        embed.add_field(name = '!강화공식', value = '주문의 흔적, 스타포스의 강화수치를 제공합니다', inline = True) #maple-3
+        embed.add_field(name = '!무기추옵', value = '파프니르, 앱솔랩스, 아케인셰이드, 제네시스 무기의 추가옵션을 제공합니다', inline = True) #maple-4
+        embed.add_field(name = '!레드큐브[횟수]', value = '레드큐브를 [횟수] 만큼 시뮬레이션 해줍니다', inline = True) #maple-5
+        embed.add_field(name = '!블랙큐브[횟수]', value = '블랙큐브를 [횟수] 만큼 시뮬레이션 해줍니다', inline = True) #maple-6
+        embed.add_field(name = '!에디셔널[횟수]', value = '에디셔널큐브를 [횟수] 만큼 시뮬레이션 해줍니다', inline = True) #maple-7
+        embed.add_field(name = '!레벨[닉네임]', value = '해당하는 닉네임의 레벨 그래프를 보여줍니다', inline = True) #maple-8
 
         embed.add_field(name = '----------------------------------↑메이플----------------------------------', 
                         value = '----------------------------------↓롤----------------------------------', inline = False)
         #class lol
-        embed.add_field(name = '!협곡[챔피언 이름]', value = '해당 챔피언의 소환사의 협곡 룬을 알려줍니다', inline = True) #29
-        embed.add_field(name = '!칼바람[챔피언 이름]', value = '해당 챔피언의 칼바람나락 룬을 알려줍니다', inline = True) #30
-        embed.add_field(name = '!카운터[챔피언 이름]', value = '해당하는 챔피언의 상성을 알려줍니다', inline = True) #31
-        embed.add_field(name = '!추천메타', value = '현재 롤토체스 추천메타를 알려줍니다', inline = True) #32
+        embed.add_field(name = '!협곡[챔피언 이름]', value = '해당 챔피언의 소환사의 협곡 룬을 알려줍니다', inline = True) #lol-1
+        embed.add_field(name = '!칼바람[챔피언 이름]', value = '해당 챔피언의 칼바람나락 룬을 알려줍니다', inline = True) #lol-2
+        embed.add_field(name = '!카운터[챔피언 이름]', value = '해당하는 챔피언의 상성을 알려줍니다', inline = True) #lol-3
+        embed.add_field(name = '!추천메타', value = '현재 롤토체스 추천메타를 알려줍니다', inline = True) #lol-4
 
         embed.add_field(name = '----------------------------------↑롤----------------------------------', 
                         value = '----------------------------------↓배그----------------------------------', inline = False)
         #class battle_ground
-        embed.add_field(name = '!전적', value = '해당하는 유저의 랭크, 노말게임의 전적을 알려줍니다', inline = True) #33
-        embed.add_field(name = '!맵정보', value = '배틀그라운드 전장의 정보를 제공합니다', inline = True) #34
+        embed.add_field(name = '!전적', value = '해당하는 유저의 랭크, 노말게임의 전적을 알려줍니다', inline = True) #bag-1
+        embed.add_field(name = '!맵정보', value = '배틀그라운드 전장의 정보를 제공합니다', inline = True) #bag-2
         
         await ctx.send(channel, embed = embed)
 
@@ -820,7 +820,7 @@ class maplestory:
 
     username = []
 
-    #22
+    #maple-1
     @bot.command()
     async def 메소시세(ctx):
         options = webdriver.ChromeOptions()
@@ -853,7 +853,7 @@ class maplestory:
         pic_name = 'pic_maple_meso.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
-    #23
+    #maple-2
     @bot.command()
     async def 유저정보(ctx, *, msg):
 
@@ -888,7 +888,7 @@ class maplestory:
         pic_name = 'pic_maple_user_info.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
-    #24
+    #maple-3
     @bot.command()
     async def 강화공식(ctx):
         jumun = Button(label="주문의 흔적", style = nextcord.ButtonStyle.green)
@@ -1036,7 +1036,7 @@ class maplestory:
         view.add_item(star_force_200)
 
         await ctx.send(embed = nextcord.Embed(title='강화수치',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.orange()), view=view)        
-    #25
+    #maple-4
     @bot.command()
     async def 무기추옵(ctx):
 
@@ -1255,7 +1255,7 @@ class maplestory:
         view.add_item(wapon_200_2)
 
         await ctx.send(embed = nextcord.Embed(title='무기 추옵표',description="원하시는 버튼을 클릭해주세요", colour=nextcord.Colour.orange()), view=view)
-    #26
+    #maple-5
     @bot.command()
     async def 레드큐브(ctx, *, msg):
         wapon = Button(label='무기', style = nextcord.ButtonStyle.green)
@@ -1584,7 +1584,7 @@ class maplestory:
         view.add_item(heart) 
 
         await ctx.send(embed = nextcord.Embed(title='레드큐브',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
-    #27
+    #maple-6
     @bot.command()
     async def 블랙큐브(ctx, *, msg):
         wapon = Button(label='무기', style = nextcord.ButtonStyle.green)
@@ -1913,7 +1913,7 @@ class maplestory:
         view.add_item(heart) 
 
         await ctx.send(embed = nextcord.Embed(title='블랙큐브',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
-    #28
+    #maple-7
     @bot.command()
     async def 에디셔널(ctx, *, msg):
         wapon = Button(label='무기', style = nextcord.ButtonStyle.green)
@@ -2242,12 +2242,45 @@ class maplestory:
         view.add_item(heart) 
 
         await ctx.send(embed = nextcord.Embed(title='에디셔널',description="장비 종류를 선택해주세요", colour=nextcord.Colour.orange()), view=view)
-    
+    #maple-8
+    @bot.command()
+    async def 레벨(ctx, *, msg):
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        options.add_argument('window-size=1920x3400')
+        options.add_argument("disable-gpu") 
+        options.add_argument("disable-infobars") 
+        options.add_argument("--disable-extensions")
+        prefs = {'profile.default_content_setting_values': 
+        {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 
+        'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 
+        'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
+        'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
+        options.add_experimental_option('prefs', prefs)
+
+        driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
+
+        try:
+            driver.get('https://maple.gg/u/' + str(msg))
+            element = driver.find_element_by_xpath('//*[@id="app"]/div[3]/div/section/div[2]')
+            element_png = element.screenshot_as_png
+            with open('pic_maple_user_level.png', 'wb') as file:
+                file.write(element_png)
+            driver.quit()
+            print("### capture complete")
+        except Exception as e:
+            print('### error msg :: ', e)
+            driver.quit()
+
+        pic_name = 'pic_maple_user_level.png'
+        pic = pic_name.split(' ')[0]
+        await ctx.send(file = nextcord.File(pic))
+
 class lol:
     
     champ = []
     link = []
-    #29
+    #lol-1
     @bot.command()
     async def 협곡(ctx, *, msg):
 
@@ -2285,7 +2318,7 @@ class lol:
         pic_name = 'pic_lol_lune.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
-    #30
+    #lol-2
     @bot.command()
     async def 칼바람(ctx, *, msg):
         options = webdriver.ChromeOptions()
@@ -2326,7 +2359,7 @@ class lol:
         pic_name = 'pic_lol_aram.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
-    #31
+    #lol-3
     @bot.command()
     async def 카운터(ctx, *, msg):
         options = webdriver.ChromeOptions()
@@ -2364,7 +2397,7 @@ class lol:
         pic_name = 'pic_lol_counter.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
-    #32
+    #lol-4
     @bot.command()
     async def 추천메타(ctx):
 
@@ -2401,7 +2434,7 @@ class lol:
         await ctx.send(file = nextcord.File(pic))
 
 class battleground:
-    #33
+    #bag-1
     @bot.command()
     async def 전적(ctx, *, msg):
         steam = Button(label='STEAM', style = nextcord.ButtonStyle.green)
@@ -2609,7 +2642,7 @@ class battleground:
         view.add_item(Xbox)
 
         await ctx.send(embed = nextcord.Embed(title='배그 전적검색',description='서버를 선택해주세요', colour=nextcord.Colour.dark_green()), view=view)
-    #34
+    #vag-2
     @bot.command()
     async def 맵정보(ctx):
         Erangel = Button(label='에란겔', style = nextcord.ButtonStyle.green)
