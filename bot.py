@@ -30,7 +30,7 @@ import numpy as np
 import maple_cube
 import lol_info
 
-TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN_testbot.txt','r')
+TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN.txt','r')
 TOKEN = TOKENVALUE.read()
 TOKENVALUE.close()
 
@@ -2305,7 +2305,7 @@ class lol:
             element.send_keys(str(msg))
             element.send_keys(Keys.RETURN)
 
-            element = driver.find_element_by_xpath('/html/body/main/div[1]/section')
+            element = driver.find_element_by_xpath('/html/body/main/div[3]/section')
             element_png = element.screenshot_as_png
             with open('pic_lol_lune.png', 'wb') as file:
                 file.write(element_png)
@@ -2660,49 +2660,64 @@ class battleground:
             embed = nextcord.Embed(title = '배그 맵정보',
                     description = '에란겔',
                     colour = nextcord.Colour.blue())
-            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/erangel/')
+            embed.add_field(name='https://pubg.inven.co.kr/dataninfo/map/erangel/', value='링크를 클릭해주세요', inline=False)
+            await ctx.send(ctx.channel, embed = embed)
 
         async def Miramar_callback(interaction):
             embed = nextcord.Embed(title = '배그 맵정보',
                     description = '미라마',
                     colour = nextcord.Colour.blue())
-            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/miramar/')            
+            embed.add_field(name='https://pubg.inven.co.kr/dataninfo/map/miramar/', value='링크를 클릭해주세요', inline=False)
+            await ctx.send(ctx.channel, embed = embed)
+
         async def Taego_callback(interaction):
             embed = nextcord.Embed(title = '배그 맵정보',
                     description = '태이고',
                     colour = nextcord.Colour.blue())
-            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/taego/')
+            embed.add_field(name='https://pubg.inven.co.kr/dataninfo/map/taego/', value='링크를 클릭해주세요', inline=False)
+            await ctx.send(ctx.channel, embed = embed)
+
         async def DESTON_callback(interaction):
             pic_name = 'pic_battleground_DESTON.png'
             pic = pic_name.split(' ')[0]
             await ctx.send('데스턴 (빨간색 = 등강기)\n' + '아직 인벤에 업로드되지 않은 맵이므로 정확한이미지가 없습니다')
             await ctx.send(file = nextcord.File(pic))
+
         async def Vikendi_callback(interaction):
             embed = nextcord.Embed(title = '배그 맵정보',
-                    description = '미라마',
+                    description = '비켄디',
                     colour = nextcord.Colour.blue())
-            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/vikendi/')                
-            await ctx.send('https://pubg.inven.co.kr/dataninfo/map/vikendi/')
+            embed.add_field(name='https://pubg.inven.co.kr/dataninfo/map/vikendi/', value='링크를 클릭해주세요', inline=False)                
+            await ctx.send(ctx.channel, embed = embed)
+
         async def Sanhok_callback(interaction):
             embed = nextcord.Embed(title = '배그 맵정보',
                     description = '사녹',
                     colour = nextcord.Colour.blue())
-            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/sanhok/')    
+            embed.add_field(name='https://pubg.inven.co.kr/dataninfo/map/sanhok/', value='링크를 클릭해주세요', inline=False)   
+            await ctx.send(ctx.channel, embed = embed)
+
         async def Paramo_callback(interaction):
             embed = nextcord.Embed(title = '배그 맵정보',
                     description = '파라모',
                     colour = nextcord.Colour.blue())
-            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/paramo/')    
+            embed.add_field(name='https://pubg.inven.co.kr/dataninfo/map/paramo/', value='링크를 클릭해주세요', inline=False)  
+            await ctx.send(ctx.channel, embed = embed)
+              
         async def Karakin_callback(interaction):
             embed = nextcord.Embed(title = '배그 맵정보',
                     description = '카라킨',
                     colour = nextcord.Colour.blue())
-            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/karakin/')    
+            embed.add_field(name='https://pubg.inven.co.kr/dataninfo/map/karakin/', value='링크를 클릭해주세요', inline=False)
+            await ctx.send(ctx.channel, embed = embed)
+
         async def HAVEN_callback(interaction):
             embed = nextcord.Embed(title = '배그 맵정보',
                     description = '헤이븐', 
                     colour = nextcord.Colour.blue())
-            embed.set_footer(text = 'https://pubg.inven.co.kr/dataninfo/map/haven/')    
+            embed.add_field(name='https://pubg.inven.co.kr/dataninfo/map/haven/', value='링크를 클릭해주세요', inline=False)
+            await ctx.send(ctx.channel, embed = embed)
+
         async def Camp_callback(interaction):
             await ctx.send('test success')
 
