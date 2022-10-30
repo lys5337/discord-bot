@@ -58,32 +58,32 @@ async def 명령어(ctx):
         description = '모든 명령어 앞에는 !를 붙입니다',
         colour = nextcord.Colour.blue())
         #class musicbot
-        embed.add_field(name = '!들어와', value = '봇이 음성채널에 참가합니다(사용자가 있을경우에만)',inline = True) #01
-        embed.add_field(name = '!나가', value = '봇이 음성채널에서 나갑니다', inline = True) #02
-        embed.add_field(name = '!재생[제목/링크]', value = '제목/링크를 입력하면 재생합니다, 이미 재생중이라면 목록에 추가합니다', inline = True) #03
-        embed.add_field(name = '!반복재생[제목/링크]', value = '제목/링크를 입력하면 그 노래를 반복재생합니다.', inline = True) #04
-        embed.add_field(name = '!멜론차트', value = '최신 주의 멜론차트를 재생합니다', inline = True) #05
-        embed.add_field(name = '!지금노래', value = '현재 재생중인 곡의 제목을 알려줍니다', inline = True) #06
-        embed.add_field(name = '!목록', value = '앞으로 재생할 곡의 리스트를 보여줍니다.', inline = True) #07
-        embed.add_field(name = '!추가/삭제[제목,링크]', value = '목록에있는 리스트에 추가/삭제 합니다', inline = True) #08
-        embed.add_field(name = '!목록재생', value = '목록에 등록되어있는 리스트를 재생합니다', inline = True) #09
-        embed.add_field(name = '!목록초기화', value = '현재 목록에 등록된 모든 노래를 초기화시킵니다', inline = True) #10
-        embed.add_field(name = '!목록섞기', value = '현재 목록에 등록된 모든 노래의 순서를 랜덤하게 섞습니다', inline = True) #11
-        embed.add_field(name = '!일시정지', value = '현재 재생중인 곡을 일시정지 시킵니다.', inline = True) #12
-        embed.add_field(name = '!다시재생', value = '일시정지중인 곡을 다시 재생시킵니다', inline = True) #13
-        embed.add_field(name = '!노래끄기', value = '현재 재생중인 곡을 즉시종료시킵니다', inline = True) #14
-        embed.add_field(name = '!스킵', value = '현재 재생중인 곡을 스킵하고 다음곡을 재생합니다', inline = True) #15
-        embed.add_field(name = '!즐겨찾기', value = '유저별로 플레이리스트를 저장하여 보여줍니다', inline = True) #16
-        embed.add_field(name = '!즐겨찾기추가 / 즐겨찾기삭제', value = '유저별 즐겨찾기 목록에 곡을 추가/삭제 합니다', inline = True) #17
-        embed.add_field(name = '!정밀검색', value = '검색한 내용의 유튜브영상을 최대 5개까지 보여줍니다') #18
+        embed.add_field(name = '!들어와', value = '봇이 음성채널에 참가합니다(사용자가 있을경우에만)',inline = True) #musicbot-1
+        embed.add_field(name = '!나가', value = '봇이 음성채널에서 나갑니다', inline = True) #musicbot-2
+        embed.add_field(name = '!재생[제목/링크]', value = '제목/링크를 입력하면 재생합니다, 이미 재생중이라면 목록에 추가합니다', inline = True) #musicbot-3
+        embed.add_field(name = '!반복재생[제목/링크]', value = '제목/링크를 입력하면 그 노래를 반복재생합니다.', inline = True) #musicbot-4
+        embed.add_field(name = '!멜론차트', value = '최신 주의 멜론차트를 재생합니다', inline = True) #musicbot-5
+        embed.add_field(name = '!지금노래', value = '현재 재생중인 곡의 제목을 알려줍니다', inline = True) #musicbot-6
+        embed.add_field(name = '!목록', value = '앞으로 재생할 곡의 리스트를 보여줍니다.', inline = True) #musicbot-7
+        embed.add_field(name = '!추가/삭제[제목,링크]', value = '목록에있는 리스트에 추가/삭제 합니다', inline = True) #musicbot-8
+        embed.add_field(name = '!목록재생', value = '목록에 등록되어있는 리스트를 재생합니다', inline = True) #musicbot-9
+        embed.add_field(name = '!목록초기화', value = '현재 목록에 등록된 모든 노래를 초기화시킵니다', inline = True) #musicbot-10
+        embed.add_field(name = '!목록섞기', value = '현재 목록에 등록된 모든 노래의 순서를 랜덤하게 섞습니다', inline = True) #musicbot-11
+        embed.add_field(name = '!일시정지', value = '현재 재생중인 곡을 일시정지 시킵니다.', inline = True) #musicbot-12
+        embed.add_field(name = '!다시재생', value = '일시정지중인 곡을 다시 재생시킵니다', inline = True) #musicbot-13
+        embed.add_field(name = '!노래끄기', value = '현재 재생중인 곡을 즉시종료시킵니다', inline = True) #musicbot-14
+        embed.add_field(name = '!스킵', value = '현재 재생중인 곡을 스킵하고 다음곡을 재생합니다', inline = True) #musicbot-15
+        embed.add_field(name = '!즐겨찾기', value = '유저별로 플레이리스트를 저장하여 보여줍니다', inline = True) #musicbot-16
+        embed.add_field(name = '!즐겨찾기추가 / 즐겨찾기삭제', value = '유저별 즐겨찾기 목록에 곡을 추가/삭제 합니다', inline = True) #musicbot-17
+        embed.add_field(name = '!정밀검색', value = '검색한 내용의 유튜브영상을 최대 5개까지 보여줍니다') #musicbot-18
 
         embed.add_field(name = '----------------------------------↑음악----------------------------------', 
                         value = '----------------------------------↓기타----------------------------------', inline = False)
         #class weather
-        embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #19
-        embed.add_field(name = '!해외날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #20
+        embed.add_field(name = '!날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #weather-1
+        embed.add_field(name = '!해외날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #weather-2
         #class lotto
-        embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #21
+        embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #lotto-1
 
         await ctx.send(channel, embed = embed)
 
@@ -228,7 +228,7 @@ class musicbot:
                 vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
                 client.loop.create_task(musicbot.subtitle_song(ctx, URL))
 
-    #01
+    #musicbot-1
     @bot.command() 
     async def 들어와(ctx): 
         try:
@@ -240,14 +240,14 @@ class musicbot:
                 await vc.move_to(ctx.message.author.voice.channel)
             except:
                 await ctx.send('채널어 유저가 접속해있지 않네요..')
-    #02        
+    #musicbot-2        
     @bot.command()
     async def 나가(ctx):
         try:
             await vc.disconnect()
         except:
             await ctx.send('이미 그 채널에 속해있지 않아요.')
-    #03
+    #musicbot-3
     @bot.command()
     async def 재생(ctx, *, msg):
         if not vc.is_playing():
@@ -291,7 +291,7 @@ class musicbot:
             result, URLTEST = musicbot.title(msg)
             musicbot.song_queue.append(URLTEST)
             await ctx.send('이미 노래가 재생중이라' + result + '을(를) 대기열로 추가시켰습니다')
-    #04
+    #musicbot-4
     @bot.command()
     async def 반복재생(ctx, *, msg):
 
@@ -342,7 +342,7 @@ class musicbot:
             musicbot.again(ctx, url)
         else : 
             await ctx.send('현재 노래가 재생중이라 반복재생 할 수 없네요.. 노래를 끄거나 일시정지 한 후 사용해주세요')
-    #05    
+    #musicbot-5    
     @bot.command()
     async def 멜론차트(ctx):
         if not vc.is_playing():
@@ -383,14 +383,14 @@ class musicbot:
             vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
         else:
             await ctx.send("이미 노래가 재생 중이라 노래를 재생할 수 없어요!")
-    #06
+    #musicbot-6
     @bot.command()
     async def 지금노래(ctx):
         if not vc.is_playing():
             await ctx.send("지금은 노래가 재생되지 않네요..")
         else:
             await ctx.send(embed = nextcord.Embed(title = "지금노래", description = "현재 " + musicbot.musicnow[0] + "을(를) 재생하고 있습니다.", color = 0x00ff00))
-    #07            
+    #musicbot-7            
     @bot.command()
     async def 목록(ctx):
         if len(musicbot.musictitle) == 0:
@@ -402,7 +402,7 @@ class musicbot:
                 Text = Text + "\n" + str(i + 1) + ". " + str(musicbot.musictitle[i])
                 
             await ctx.send(embed = nextcord.Embed(title= "노래목록", description = Text.strip(), color = 0x00ff00))
-    #08
+    #musicbot-8
     @bot.command()
     async def 추가(ctx, *, msg):
         musicbot.user.append(msg)
@@ -428,7 +428,7 @@ class musicbot:
                     await ctx.send("숫자의 범위가 목록개수를 벗어났습니다!")
                 else:
                     await ctx.send("숫자를 입력해주세요!")
-    #09
+    #musicbot-9
     @bot.command()
     async def 목록재생(ctx):
 
@@ -445,7 +445,7 @@ class musicbot:
                 musicbot.play(ctx)
             else:
                 await ctx.send("노래가 이미 재생되고 있어요!")
-    #10
+    #musicbot-10
     @bot.command()
     async def 목록초기화(ctx):
         try:
@@ -461,7 +461,7 @@ class musicbot:
             await ctx.send(embed = nextcord.Embed(title= "목록초기화", description = """목록이 정상적으로 초기화되었습니다. 이제 노래를 등록해볼까요?""", color = 0x00ff00))
         except:
             await ctx.send("아직 아무노래도 등록하지 않았어요.")
-    #11                
+    #musicbot-11                
     @bot.command()
     async def 목록섞기(ctx):
         try:
@@ -485,7 +485,7 @@ class musicbot:
             await ctx.send('목록을 정상적으로 섞었습니다')
         except:
             await ctx.send('섞을 목록이 없습니다')
-    #12
+    #musicbot-12
     @bot.command()
     async def 일시정지(ctx):
         if vc.is_playing():
@@ -493,7 +493,7 @@ class musicbot:
             await ctx.send(embed = nextcord.Embed(title = '일시정지', discription = musicbot.musicnow[0] + '을(를) 일시정지 했습니다', color = 0x00ff00))
         else:
             await ctx.send('지금 노래가 재생되지 않네요')
-    #13
+    #musicbot-13
     @bot.command()
     async def 다시재생(ctx):
         try:
@@ -501,7 +501,7 @@ class musicbot:
             await ctx.send(embed = nextcord.Embed(title = '일시정지', discription = musicbot.musicnow[0] + '을(를) 다시 재생했습니다', color = 0x00ff00))
         except:
             await ctx.send('지금 노래가 재생되지 않네요')
-    #14
+    #musicbot-14
     @bot.command()
     async def 노래끄기(ctx):
         if vc.is_playing():
@@ -511,7 +511,7 @@ class musicbot:
             await ctx.send(embed = nextcord.Embed(title = '노래끄기', discription = musicbot.musicnow[0] + '을(를) 종료했습니다', color = 0x00ff00))
         else:
             await ctx.send('지금 노래가 재생되지 않네요')
-    #15
+    #musicbot-15
     @bot.command()
     async def 스킵(ctx):
         if len(musicbot.user) >= 1:
@@ -521,7 +521,7 @@ class musicbot:
                 number = 0
                 await ctx.send(embed = nextcord.Embed(title = '스킵', description = musicbot.musicnow[1] 
                 + '을(를) 다음에 재생합니다', color = 0x00ff00))
-    #16
+    #musicbot-16
     @bot.command()
     async def 즐겨찾기(ctx):
         global Ftext
@@ -550,7 +550,7 @@ class musicbot:
                     await Flist.add_reaction("\U0001F4DD")
                 else:
                     await ctx.send("아직 등록하신 즐겨찾기가 없어요.")
-    #17
+    #musicbot-17
     @bot.command()
     async def 즐겨찾기추가(ctx, *, msg):
         correct = 0
@@ -658,7 +658,7 @@ class musicbot:
                 elif str(reaction.emoji) == '\U0001F4DD':
                     await reaction.message.channel.send("플레이리스트가 나오면 생길 기능이랍니다. 추후에 올릴 영상을 기다려주세요!")
  
-    #18
+    #musicbot-18
     @bot.command()
     async def 정밀검색(ctx, *, msg):
         Text = ""
@@ -716,7 +716,7 @@ class musicbot:
 class weather:
 
     location = []
-    #19
+    #weather-1
     @bot.command()
     async def 날씨(ctx, *,msg):
         weather.location.append(msg)
@@ -762,7 +762,7 @@ class weather:
         await ctx.send(ctx.channel,embed=embed)
 
         del weather.location[0]
-    #20
+    #weather-2
     @bot.command()
     async def 해외날씨(ctx, *,msg):
         weather.location.append(msg)
@@ -799,7 +799,7 @@ class weather:
 
 class lotto:
 
-    #21
+    #lotto-1
     @bot.command()
     async def 복권(ctx):
 
