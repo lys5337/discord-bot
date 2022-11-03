@@ -2537,12 +2537,13 @@ class lol:
             element.send_keys(str(msg))
             element.send_keys(Keys.RETURN)
 
-            element = driver.find_element_by_xpath('/html/body/main/div[1]/div[2]/section[2]/div')
+            element = driver.find_element_by_xpath('/html/body/main/div[3]/div[3]/section[2]/div')
             element_png = element.screenshot_as_png
             with open('pic_lol_counter.png', 'wb') as file:
                 file.write(element_png)
             driver.quit()
             print("### capture complete")
+            os.remove()
         except Exception as e:
             print('### error msg :: ', e)
             driver.quit()
