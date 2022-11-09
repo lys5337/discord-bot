@@ -29,6 +29,7 @@ import urllib.request
 import numpy as np
 import maple_cube
 import lol_info
+import os
 
 TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN.txt','r')
 TOKEN = TOKENVALUE.read()
@@ -854,6 +855,8 @@ class maplestory:
         pic_name = 'pic_maple_meso.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
+        os.remove('pic_maple_meso.png')
+
     #maple-2
     @bot.command()
     async def 유저정보(ctx, *, msg):
@@ -889,6 +892,8 @@ class maplestory:
         pic_name = 'pic_maple_user_info.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
+        os.remove('pic_maple_user_info.png')
+
     #maple-3
     @bot.command()
     async def 강화공식(ctx):
@@ -2276,6 +2281,8 @@ class maplestory:
         pic_name = 'pic_maple_user_level.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
+        os.remove('pic_maple_user_level.png')
+        
     #maple-9
     @bot.command()
     async def 심볼(ctx):
@@ -2471,6 +2478,7 @@ class lol:
         pic_name = 'pic_lol_lune.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
+        os.remove('pic_lol_lune.png')
     #lol-2
     @bot.command()
     async def 칼바람(ctx, *, msg):
@@ -2512,6 +2520,7 @@ class lol:
         pic_name = 'pic_lol_aram.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
+        os.remove('pic_lol_aram.png')
     #lol-3
     @bot.command()
     async def 카운터(ctx, *, msg):
@@ -2543,7 +2552,6 @@ class lol:
                 file.write(element_png)
             driver.quit()
             print("### capture complete")
-            os.remove()
         except Exception as e:
             print('### error msg :: ', e)
             driver.quit()
@@ -2551,6 +2559,7 @@ class lol:
         pic_name = 'pic_lol_counter.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
+        os.remove('pic_lol_counter.png')
     #lol-4
     @bot.command()
     async def 추천메타(ctx):
@@ -2586,6 +2595,7 @@ class lol:
         pic_name = 'pic_lol_TFT_meta.png'
         pic = pic_name.split(' ')[0]
         await ctx.send(file = nextcord.File(pic))
+        os.remove('pic_lol_TFT_meta.png')
 
 class battleground:
     #bag-1
@@ -2646,6 +2656,9 @@ class battleground:
             await ctx.send('일반')
             await ctx.send(file = nextcord.File(pic))
 
+            os.remove('pic_battleground_rank.png')
+            os.remove('pic_battleground_normal.png')
+
         async def kakao_callback(interaction):
             try:
                 driver.get('https://dak.gg/pubg/profile/kakao/'+ str(msg))
@@ -2680,6 +2693,9 @@ class battleground:
             await ctx.send('일반')
             await ctx.send(file = nextcord.File(pic))
 
+            os.remove('pic_battleground_rank.png')
+            os.remove('pic_battleground_normal.png')
+
         async def psn_callback(interaction):
             try:
                 driver.get('https://dak.gg/pubg/profile/psn/'+ str(msg))
@@ -2713,6 +2729,9 @@ class battleground:
             pic = pic_name.split(' ')[0]
             await ctx.send('일반')
             await ctx.send(file = nextcord.File(pic))
+            
+            os.remove('pic_battleground_rank.png')
+            os.remove('pic_battleground_normal.png')
 
         async def Stadia_callback(interaction):
             try:
@@ -2748,6 +2767,9 @@ class battleground:
             await ctx.send('일반')
             await ctx.send(file = nextcord.File(pic))
 
+            os.remove('pic_battleground_rank.png')
+            os.remove('pic_battleground_normal.png')
+
         async def Xbox_callback(interaction):
             try:
                 driver.get('https://dak.gg/pubg/profile/xbox/'+ str(msg))
@@ -2781,6 +2803,9 @@ class battleground:
             pic = pic_name.split(' ')[0]
             await ctx.send('일반')
             await ctx.send(file = nextcord.File(pic))
+
+            os.remove('pic_battleground_rank.png')
+            os.remove('pic_battleground_normal.png')
 
         steam.callback = steam_callback
         kakao.callback = kakao_callback
