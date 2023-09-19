@@ -13,11 +13,13 @@ from nextcord.ext import commands
 from nextcord.utils import get
 from pkg_resources import empty_provider
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from numpy import number
 from youtube_dl import YoutubeDL
 import bs4
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 from nextcord import Embed, FFmpegPCMAudio, Interaction
 import asyncio
 import time
@@ -85,7 +87,8 @@ async def 명령어(ctx):
         embed.add_field(name = '!해외날씨[지역]', value = '해당하는 지역의 오늘의 날씨정보와 내일의 날씨정보를 알려줍니다', inline = True) #weather-2
         #class lotto
         embed.add_field(name = '!복권', value = '복권번호를 랜덤추첨 합니다', inline = True) #lotto-1
-
+        #class Translator [미구현]
+        embed.add_field(name = '!번역', value = '번역하고 싶은 글을 원하는 언어로 번역해줍니다', inline = True)
         await ctx.send(channel, embed = embed)
 
     async def command_game_callback(interaction):
@@ -147,6 +150,7 @@ class musicbot:
         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
+        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
         options.add_argument("disable-gpu") 
@@ -159,8 +163,8 @@ class musicbot:
         'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
         options.add_experimental_option('prefs', prefs)
 
-        chromedriver_dir = r"C:\Users\c\Desktop\chromedriver.exe"
-        driver = webdriver.Chrome(chromedriver_dir, options = options)
+        #chromedriver_dir = r"C:\Users\c\Desktop\chromedriver.exe"
+        driver = webdriver.Chrome(service = service, options = options)
         driver.get("https://www.youtube.com/results?search_query="+msg+"+lyrics")
         source = driver.page_source
         bs = bs4.BeautifulSoup(source, 'lxml')
@@ -253,6 +257,7 @@ class musicbot:
     async def 재생(ctx, *, msg):
         if not vc.is_playing():
 
+            service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
             options = webdriver.ChromeOptions()
             options.add_argument('headless')
             options.add_argument("disable-gpu") 
@@ -264,13 +269,13 @@ class musicbot:
             'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 
             'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
             options.add_experimental_option('prefs', prefs)
-
+            
             global entireText
             YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
             FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
-            chromedriver_dir = (r'C:\Users\c\Desktop\chromedriver.exe')
-            driver = webdriver.Chrome(chromedriver_dir, options = options)
+            #chromedriver_dir = (r'C:\Users\c\Desktop\chromedriver.exe')
+            driver = webdriver.Chrome(service = service, options = options)
             driver.get("https://www.youtube.com/results?search_query="+msg+"+lyrics")
             source = driver.page_source
             bs = bs4.BeautifulSoup(source, 'lxml')
@@ -287,6 +292,7 @@ class musicbot:
             URL = info['formats'][0]['url']
             await ctx.send(embed = nextcord.Embed(title= "노래 재생", description = "현재 " + musicbot.musicnow[0] + "을(를) 재생하고 있습니다.", color = 0x00ff00))
             vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
+            
         else:
             musicbot.user.append(msg)
             result, URLTEST = musicbot.title(msg)
@@ -296,6 +302,7 @@ class musicbot:
     @bot.command()
     async def 반복재생(ctx, *, msg):
 
+        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
         options.add_argument("disable-gpu") 
@@ -329,7 +336,7 @@ class musicbot:
                     del musicbot.musicnow[0]
                     
             chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
-            driver = webdriver.Chrome(chromedriver_dir, options = options)
+            driver = webdriver.Chrome(service = service, options = options)
             driver.get("https://www.youtube.com/results?search_query="+msg+"+lyrics")
             source = driver.page_source
             bs = bs4.BeautifulSoup(source, 'lxml')
@@ -348,6 +355,7 @@ class musicbot:
     async def 멜론차트(ctx):
         if not vc.is_playing():
             
+            service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
             options = webdriver.ChromeOptions()
             options.add_argument("headless")
             options.add_argument("disable-gpu") 
@@ -365,7 +373,7 @@ class musicbot:
             FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
                 
             chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
-            driver = webdriver.Chrome(chromedriver_dir, options = options)
+            driver = webdriver.Chrome(service = service, options = options)
             driver.get("https://www.youtube.com/results?search_query=멜론차트")
             source = driver.page_source
             bs = bs4.BeautifulSoup(source, 'lxml')
@@ -566,6 +574,7 @@ class musicbot:
         for i in range(len(musicbot.userFlist)):
             if musicbot.userFlist[i][0] == str(ctx.message.author.name):
                 
+                service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
                 options = webdriver.ChromeOptions()
                 options.add_argument("headless")
                 options.add_argument("disable-gpu") 
@@ -578,8 +587,8 @@ class musicbot:
                 'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
                 options.add_experimental_option('prefs', prefs)
 
-                chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
-                driver = webdriver.Chrome(chromedriver_dir, options = options)
+                #chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
+                driver = webdriver.Chrome(service = service, options = options)
                 driver.get("https://www.youtube.com/results?search_query="+msg+"+lyrics")
                 source = driver.page_source
                 bs = bs4.BeautifulSoup(source, 'lxml')
@@ -617,6 +626,7 @@ class musicbot:
     @bot.event
     async def on_reaction_add(reaction, users):
 
+        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
         options.add_argument("disable-gpu") 
@@ -629,8 +639,8 @@ class musicbot:
         'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
         options.add_experimental_option('prefs', prefs)
 
-        chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
-        driver = webdriver.Chrome(chromedriver_dir, options = options)
+        #chromedriver_dir = (r"C:\Users\c\Desktop\chromedriver.exe")
+        driver = webdriver.Chrome(service = service, options = options)
         
         if users.bot == 1:
             pass
@@ -662,6 +672,8 @@ class musicbot:
     #musicbot-18
     @bot.command()
     async def 정밀검색(ctx, *, msg):
+        
+        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
         Text = ""
         global rinklist
         global Alist
@@ -692,7 +704,7 @@ class musicbot:
         options.add_experimental_option('prefs', prefs)
 
         chromedriver_dir = r"C:\Users\c\Desktop\chromedriver.exe"
-        driver = webdriver.Chrome(chromedriver_dir, options = options)
+        driver = webdriver.Chrome(service = service, options = options)
 
         driver.get("https://www.youtube.com/results?search_query="+msg)
         source = driver.page_source
@@ -716,6 +728,8 @@ class musicbot:
 
 class weather:
 
+    #service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
+    
     location = []
     #weather-1
     @bot.command()
@@ -817,6 +831,24 @@ class lotto:
             colour=nextcord.Color.red()
         )
         await ctx.send(ctx.channel, embed=embed)
+#미완성
+class translator:
+    @bot.command()
+    async def 번역(ctx, *, msg):
+
+        hdr = {'User-Agent': 'Mozilla/5.0'}
+        url = ('https://translate.google.co.kr/?hl=ko&sl=auto&tl=en&text=' + str(msg))
+        req = Request(url, headers=hdr)
+        html = urllib.request.urlopen(req)
+        bsObj = bs4.BeautifulSoup(html, "html.parser")
+        result_base = bsObj.find('div', {'class': 'lRu31'})
+        
+
+        result1 = result_base.find('span', {'class': 'HwtZe'})
+        print(result1)
+        result = result1.text.strip()
+        print(result)
+        await ctx.send(ctx.channel, result)
 
 class maplestory:
 
@@ -2459,13 +2491,13 @@ class lol:
         driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
 
         try:
-            driver.get('https://lol.ps/ko/statistics/')
-            element = driver.find_element_by_name('q')
+            driver.get('https://lol.ps/')
+            element = driver.find_elements_by_id("default-search")
             element.clear
             element.send_keys(str(msg))
             element.send_keys(Keys.RETURN)
 
-            element = driver.find_element_by_xpath('/html/body/main/div[3]/section')
+            element = driver.find_element_by_xpath('/html/body/main/div[3]')
             element_png = element.screenshot_as_png
             with open('pic_lol_lune.png', 'wb') as file:
                 file.write(element_png)
@@ -2482,6 +2514,8 @@ class lol:
     #lol-2
     @bot.command()
     async def 칼바람(ctx, *, msg):
+
+        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x3400')
@@ -2495,7 +2529,7 @@ class lol:
         'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
         options.add_experimental_option('prefs', prefs)
 
-        driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
+        driver = webdriver.Chrome(service = service, options=options)
 
         for i in range(len(lol_info.champ_name.champ_kr)):
             if msg == lol_info.champ_name.champ_kr[i]:
@@ -2507,7 +2541,7 @@ class lol:
         
         try:
             driver.get('https://poro.gg/champions/'+str(msg)+'/aram')
-            element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/section[2]')
+            element = driver.find_element(By.XPATH,'//*[@id="__layout"]/div/main/div[2]/section[2]')
             element_png = element.screenshot_as_png
             with open('pic_lol_aram.png', 'wb') as file:
                 file.write(element_png)
@@ -2601,6 +2635,8 @@ class battleground:
     #bag-1
     @bot.command()
     async def 전적(ctx, *, msg):
+
+        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
         steam = Button(label='STEAM', style = nextcord.ButtonStyle.green)
         kakao = Button(label='kakao', style = nextcord.ButtonStyle.green)
         psn = Button(label='PSN', style = nextcord.ButtonStyle.green)
@@ -2620,17 +2656,17 @@ class battleground:
         'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}
         options.add_experimental_option('prefs', prefs)
 
-        driver = webdriver.Chrome(r"C:\Users\c\Desktop\chromedriver.exe", options=options)
+        driver = webdriver.Chrome(service = service, options=options)
 
         async def steam_callback(interaction):
             try:
                 driver.get('https://dak.gg/pubg/profile/steam/'+ str(msg))
-                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
+                element = driver.find_element(By.XPATH,'//*[@id="content-container"]/div/div/section[1]/section[1]')
                 element_png = element.screenshot_as_png
                 with open('pic_battleground_rank.png', 'wb') as file:
                     file.write(element_png)
                     
-                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
+                element = driver.find_element(By.XPATH,'//*[@id="content-container"]/div/div/section[1]/section[2]')
                 element_png = element.screenshot_as_png
                 with open('pic_battleground_normal.png', 'wb') as file:
                     file.write(element_png)
@@ -2662,12 +2698,12 @@ class battleground:
         async def kakao_callback(interaction):
             try:
                 driver.get('https://dak.gg/pubg/profile/kakao/'+ str(msg))
-                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
+                element = driver.find_element(By.XPATH,'//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
                 element_png = element.screenshot_as_png
                 with open('pic_battleground_rank.png', 'wb') as file:
                     file.write(element_png)
                     
-                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
+                element = driver.find_element(By.XPATH,'//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
                 element_png = element.screenshot_as_png
                 with open('pic_battleground_normal.png', 'wb') as file:
                     file.write(element_png)
@@ -2699,12 +2735,12 @@ class battleground:
         async def psn_callback(interaction):
             try:
                 driver.get('https://dak.gg/pubg/profile/psn/'+ str(msg))
-                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
+                element = driver.find_element(By.XPATH,'//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
                 element_png = element.screenshot_as_png
                 with open('pic_battleground_rank.png', 'wb') as file:
                     file.write(element_png)
                     
-                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
+                element = driver.find_element(By.XPATH,'//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
                 element_png = element.screenshot_as_png
                 with open('pic_battleground_normal.png', 'wb') as file:
                     file.write(element_png)
@@ -2736,12 +2772,12 @@ class battleground:
         async def Stadia_callback(interaction):
             try:
                 driver.get('https://dak.gg/pubg/profile/stadia/'+ str(msg))
-                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
+                element = driver.find_element(By.XPATH,'//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
                 element_png = element.screenshot_as_png
                 with open('pic_battleground_rank.png', 'wb') as file:
                     file.write(element_png)
                     
-                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
+                element = driver.find_element(By.XPATH,'//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
                 element_png = element.screenshot_as_png
                 with open('pic_battleground_normal.png', 'wb') as file:
                     file.write(element_png)
@@ -2773,12 +2809,12 @@ class battleground:
         async def Xbox_callback(interaction):
             try:
                 driver.get('https://dak.gg/pubg/profile/xbox/'+ str(msg))
-                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
+                element = driver.find_element(By.XPATH,'//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[1]')
                 element_png = element.screenshot_as_png
                 with open('pic_battleground_rank.png', 'wb') as file:
                     file.write(element_png)
                     
-                element = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
+                element = driver.find_element(By.XPATH,'//*[@id="__layout"]/div/main/div[2]/div/section[1]/section[2]')
                 element_png = element.screenshot_as_png
                 with open('pic_battleground_normal.png', 'wb') as file:
                     file.write(element_png)
