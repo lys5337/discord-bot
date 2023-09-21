@@ -33,7 +33,7 @@ import maple_cube
 import lol_info
 import os
 
-TOKENVALUE = open(r'C:\Users\c\Desktop\bot_TOKEN\discord_TOKEN.txt','r')
+TOKENVALUE = open(r'C:\Users\yesun\OneDrive\바탕 화면\bot_TOKEN\discord_TOKEN.txt','r')
 TOKEN = TOKENVALUE.read()
 TOKENVALUE.close()
 
@@ -150,7 +150,7 @@ class musicbot:
         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
-        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
+        service = Service(executable_path=r'C:\Users\yesun\OneDrive\바탕 화면\chromedriver.exe')
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
         options.add_argument("disable-gpu") 
@@ -257,7 +257,7 @@ class musicbot:
     async def 재생(ctx, *, msg):
         if not vc.is_playing():
 
-            service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
+            service = Service(executable_path=r'C:\Users\yesun\OneDrive\바탕 화면\chromedriver.exe')
             options = webdriver.ChromeOptions()
             options.add_argument('headless')
             options.add_argument("disable-gpu") 
@@ -274,7 +274,7 @@ class musicbot:
             YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
             FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
-            #chromedriver_dir = (r'C:\Users\c\Desktop\chromedriver.exe')
+            #chromedriver_dir = (r'C:\Users\yesun\OneDrive\바탕 화면\chromedriver.exe')
             driver = webdriver.Chrome(service = service, options = options)
             driver.get("https://www.youtube.com/results?search_query="+msg+"+lyrics")
             source = driver.page_source
@@ -302,7 +302,7 @@ class musicbot:
     @bot.command()
     async def 반복재생(ctx, *, msg):
 
-        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
+        service = Service(executable_path=r'C:\Users\yesun\OneDrive\바탕 화면\chromedriver.exe')
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
         options.add_argument("disable-gpu") 
@@ -355,7 +355,7 @@ class musicbot:
     async def 멜론차트(ctx):
         if not vc.is_playing():
             
-            service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
+            service = Service(executable_path=r'C:\Users\yesun\OneDrive\바탕 화면\chromedriver.exe')
             options = webdriver.ChromeOptions()
             options.add_argument("headless")
             options.add_argument("disable-gpu") 
@@ -574,7 +574,7 @@ class musicbot:
         for i in range(len(musicbot.userFlist)):
             if musicbot.userFlist[i][0] == str(ctx.message.author.name):
                 
-                service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
+                service = Service(executable_path=r'C:\Users\yesun\OneDrive\바탕 화면\chromedriver.exe')
                 options = webdriver.ChromeOptions()
                 options.add_argument("headless")
                 options.add_argument("disable-gpu") 
@@ -626,7 +626,7 @@ class musicbot:
     @bot.event
     async def on_reaction_add(reaction, users):
 
-        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
+        service = Service(executable_path=r'C:\Users\yesun\OneDrive\바탕 화면\chromedriver.exe')
         options = webdriver.ChromeOptions()
         options.add_argument("headless")
         options.add_argument("disable-gpu") 
@@ -673,7 +673,7 @@ class musicbot:
     @bot.command()
     async def 정밀검색(ctx, *, msg):
         
-        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
+        service = Service(executable_path=r'C:\Users\yesun\OneDrive\바탕 화면\chromedriver.exe')
         Text = ""
         global rinklist
         global Alist
@@ -728,7 +728,7 @@ class musicbot:
 
 class weather:
 
-    #service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
+    #service = Service(executable_path=r'C:\Users\yesun\OneDrive\바탕 화면\chromedriver.exe')
     
     location = []
     #weather-1
@@ -2515,7 +2515,7 @@ class lol:
     @bot.command()
     async def 칼바람(ctx, *, msg):
 
-        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
+        service = Service(executable_path=r'C:\Users\yesun\OneDrive\바탕 화면\chromedriver.exe')
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x3400')
@@ -2636,7 +2636,7 @@ class battleground:
     @bot.command()
     async def 전적(ctx, *, msg):
 
-        service = Service(executable_path=r'C:\Users\c\Desktop\chromedriver.exe')
+        service = Service(executable_path=r'C:\Users\yesun\OneDrive\바탕 화면\chromedriver.exe')
         steam = Button(label='STEAM', style = nextcord.ButtonStyle.green)
         kakao = Button(label='kakao', style = nextcord.ButtonStyle.green)
         psn = Button(label='PSN', style = nextcord.ButtonStyle.green)
